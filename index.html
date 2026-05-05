@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garden Recovery — медицинская резиденция на Адриатике</title>
+<meta name="description" content="Приватная медицинская резиденция для восстановления психоэмоционального состояния. Программное восстановление под медицинским контролем. До 8 гостей. Полная конфиденциальность.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0EBE6;
+  --bg-alt:#FBF6EF;
+  --bg-cream:#E8DDD3;
+  --bg-soft:#F9F2EC;
+  --surface:#FFFFFF;
+  --text:#393A34;
+  --text-mid:#515247;
+  --text-soft:#626354;
+  --text-mute:#9A9D8C;
+  --accent:#8E9482;
+  --accent-dark:#6B7163;
+  --line:#D9D2C5;
+  --line-soft:#E8E2D5;
+  --shadow:0 6px 24px rgba(57,58,52,.06);
+  --shadow-strong:0 12px 40px rgba(57,58,52,.10);
+  --r:24px;
+  --r-sm:14px;
+  --r-pill:999px;
+  --container:1280px;
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Manrope', system-ui, -apple-system, sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.55;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:var(--container);margin:0 auto;padding:0 32px}
+@media(max-width:720px){.container{padding:0 20px}}
+
+/* ------- TOP BAR (logo only on top) ------- */
+.topbar{
+  position:absolute;top:0;left:0;right:0;z-index:30;
+  padding:32px 32px;display:flex;align-items:center;justify-content:flex-start;
+}
+.logo{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.logo-mark{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:40px;
+  letter-spacing:.5px;
+  color:var(--accent);
+}
+.logo-sub{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-top:6px;
+  font-weight:400;
+}
+@media(max-width:720px){
+  .logo-mark{font-size:30px}
+  .logo-sub{font-size:9px;letter-spacing:2.5px}
+  .topbar{padding:20px}
+}
+
+/* ------- BOTTOM NAV (resident-style sticky bottom bar) ------- */
+.bottomnav{
+  position:fixed;bottom:0;left:0;right:0;z-index:40;
+  background:var(--bg-cream);
+  border-top:1px solid rgba(57,58,52,.05);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.bottomnav-lang{
+  width:42px;height:42px;border-radius:50%;
+  background:transparent;border:1px solid var(--text);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:400;color:var(--text);
+  transition:all .2s ease;flex:0 0 auto;
+}
+.bottomnav-lang:hover{background:var(--text);color:var(--bg-cream)}
+.bottomnav-menu{
+  display:flex;align-items:center;gap:32px;flex:1;justify-content:center;
+  flex-wrap:wrap;
+}
+.bottomnav-menu a{
+  font-size:15px;color:var(--text);font-weight:400;
+  transition:opacity .2s;padding:6px 0;
+}
+.bottomnav-menu a:hover{opacity:.6}
+.bottomnav-cta{
+  padding:12px 28px;border:1px solid var(--text);
+  border-radius:var(--r-pill);font-size:15px;color:var(--text);
+  transition:all .2s ease;flex:0 0 auto;
+}
+.bottomnav-cta:hover{background:var(--text);color:var(--bg-cream)}
+@media(max-width:980px){
+  .bottomnav-menu{display:none}
+  .bottomnav{justify-content:space-between}
+}
+@media(max-width:720px){
+  .bottomnav{padding:10px 16px}
+  .bottomnav-lang{width:38px;height:38px}
+  .bottomnav-cta{padding:10px 20px;font-size:14px}
+}
+
+/* ------- HERO ------- */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  padding:120px 0 140px;
+  overflow:hidden;
+}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(40px,6vw,72px);
+  line-height:1.1;
+  letter-spacing:-.5px;
+  color:var(--text);
+  margin:0 0 28px;
+}
+.hero h1 em{font-style:italic;color:var(--accent-dark)}
+.hero-lead{
+  font-size:clamp(17px,1.4vw,20px);
+  line-height:1.55;
+  color:var(--text-mid);
+  margin:0 0 24px;
+  max-width:620px;
+}
+.hero-tagline{
+  font-size:14px;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;
+  font-weight:500;margin:0 0 40px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:18px 36px;
+  background:var(--text);color:var(--bg-soft);
+  border-radius:var(--r-pill);
+  font-size:15px;font-weight:500;letter-spacing:.3px;
+  transition:all .25s ease;border:1px solid var(--text);
+}
+.btn:hover{background:transparent;color:var(--text)}
+.btn-ghost{background:transparent;color:var(--text)}
+.btn-ghost:hover{background:var(--text);color:var(--bg-soft)}
+.btn .arrow{display:inline-block;transition:transform .25s ease}
+.btn:hover .arrow{transform:translateX(4px)}
+
+/* Hero blobs (decorative) */
+.hero-blobs{
+  position:absolute;inset:0;pointer-events:none;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.hero-blobs .blob{position:absolute;opacity:.85}
+.hero-blobs .b1{top:-40px;right:-60px;width:380px;height:340px;
+  border-radius:60% 40% 70% 30%/50% 60% 40% 50%;
+  background:linear-gradient(135deg,#C7D7DC,#E2E9EC);
+  filter:blur(.5px);
+}
+.hero-blobs .b2{top:18%;right:6%;width:520px;height:280px;
+  border-radius:55% 45% 60% 40%/40% 55% 45% 60%;
+  background:linear-gradient(135deg,#D8B98B,#E8C9A0,#C49968);
+}
+.hero-blobs .b3{top:50%;right:-30px;width:520px;height:200px;
+  border-radius:55% 45% 50% 50%/50% 50% 50% 50%;
+  background:linear-gradient(135deg,#E8DDD3,#F0EBE6);
+}
+.hero-blobs .b4{bottom:6%;right:10%;width:340px;height:200px;
+  border-radius:50% 50% 50% 50%/50% 50% 50% 50%;
+  background:linear-gradient(135deg,#7BC1D9,#A8D4E0);
+}
+@media(max-width:980px){
+  .hero-blobs .b1,.hero-blobs .b2,.hero-blobs .b3,.hero-blobs .b4{display:none}
+}
+
+/* ------- SECTION GENERIC ------- */
+section{position:relative;padding:120px 0}
+.section-eyebrow{
+  font-size:13px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin:0 0 18px;
+}
+.section-title{
+  font-family:var(--sans);
+  font-size:clamp(32px,4vw,52px);
+  line-height:1.12;letter-spacing:-.4px;
+  font-weight:400;color:var(--text);
+  margin:0 0 20px;max-width:920px;
+}
+.section-lead{
+  font-size:clamp(16px,1.2vw,18px);
+  line-height:1.55;color:var(--text-mid);
+  max-width:760px;margin:0 0 60px;
+}
+.section-divider{
+  height:1px;background:var(--line-soft);max-width:var(--container);
+  margin:0 auto;
+}
+@media(max-width:720px){
+  section{padding:80px 0}
+}
+
+/* ------- COMPASS ------- */
+.compass-wrap{display:grid;grid-template-columns:480px 1fr;gap:60px;align-items:start}
+@media(max-width:980px){.compass-wrap{grid-template-columns:1fr}}
+.compass-visual{
+  position:relative;aspect-ratio:1/1;width:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.compass-svg{width:100%;height:auto;max-width:480px}
+.compass-pt{
+  position:absolute;width:46px;height:46px;border-radius:50%;
+  background:var(--surface);border:1.5px solid var(--accent);
+  color:var(--accent);font-weight:600;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .25s ease;z-index:2;
+  box-shadow:var(--shadow);
+}
+.compass-pt:hover,.compass-pt.is-active{
+  background:var(--accent);color:#fff;transform:scale(1.08);
+}
+.compass-pt.p1{top:6%;left:50%;transform:translateX(-50%)}
+.compass-pt.p1:hover,.compass-pt.p1.is-active{transform:translateX(-50%) scale(1.08)}
+.compass-pt.p2{top:50%;right:6%;transform:translateY(-50%)}
+.compass-pt.p2:hover,.compass-pt.p2.is-active{transform:translateY(-50%) scale(1.08)}
+.compass-pt.p3{bottom:6%;left:50%;transform:translateX(-50%)}
+.compass-pt.p3:hover,.compass-pt.p3.is-active{transform:translateX(-50%) scale(1.08)}
+.compass-pt.p4{top:50%;left:6%;transform:translateY(-50%)}
+.compass-pt.p4:hover,.compass-pt.p4.is-active{transform:translateY(-50%) scale(1.08)}
+.compass-content{padding-top:20px}
+.compass-tab{display:none}
+.compass-tab.is-active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.compass-tab h3{
+  font-size:28px;font-weight:500;margin:0 0 16px;color:var(--text);
+}
+.compass-tab p{font-size:17px;line-height:1.6;color:var(--text-mid);margin:0 0 14px}
+.compass-tab ul{margin:18px 0 0;padding:0;list-style:none}
+.compass-tab ul li{
+  position:relative;padding:8px 0 8px 22px;
+  font-size:16px;line-height:1.5;color:var(--text-mid);
+  border-bottom:1px solid var(--line-soft);
+}
+.compass-tab ul li:last-child{border-bottom:0}
+.compass-tab ul li::before{
+  content:'';position:absolute;left:0;top:18px;
+  width:8px;height:1px;background:var(--accent);
+}
+.compass-tabs-nav{
+  display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;
+}
+.compass-tab-btn{
+  padding:10px 20px;border-radius:var(--r-pill);
+  font-size:14px;color:var(--text-mid);
+  border:1px solid var(--line);background:transparent;
+  transition:all .2s ease;
+}
+.compass-tab-btn.is-active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.compass-tab-btn:hover:not(.is-active){border-color:var(--accent);color:var(--accent)}
+
+/* ------- PROCESS (5 stages) ------- */
+.process-stages{display:flex;flex-direction:column;gap:14px}
+.stage{
+  background:var(--surface);border-radius:var(--r);
+  padding:0;overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1px solid var(--line-soft);
+  transition:box-shadow .25s ease;
+}
+.stage:hover{box-shadow:var(--shadow-strong)}
+.stage-head{
+  display:grid;grid-template-columns:80px 1fr 36px;
+  gap:24px;padding:30px 36px;align-items:center;
+  cursor:pointer;
+}
+.stage-num{
+  font-family:var(--serif);font-size:42px;font-weight:300;
+  color:var(--accent);line-height:1;
+}
+.stage-title{font-size:24px;font-weight:500;margin:0;color:var(--text)}
+.stage-toggle{
+  width:36px;height:36px;border:1px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s ease;
+}
+.stage-toggle::before,.stage-toggle::after{
+  content:'';position:absolute;width:12px;height:1px;background:var(--text);
+  transition:transform .25s ease;
+}
+.stage-toggle::after{transform:rotate(90deg)}
+.stage.is-open .stage-toggle{background:var(--accent);border-color:var(--accent)}
+.stage.is-open .stage-toggle::before,
+.stage.is-open .stage-toggle::after{background:#fff}
+.stage.is-open .stage-toggle::after{transform:rotate(0deg)}
+.stage-toggle{position:relative}
+.stage-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .25s ease;
+  padding:0 36px;
+}
+.stage.is-open .stage-body{max-height:600px;padding:0 36px 36px 140px}
+.stage-body p{font-size:16px;line-height:1.6;color:var(--text-mid);margin:0}
+@media(max-width:720px){
+  .stage-head{grid-template-columns:60px 1fr 32px;gap:16px;padding:22px 24px}
+  .stage-num{font-size:34px}
+  .stage-title{font-size:18px}
+  .stage.is-open .stage-body{padding:0 24px 24px 24px}
+}
+
+/* ------- PROGRAMS ------- */
+.programs-list{display:flex;flex-direction:column;gap:18px}
+.program{
+  background:var(--surface);border-radius:var(--r);
+  border:1px solid var(--line-soft);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.program-head{
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:32px;padding:34px 40px;align-items:center;
+  cursor:pointer;
+}
+.program-duration{
+  display:inline-flex;align-items:baseline;gap:6px;
+  font-family:var(--serif);color:var(--accent);
+  white-space:nowrap;
+}
+.program-duration .num{font-size:46px;font-weight:300;line-height:1}
+.program-duration .day{font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-family:var(--sans);font-weight:500}
+.program-info{min-width:0}
+.program-name{font-size:24px;font-weight:500;margin:0 0 6px;color:var(--text)}
+.program-tagline{font-size:15px;color:var(--text-mid);margin:0;line-height:1.5}
+.program-toggle{
+  width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .25s ease;position:relative;flex:0 0 auto;
+}
+.program-toggle::before,.program-toggle::after{
+  content:'';position:absolute;width:14px;height:1px;background:var(--text);
+  transition:transform .25s ease;
+}
+.program-toggle::after{transform:rotate(90deg)}
+.program.is-open .program-toggle{background:var(--accent);border-color:var(--accent)}
+.program.is-open .program-toggle::before,.program.is-open .program-toggle::after{background:#fff}
+.program.is-open .program-toggle::after{transform:rotate(0deg)}
+.program-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease;
+}
+.program.is-open .program-body{max-height:2200px}
+.program-body-inner{
+  padding:0 40px 40px;
+  border-top:1px solid var(--line-soft);
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-top:34px;
+}
+.program-body h4{
+  font-size:13px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--accent);font-weight:600;margin:0 0 10px;
+}
+.program-body p,.program-body li{
+  font-size:15px;line-height:1.6;color:var(--text-mid);margin:0 0 12px;
+}
+.program-body ul{padding-left:18px;margin:0 0 16px}
+.program-body ul li{margin-bottom:8px}
+.program-cta-row{
+  display:flex;justify-content:space-between;align-items:center;
+  grid-column:1/-1;padding-top:18px;border-top:1px solid var(--line-soft);
+}
+.program-cta-row .note{font-size:13px;color:var(--text-mute)}
+
+/* Clinical lines inside Standard / Extended */
+.lines{
+  grid-column:1/-1;display:grid;
+  grid-template-columns:repeat(2,1fr);gap:14px;
+  margin-top:8px;
+}
+@media(max-width:720px){.lines{grid-template-columns:1fr}}
+.line{
+  background:var(--bg-soft);border-radius:var(--r-sm);
+  padding:18px 22px;border:1px solid var(--line-soft);
+}
+.line h5{
+  font-size:16px;font-weight:600;color:var(--text);margin:0 0 6px;
+}
+.line p{font-size:14px;color:var(--text-mid);margin:0;line-height:1.5}
+
+@media(max-width:780px){
+  .program-head{grid-template-columns:auto 1fr;gap:18px;padding:24px 26px}
+  .program-toggle{grid-column:2;justify-self:end;margin-top:-50px}
+  .program-body-inner{grid-template-columns:1fr;gap:24px;padding:24px 26px 28px}
+  .program-name{font-size:20px}
+  .program-duration .num{font-size:36px}
+}
+
+/* CONTINUUM */
+.continuum{
+  margin-top:80px;background:var(--bg-soft);
+  border-radius:var(--r);padding:60px 60px;
+  border:1px solid var(--line-soft);
+}
+.continuum-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500;margin:0 0 14px}
+.continuum-title{
+  font-family:var(--sans);font-weight:500;font-size:32px;
+  margin:0 0 16px;color:var(--text);
+}
+.continuum-lead{font-size:17px;color:var(--text-mid);margin:0 0 36px;max-width:640px;line-height:1.55}
+.continuum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:980px){.continuum-grid{grid-template-columns:1fr}}
+.continuum-card{
+  background:var(--surface);border-radius:var(--r-sm);
+  padding:28px 26px;border:1px solid var(--line-soft);
+}
+.continuum-card h4{
+  font-size:18px;font-weight:600;margin:0 0 10px;color:var(--text);
+}
+.continuum-card p{font-size:14px;line-height:1.55;color:var(--text-mid);margin:0}
+@media(max-width:720px){.continuum{padding:36px 26px;margin-top:48px}}
+
+/* ------- WHY ------- */
+.why{background:var(--bg-soft)}
+.why-grid{display:grid;grid-template-columns:1.2fr 2fr;gap:80px;align-items:start}
+@media(max-width:980px){.why-grid{grid-template-columns:1fr;gap:40px}}
+.why-lead{font-size:21px;line-height:1.55;color:var(--text);font-weight:400;margin:0}
+.why-pillars{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:720px){.why-pillars{grid-template-columns:1fr;gap:24px}}
+.pillar h4{font-size:18px;font-weight:600;margin:0 0 10px;color:var(--text)}
+.pillar p{font-size:15px;line-height:1.55;color:var(--text-mid);margin:0}
+
+/* ------- TEAM ------- */
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:28px;
+}
+@media(max-width:980px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.team-grid{grid-template-columns:1fr}}
+.member{
+  background:var(--surface);border-radius:var(--r);
+  padding:34px 28px 28px;text-align:center;
+  border:1px solid var(--line-soft);box-shadow:var(--shadow);
+  transition:box-shadow .25s ease,transform .25s ease;
+}
+.member:hover{box-shadow:var(--shadow-strong);transform:translateY(-3px)}
+.member-photo{
+  width:160px;height:160px;border-radius:50%;
+  background:linear-gradient(135deg,#E2DDD2,#D5CFC2);
+  margin:0 auto 22px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:48px;color:var(--accent-dark);
+  font-weight:300;
+}
+.member-name{font-size:22px;font-weight:500;margin:0 0 4px;color:var(--text);line-height:1.2}
+.member-role{font-size:14px;color:var(--text-mute);margin:0 0 16px}
+.member-value{font-size:14px;line-height:1.55;color:var(--text-mid);font-style:italic;margin:0 0 18px;min-height:60px}
+.member-watch{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--accent);font-weight:500;
+}
+.member-watch::before{
+  content:'▸';font-size:11px;
+}
+
+/* ------- CONTACTS ------- */
+.contacts{background:var(--bg-cream)}
+.contacts-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start}
+@media(max-width:980px){.contacts-grid{grid-template-columns:1fr}}
+.contact-form{
+  background:var(--surface);border-radius:var(--r);
+  padding:48px 44px;border:1px solid var(--line-soft);
+  box-shadow:var(--shadow);
+}
+.field{margin-bottom:22px}
+.field label{
+  display:block;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text-mute);margin-bottom:8px;font-weight:500;
+}
+.field input,.field select{
+  width:100%;padding:14px 0;
+  border:0;border-bottom:1px solid var(--line);
+  background:transparent;font:inherit;color:var(--text);
+  border-radius:0;
+}
+.field input:focus,.field select:focus{outline:none;border-bottom-color:var(--accent)}
+.field-channel{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.channel-opt{
+  padding:10px 18px;border:1px solid var(--line);border-radius:var(--r-pill);
+  font-size:14px;cursor:pointer;transition:all .2s ease;color:var(--text-mid);
+  background:transparent;
+}
+.channel-opt.is-active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.checkbox-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text-mute);line-height:1.5;margin:24px 0 28px}
+.checkbox-row input{margin-top:3px;accent-color:var(--accent)}
+.checkbox-row a{color:var(--accent);text-decoration:underline}
+.form-after{font-size:13px;color:var(--text-mute);margin-top:18px;line-height:1.5}
+.contact-info h3{font-size:24px;font-weight:500;margin:0 0 16px;color:var(--text)}
+.contact-info p{font-size:16px;color:var(--text-mid);line-height:1.6;margin:0 0 20px}
+.contact-channels{display:flex;flex-direction:column;gap:10px;margin:28px 0}
+.contact-channels a{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 20px;background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:var(--r-pill);font-size:15px;color:var(--text);
+  width:fit-content;transition:all .2s ease;
+}
+.contact-channels a:hover{border-color:var(--accent);color:var(--accent)}
+.contact-geo{
+  border-top:1px solid var(--line);padding-top:24px;
+  font-size:14px;color:var(--text-mute);line-height:1.5;
+}
+
+/* ------- FOOTER ------- */
+.footer{
+  background:var(--text);color:var(--bg-soft);
+  padding:60px 0 100px;
+}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:36px}
+@media(max-width:780px){.footer-grid{grid-template-columns:1fr}}
+.footer .logo-mark{color:var(--bg-soft)}
+.footer .logo-sub{color:var(--bg-cream);opacity:.7}
+.footer h5{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--bg-cream);opacity:.7;margin:0 0 14px;font-weight:500}
+.footer ul{margin:0;padding:0;list-style:none}
+.footer ul li{margin-bottom:8px;font-size:14px;color:var(--bg-soft);opacity:.85}
+.footer ul a:hover{opacity:.6}
+.footer-meta{
+  border-top:1px solid rgba(248,245,240,.1);padding-top:24px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  font-size:12px;color:var(--bg-cream);opacity:.6;
+}
+
+/* ------- UTILITIES ------- */
+.section-header{margin-bottom:60px}
+.bg-soft{background:var(--bg-soft)}
+.bg-cream{background:var(--bg-cream)}
+.has-pad-top{padding-top:60px}
+.tag-pill{
+  display:inline-flex;align-items:center;
+  padding:7px 16px;border-radius:var(--r-pill);
+  background:var(--accent);color:#fff;font-size:12px;
+  letter-spacing:2px;text-transform:uppercase;font-weight:500;
+}
+.fixation{
+  margin-top:40px;text-align:center;font-size:15px;color:var(--text-mute);
+  font-style:italic;line-height:1.6;
+}
+
+/* ------- TOAST ------- */
+.toast{
+  position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--text);color:var(--bg-soft);
+  padding:16px 28px;border-radius:var(--r-pill);
+  font-size:14px;opacity:0;transition:all .3s ease;
+  pointer-events:none;z-index:100;box-shadow:var(--shadow-strong);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ------- PAGE BOTTOM SAFE AREA ------- */
+.bottom-safe{padding-bottom:90px}
+@media(max-width:720px){.bottom-safe{padding-bottom:80px}}
+</style>
+</head>
+<body>
+
+<!-- Top bar with logo -->
+<header class="topbar">
+  <a href="#" class="logo">
+    <span class="logo-mark">Garden Recovery</span>
+    <span class="logo-sub">Medical Residence</span>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+  <div class="container hero-content">
+    <h1>Приватная медицинская <em>резиденция</em><br>на побережье Адриатики</h1>
+    <p class="hero-lead">Профессиональное решение деликатных задач в&nbsp;психоэмоциональной сфере. Работаем с&nbsp;состояниями, которые сложно назвать, но&nbsp;невозможно игнорировать.</p>
+    <p class="hero-tagline">Персонально · Системно · Конфиденциально</p>
+    <a href="#contacts" class="btn">Получить консультацию <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- COMPASS -->
+<section id="compass">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Компас</p>
+      <h2 class="section-title">Кто мы и как работаем</h2>
+      <p class="section-lead">Не клиника и не ретрит — отдельный формат. Резиденция, в которой медицинская экспертиза и психоэмоциональная компетенция работают как одна команда.</p>
+    </div>
+
+    <div class="compass-wrap">
+      <!-- Visual -->
+      <div class="compass-visual">
+        <svg class="compass-svg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="cgrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F9F2EC"/>
+              <stop offset="100%" stop-color="#E8DDD3"/>
+            </radialGradient>
+          </defs>
+          <circle cx="240" cy="240" r="220" fill="url(#cgrad)" stroke="#D9D2C5" stroke-width="1"/>
+          <circle cx="240" cy="240" r="170" fill="none" stroke="#D9D2C5" stroke-width="1" stroke-dasharray="2 4"/>
+          <circle cx="240" cy="240" r="110" fill="none" stroke="#D9D2C5" stroke-width="1"/>
+          <line x1="240" y1="40" x2="240" y2="440" stroke="#D9D2C5" stroke-width="1"/>
+          <line x1="40" y1="240" x2="440" y2="240" stroke="#D9D2C5" stroke-width="1"/>
+          <!-- compass needle (DNA-helix-like double arc) -->
+          <path d="M240,90 C300,180 180,300 240,390" stroke="#8E9482" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M240,90 C180,180 300,300 240,390" stroke="#8E9482" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+          <circle cx="240" cy="240" r="8" fill="#8E9482"/>
+        </svg>
+        <button class="compass-pt p1 is-active" data-tab="0" aria-label="Кто мы">N</button>
+        <button class="compass-pt p2" data-tab="1" aria-label="Что мы делаем">E</button>
+        <button class="compass-pt p3" data-tab="2" aria-label="Для кого">S</button>
+        <button class="compass-pt p4" data-tab="3" aria-label="Формат">W</button>
+      </div>
+
+      <!-- Content tabs -->
+      <div class="compass-content">
+        <div class="compass-tabs-nav">
+          <button class="compass-tab-btn is-active" data-tab="0">Кто мы</button>
+          <button class="compass-tab-btn" data-tab="1">Что мы делаем</button>
+          <button class="compass-tab-btn" data-tab="2">Для кого</button>
+          <button class="compass-tab-btn" data-tab="3">Формат</button>
+        </div>
+
+        <div class="compass-tab is-active" data-tab="0">
+          <h3>Экосистема, а не клиника</h3>
+          <p>Медицинская экспертиза и психоэмоциональная компетенция работают как одна команда. Не клиника и не ретрит — отдельный формат: резиденция, где врачи, психологи и терапевты ведут гостя в едином протоколе.</p>
+        </div>
+
+        <div class="compass-tab" data-tab="1">
+          <h3>Программное восстановление</h3>
+          <p>Выстраиваем систему с фокусом на управляемый результат: каждый этап измерим, каждый шаг согласован с командой. Не курс и не процедура — протокол под конкретное состояние.</p>
+        </div>
+
+        <div class="compass-tab" data-tab="2">
+          <h3>Для тех, кто функционирует на грани</h3>
+          <p>Выгорание, расстройства пищевого поведения, скрытые формы зависимости, тревожные и депрессивные состояния. Для людей, которые не готовы выпадать из жизни, но понимают: собственного ресурса уже не хватает.</p>
+          <p style="color:var(--accent);font-style:italic;margin-top:18px">Если вы не уверены, ваш ли это формат, — начните с консультации.</p>
+        </div>
+
+        <div class="compass-tab" data-tab="3">
+          <h3>Формат резиденции</h3>
+          <ul>
+            <li>До 8 гостей одновременно — приватное пространство без потока.</li>
+            <li>Медицинская команда работает внутри одной системы, а не как набор специалистов.</li>
+            <li>Индивидуальный ритм, а не общее расписание.</li>
+            <li>Полная конфиденциальность — на уровне приёма, документов и пребывания.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="bg-soft">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Подход</p>
+      <h2 class="section-title">Восстановление как управляемый процесс</h2>
+      <p class="section-lead">Контроль над процессом мы берём на себя. Результат — гость возвращает контроль над собственным состоянием, а не «проходит программу».</p>
+    </div>
+
+    <div class="process-stages">
+      <article class="stage" data-stage>
+        <div class="stage-head">
+          <div class="stage-num">01</div>
+          <h3 class="stage-title">Консультация</h3>
+          <div class="stage-toggle"></div>
+        </div>
+        <div class="stage-body">
+          <p>Фиксируем исходное состояние. Понимаем запрос, проверяем соответствие формату, договариваемся о следующих шагах. Это разговор без обязательств — формат вступает в силу только после взаимного согласия.</p>
+        </div>
+      </article>
+
+      <article class="stage" data-stage>
+        <div class="stage-head">
+          <div class="stage-num">02</div>
+          <h3 class="stage-title">Диагностика</h3>
+          <div class="stage-toggle"></div>
+        </div>
+        <div class="stage-body">
+          <p>Смотрим систему, а не отдельные симптомы. Лабораторные исследования, функциональная диагностика, психоэмоциональный профиль. Собираем протокол под конкретного гостя.</p>
+        </div>
+      </article>
+
+      <article class="stage" data-stage>
+        <div class="stage-head">
+          <div class="stage-num">03</div>
+          <h3 class="stage-title">Интенсив</h3>
+          <div class="stage-toggle"></div>
+        </div>
+        <div class="stage-body">
+          <p>Вход в контролируемую среду. Настройка состояния: медицинская и немедикаментозная поддержка, режим, питание, сон, нагрузка. От 3 до 7 дней под наблюдением команды.</p>
+        </div>
+      </article>
+
+      <article class="stage" data-stage>
+        <div class="stage-head">
+          <div class="stage-num">04</div>
+          <h3 class="stage-title">Протокол</h3>
+          <div class="stage-toggle"></div>
+        </div>
+        <div class="stage-body">
+          <p>Наблюдаем динамику и корректируем по реакции. Команда синхронизируется ежедневно — изменения в одном модуле сразу видят все специалисты. План не фиксируется на входе, а живёт под состояние.</p>
+        </div>
+      </article>
+
+      <article class="stage" data-stage>
+        <div class="stage-head">
+          <div class="stage-num">05</div>
+          <h3 class="stage-title">Контроль</h3>
+          <div class="stage-toggle"></div>
+        </div>
+        <div class="stage-body">
+          <p>Оценка результата, стабилизация, план поддержания. После выезда — точки контроля по согласованному графику. Восстановление продолжается в обычной жизни, но под наблюдением.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Программы</p>
+      <h2 class="section-title">Форматы входа в систему</h2>
+      <p class="section-lead">Программы — форматы, через которые запускается персональный протокол. Длительность определяется состоянием и задачей: от точечной перезагрузки между циклами нагрузки до полной архитектурной перезагрузки.</p>
+    </div>
+
+    <div class="programs-list">
+
+      <!-- 1. Pulse Reset -->
+      <article class="program" data-program>
+        <div class="program-head">
+          <div class="program-duration"><span class="num">3</span><span class="day">Дня</span></div>
+          <div class="program-info">
+            <h3 class="program-name">Pulse Reset</h3>
+            <p class="program-tagline">Точечная перезагрузка нервной системы между циклами высокой нагрузки.</p>
+          </div>
+          <div class="program-toggle"></div>
+        </div>
+        <div class="program-body">
+          <div class="program-body-inner">
+            <div>
+              <h4>Для кого</h4>
+              <ul>
+                <li>Накопленная усталость, ощущение «нужно остановиться, но не хочу выпадать».</li>
+                <li>Перед важным событием — переговоры, выступление, длительный перелёт.</li>
+                <li>После события, потребовавшего значительного ресурса.</li>
+                <li>Знакомство с резиденцией перед выбором длинной программы.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Что входит</h4>
+              <ul>
+                <li>Размещение в одноместном люксе с видом на море.</li>
+                <li>Питание от шеф-повара по индивидуальным предпочтениям.</li>
+                <li>Базовая диагностика на входе и ежедневный осмотр врача.</li>
+                <li>Курс восстановительных капельниц.</li>
+                <li>Индивидуальные сессии с психологом.</li>
+                <li>Консультация нутрициолога.</li>
+                <li>Массаж и дыхательные практики на свежем воздухе.</li>
+              </ul>
+              <h4 style="margin-top:18px">Что после</h4>
+              <p>Краткий отчёт по состоянию, рекомендации на ближайшие 2 недели. При необходимости — переход в более длинную программу.</p>
+            </div>
+            <div class="program-cta-row">
+              <span class="note">Условия обсуждаем на консультации.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Pulse Reset">Обсудить формат →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Standard Recovery -->
+      <article class="program" data-program>
+        <div class="program-head">
+          <div class="program-duration"><span class="num">5</span><span class="day">Дней</span></div>
+          <div class="program-info">
+            <h3 class="program-name">Standard Recovery</h3>
+            <p class="program-tagline">Базовое восстановление по одной из четырёх клинических линий.</p>
+          </div>
+          <div class="program-toggle"></div>
+        </div>
+        <div class="program-body">
+          <div class="program-body-inner">
+            <div>
+              <h4>Что это</h4>
+              <p>Пятидневный формат, в рамках которого выбирается одна из четырёх линий — с врачом, по результатам входной диагностики. Линии отличаются акцентами, общая структура программы сохраняется.</p>
+              <h4 style="margin-top:18px">Что после</h4>
+              <p>Подробный отчёт на выписке, рекомендации на 3 месяца, контрольные анализы через 30 дней.</p>
+            </div>
+            <div>
+              <h4>Что входит во всех линиях</h4>
+              <ul>
+                <li>Размещение в одноместном люксе с видом на море.</li>
+                <li>Питание от шеф-повара.</li>
+                <li>Лабораторная диагностика на входе.</li>
+                <li>Ежедневный осмотр врача.</li>
+                <li>Курс инфузионной терапии — индивидуальная схема.</li>
+                <li>Mind Restoration Protocol — 7-часовая программа в 5 этапов.</li>
+                <li>Консультация нутрициолога, массаж, ЛФК, дыхательные практики.</li>
+              </ul>
+            </div>
+
+            <div class="lines">
+              <div class="line">
+                <h5>Executive Recovery</h5>
+                <p>Восстановление при выгорании, высокой нагрузке, нарушении сна. Подготовка к высоконагруженному периоду или возвращение в ритм после него.</p>
+              </div>
+              <div class="line">
+                <h5>Body Balance Reset</h5>
+                <p>Восстановление обмена веществ, нервной системы и саморегуляции в отношениях с телом и питанием.</p>
+              </div>
+              <div class="line">
+                <h5>Human Reserve Program</h5>
+                <p>Поддержание высокого уровня энергии, иммунитета и когнитивной функции у здоровых людей. Профилактический формат.</p>
+              </div>
+              <div class="line">
+                <h5>Post-Surgery Recovery</h5>
+                <p>Восстановление после хирургических вмешательств — пластических, эстетических, ортопедических. Не ранний послеоперационный период.</p>
+              </div>
+            </div>
+
+            <div class="program-cta-row">
+              <span class="note">Линия выбирается с врачом по результатам диагностики.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Standard Recovery">Обсудить формат →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Extended Recovery -->
+      <article class="program" data-program>
+        <div class="program-head">
+          <div class="program-duration"><span class="num">7</span><span class="day">Дней</span></div>
+          <div class="program-info">
+            <h3 class="program-name">Extended Recovery</h3>
+            <p class="program-tagline">Расширенный формат тех же четырёх клинических линий.</p>
+          </div>
+          <div class="program-toggle"></div>
+        </div>
+        <div class="program-body">
+          <div class="program-body-inner">
+            <div>
+              <h4>Что это</h4>
+              <p>Семидневный формат — те же четыре линии (Executive / Body Balance / Reserve / Post-Surgery), но с более глубокой работой. Используется, когда пяти дней недостаточно: при выраженной симптоматике, после длительного периода истощения, при необходимости развёрнутой работы с психологом.</p>
+            </div>
+            <div>
+              <h4>Что добавляется к Standard</h4>
+              <ul>
+                <li>Дополнительные дни в люксе.</li>
+                <li>Расширенный курс инфузионной терапии.</li>
+                <li>Mind Restoration Protocol до 10 часов: + блок схема-терапии и + блок EMDR.</li>
+                <li>Дополнительные сессии физиотерапии и массажа.</li>
+                <li>Расширенная диагностика — биохимические маркеры, опционально пищевая непереносимость и генетический скрининг.</li>
+                <li><strong>30-day Integration Support онлайн</strong> — четыре сессии после выписки.</li>
+              </ul>
+            </div>
+            <div class="program-cta-row">
+              <span class="note">Длительность — 7 дней. Далее — индивидуальный протокол.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Extended Recovery">Обсудить формат →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Garden Foundations -->
+      <article class="program" data-program>
+        <div class="program-head">
+          <div class="program-duration"><span class="num">14</span><span class="day">Дней</span></div>
+          <div class="program-info">
+            <h3 class="program-name">Garden Foundations</h3>
+            <p class="program-tagline">Глубокая программа с перестройкой паттернов саморегуляции.</p>
+          </div>
+          <div class="program-toggle"></div>
+        </div>
+        <div class="program-body">
+          <div class="program-body-inner">
+            <div>
+              <h4>Для кого</h4>
+              <ul>
+                <li>Длительное (более полугода) истощение, не отвечающее на короткие восстановительные форматы.</li>
+                <li>Повторяющиеся сбои режима сна, питания, активности — несмотря на попытки самокоррекции.</li>
+                <li>Привычки, направленные на снятие напряжения, которые перестали работать на ресурс.</li>
+                <li>Ощущение «дальше так нельзя», но без острой клинической ситуации.</li>
+                <li>Подготовка к существенным жизненным изменениям, требующая внутренней опоры.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Структура (14 дней)</h4>
+              <ul>
+                <li><strong>Дни 1–3 — Стабилизация и диагностика.</strong> Полный медицинский и психологический профиль, усиленное наблюдение врача, инфузионная терапия, индивидуальная фармакологическая поддержка нервной системы по показаниям.</li>
+                <li><strong>Дни 4–10 — Активная фаза.</strong> Ежедневная индивидуальная психотерапевтическая работа, схема-терапия, EMDR, расширенная инфузионная терапия, Executive circle.</li>
+                <li><strong>Дни 11–14 — Проектирование и интеграция.</strong> Поведенческий протокол, личный протокол восстановления, опционально — системная сессия с близким, финальная диагностика, 90-дневный график.</li>
+              </ul>
+              <h4 style="margin-top:18px">Что после</h4>
+              <p>Continuum — Integration Support 30 дней + рекомендация по дальнейшему сопровождению.</p>
+            </div>
+            <div class="program-cta-row">
+              <span class="note">В пакет включён 30-day Integration Support онлайн.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Garden Foundations">Обсудить формат →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Garden Sabbatical -->
+      <article class="program" data-program>
+        <div class="program-head">
+          <div class="program-duration"><span class="num">30</span><span class="day">Дней</span></div>
+          <div class="program-info">
+            <h3 class="program-name">Garden Sabbatical</h3>
+            <p class="program-tagline">Полная архитектурная перезагрузка жизни.</p>
+          </div>
+          <div class="program-toggle"></div>
+        </div>
+        <div class="program-body">
+          <div class="program-body-inner">
+            <div>
+              <h4>Что это</h4>
+              <p>Месяц, в который гость выходит из своей жизни, чтобы вернуться в неё иначе. Sabbatical — это не отпуск и не интенсив. Это полная перезагрузка: медицинская стабилизация, глубинная работа со специалистами, перестройка поведенческих паттернов и проектирование возвращения.</p>
+              <h4 style="margin-top:18px">Что после</h4>
+              <p>Continuum — Integration Support 90 дней + рекомендация по дальнейшему сопровождению. Возможен Annual Retreat через 6–12 месяцев.</p>
+            </div>
+            <div>
+              <h4>Структура (4 недели)</h4>
+              <ul>
+                <li><strong>Неделя 1 — Стабилизация.</strong> Полный медицинский и психологический профиль, усиленное наблюдение, интенсивная инфузионная терапия.</li>
+                <li><strong>Неделя 2 — Глубинная работа.</strong> Ежедневная индивидуальная работа, схема-терапия, EMDR, поведенческий аудит, Executive circle.</li>
+                <li><strong>Неделя 3 — Перестройка.</strong> Интеграция результатов, новые поведенческие стратегии, системная сессия с близким, активная физическая работа.</li>
+                <li><strong>Неделя 4 — Архитектура жизни и интеграция.</strong> Проектирование возвращения, личный протокол, финальная диагностика, рекомендации на 6 месяцев, переход в Continuum.</li>
+              </ul>
+            </div>
+            <div class="program-cta-row">
+              <span class="note">В пакет включён 90-day Integration Support онлайн.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Garden Sabbatical">Обсудить формат →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="fixation">Каждый протокол собирается под состояние гостя. Условия обсуждаем на консультации.</p>
+
+    <!-- CONTINUUM -->
+    <div class="continuum">
+      <p class="continuum-eyebrow">Garden Recovery Continuum</p>
+      <h3 class="continuum-title">Сопровождение после программы</h3>
+      <p class="continuum-lead">Восстановление продолжается дома. Continuum — структурированная поддержка после выписки: онлайн-сессии с тем же специалистом, регулярная сверка, повторные визиты в резиденцию.</p>
+
+      <div class="continuum-grid">
+        <div class="continuum-card">
+          <h4>Integration Support — 30 / 90 дней</h4>
+          <p>Онлайн-сессии × 50 минут, тот же специалист, фиксированное время. 30-дневный формат включён в Foundations и Extended; 90-дневный — в Sabbatical. Для Pulse Reset и Standard — опционально.</p>
+        </div>
+        <div class="continuum-card">
+          <h4>Ongoing Support — регулярное</h4>
+          <p>Три трека на выбор: <em>Поддерживающий</em> — 2 сессии в месяц. <em>Терапевтический</em> — 4 сессии в месяц. <em>Интенсивный</em> — 6–8 сессий в месяц.</p>
+        </div>
+        <div class="continuum-card">
+          <h4>Annual Retreat</h4>
+          <p>Через 6–12 месяцев — возвращение в резиденцию. Повторное тестирование по тем же шкалам. Гость видит годовую динамику. Со скидкой по программе лояльности.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <p class="section-eyebrow">Почему это работает</p>
+        <p class="why-lead">Это не отдых, не разовая помощь и не временное решение. Это система. Восстановление становится управляемым процессом, а не надеждой на лучшее.</p>
+      </div>
+      <div class="why-pillars">
+        <div class="pillar">
+          <h4>Команда как система</h4>
+          <p>Врач, психолог, физиотерапевт, нутрициолог обмениваются данными ежедневно — не лечат «по своим вертикалям».</p>
+        </div>
+        <div class="pillar">
+          <h4>Протокол под динамику</h4>
+          <p>План не фиксируется на входе, а корректируется по реакции организма и состоянию.</p>
+        </div>
+        <div class="pillar">
+          <h4>Среда без шума</h4>
+          <p>До 8 гостей, отсутствие потока, своя территория — гостю не нужно тратить ресурс на адаптацию.</p>
+        </div>
+        <div class="pillar">
+          <h4>Конфиденциальность</h4>
+          <p>Документы, расчёты, переписка — закрытый контур. Конфиденциальность по умолчанию, на всех уровнях.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="bg-soft">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Команда</p>
+      <h2 class="section-title">Девять специалистов в одной системе</h2>
+      <p class="section-lead">Каждый — со своей зоной ответственности и общей рамкой работы. Все профили, фотографии и видео подгружаются с действующего сайта.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="member">
+        <div class="member-photo">Л</div>
+        <h3 class="member-name">Лена</h3>
+        <p class="member-role">Главврач</p>
+        <p class="member-value">«Точная диагностика — основа любого протокола. Лечим систему, а не симптом.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">Д</div>
+        <h3 class="member-name">Денис</h3>
+        <p class="member-role">Психолог</p>
+        <p class="member-value">«Восстановление — это работа на глубине. Поверхностные решения дают поверхностный результат.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">Р</div>
+        <h3 class="member-name">Роман</h3>
+        <p class="member-role">Основатель</p>
+        <p class="member-value">«Garden — про то, что можно вернуться к себе, не выпадая из жизни.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">В</div>
+        <h3 class="member-name">Влад</h3>
+        <p class="member-role">Физиотерапевт</p>
+        <p class="member-value">«Тело хранит то, что не успевает обработать голова. Без работы с телом восстановление неполное.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">Н</div>
+        <h3 class="member-name">Нутрициолог</h3>
+        <p class="member-role">Питание и метаболизм</p>
+        <p class="member-value">«Питание — не диета, а инструмент стабилизации.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">Ш</div>
+        <h3 class="member-name">Шеф-повар</h3>
+        <p class="member-role">Кухня резиденции</p>
+        <p class="member-value">«Полезно и вкусно — не противоречие, а навык.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">М</div>
+        <h3 class="member-name">Массажист</h3>
+        <p class="member-role">Тело и тонус</p>
+        <p class="member-value">«Расслабление — это управляемое состояние, а не случайность.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">Д</div>
+        <h3 class="member-name">Дерматолог</h3>
+        <p class="member-role">Здоровье кожи</p>
+        <p class="member-value">«Кожа — маркер внутреннего здоровья.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+
+      <article class="member">
+        <div class="member-photo">К</div>
+        <h3 class="member-name">Косметолог</h3>
+        <p class="member-role">Эстетика</p>
+        <p class="member-value">«Эстетика — завершающий штрих, а не главная цель.»</p>
+        <button class="member-watch">Смотреть видео</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section id="contacts" class="contacts bottom-safe">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Контакты</p>
+      <h2 class="section-title">Чтобы начать — короткий разговор.<br>Без обязательств и без анкет.</h2>
+    </div>
+
+    <div class="contacts-grid">
+      <form class="contact-form" id="consultation-form" novalidate>
+        <div class="field">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
+        </div>
+        <div class="field">
+          <label for="contact">Контакт</label>
+          <input type="text" id="contact" name="contact" placeholder="Телефон или @username" required>
+        </div>
+        <div class="field">
+          <label>Удобный канал связи</label>
+          <div class="field-channel" role="radiogroup">
+            <button type="button" class="channel-opt is-active" data-channel="WhatsApp">WhatsApp</button>
+            <button type="button" class="channel-opt" data-channel="Telegram">Telegram</button>
+            <button type="button" class="channel-opt" data-channel="Звонок">Звонок</button>
+          </div>
+        </div>
+        <div class="field" style="display:none">
+          <input type="hidden" id="program-interest" name="program">
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" required>
+          <span>Согласен с <a href="#">политикой конфиденциальности</a> и обработкой персональных данных.</span>
+        </label>
+        <button type="submit" class="btn">Получить консультацию <span class="arrow">→</span></button>
+        <p class="form-after">Заявки обрабатываем лично. Ответим в течение рабочего дня.</p>
+      </form>
+
+      <div class="contact-info">
+        <h3>Прямой контакт</h3>
+        <p>Если удобнее написать сразу — выберите канал. Отвечает команда, не бот.</p>
+        <div class="contact-channels">
+          <a href="#" target="_blank" rel="noopener">WhatsApp →</a>
+          <a href="#" target="_blank" rel="noopener">Telegram →</a>
+          <a href="mailto:hello@gardenrecovery.me">hello@gardenrecovery.me →</a>
+        </div>
+        <div class="contact-geo">
+          <strong>Адриатическое побережье.</strong><br>
+          Точный адрес — после консультации.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer bottom-safe">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo">
+          <span class="logo-mark">Garden Recovery</span>
+          <span class="logo-sub">Medical Residence</span>
+        </a>
+        <p style="margin-top:24px;font-size:13px;color:var(--bg-cream);opacity:.7;line-height:1.6;max-width:380px">
+          Приватная медицинская резиденция на побережье Адриатики. Восстановление психоэмоционального состояния под медицинским контролем.
+        </p>
+      </div>
+      <div>
+        <h5>Сайт</h5>
+        <ul>
+          <li><a href="#compass">Компас</a></li>
+          <li><a href="#process">Подход</a></li>
+          <li><a href="#programs">Программы</a></li>
+          <li><a href="#team">Команда</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Юридическое</h5>
+        <ul>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Согласие на обработку ПД</a></li>
+          <li><a href="#">Cookie-политика</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>© 2026 Garden Recovery. Все права защищены.</span>
+      <span>RU · EN</span>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottomnav" aria-label="Главное меню">
+  <button class="bottomnav-lang" id="lang-toggle" aria-label="Переключить язык">RU</button>
+  <div class="bottomnav-menu">
+    <a href="#compass">Подход</a>
+    <a href="#programs">Программы</a>
+    <a href="#team">Команда</a>
+    <a href="#why">Почему мы</a>
+    <a href="#contacts">Контакты</a>
+  </div>
+  <a href="#contacts" class="bottomnav-cta">Консультация</a>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Получили. Свяжемся в течение рабочего дня.</div>
+
+<script>
+// ----- Compass tabs -----
+const compassBtns = document.querySelectorAll('.compass-pt, .compass-tab-btn');
+const compassTabs = document.querySelectorAll('.compass-tab');
+compassBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const idx = btn.dataset.tab;
+    document.querySelectorAll('.compass-pt').forEach(p => p.classList.toggle('is-active', p.dataset.tab === idx));
+    document.querySelectorAll('.compass-tab-btn').forEach(p => p.classList.toggle('is-active', p.dataset.tab === idx));
+    compassTabs.forEach(t => t.classList.toggle('is-active', t.dataset.tab === idx));
+  });
+});
+
+// ----- Stage accordion -----
+document.querySelectorAll('.stage').forEach(stage => {
+  const head = stage.querySelector('.stage-head');
+  head.addEventListener('click', () => {
+    const wasOpen = stage.classList.contains('is-open');
+    document.querySelectorAll('.stage').forEach(s => s.classList.remove('is-open'));
+    if (!wasOpen) stage.classList.add('is-open');
+  });
+});
+
+// ----- Program accordion (allow multiple open) -----
+document.querySelectorAll('.program').forEach(program => {
+  const head = program.querySelector('.program-head');
+  head.addEventListener('click', (e) => {
+    if (e.target.closest('.btn')) return;
+    program.classList.toggle('is-open');
+  });
+});
+
+// ----- Program CTA -> form -----
+document.querySelectorAll('[data-program-cta]').forEach(cta => {
+  cta.addEventListener('click', (e) => {
+    const interest = cta.dataset.programCta;
+    document.getElementById('program-interest').value = interest;
+    setTimeout(() => {
+      const nameField = document.getElementById('name');
+      if (nameField) nameField.focus();
+    }, 600);
+  });
+});
+
+// ----- Channel selector -----
+document.querySelectorAll('.channel-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.channel-opt').forEach(o => o.classList.remove('is-active'));
+    opt.classList.add('is-active');
+  });
+});
+
+// ----- Form submission (mock) -----
+const form = document.getElementById('consultation-form');
+const toast = document.getElementById('toast');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  if (!name || !contact) {
+    toast.textContent = 'Заполните имя и контакт.';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+    return;
+  }
+  // In production: send to CRM / backend
+  console.log('Submission:', {
+    name,
+    contact,
+    channel: document.querySelector('.channel-opt.is-active').dataset.channel,
+    program: document.getElementById('program-interest').value || ''
+  });
+  toast.textContent = 'Получили. Свяжемся в течение рабочего дня.';
+  toast.classList.add('show');
+  form.reset();
+  document.querySelectorAll('.channel-opt').forEach((o, i) => o.classList.toggle('is-active', i === 0));
+  setTimeout(() => toast.classList.remove('show'), 4000);
+});
+
+// ----- Language toggle (placeholder) -----
+const langBtn = document.getElementById('lang-toggle');
+langBtn.addEventListener('click', () => {
+  const isRU = langBtn.textContent.trim() === 'RU';
+  langBtn.textContent = isRU ? 'EN' : 'RU';
+  toast.textContent = isRU ? 'EN version coming soon.' : 'Переключено на русский.';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
+});
+
+// ----- Open first program by default for demo visibility -----
+// Uncomment to auto-open first program
+// document.querySelector('.program').classList.add('is-open');
+</script>
+</body>
+</html>
