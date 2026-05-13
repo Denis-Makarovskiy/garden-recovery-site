@@ -41,7 +41,16 @@
   --r:24px;
   --r-sm:14px;
   --r-pill:999px;
-  --container:1280px;
+
+  /* Layout tokens (Option B — "Residence") */
+  --container:1240px;       /* max width of any content row */
+  --w-text:680px;           /* paragraphs / leads — comfortable reading */
+  --w-display:880px;        /* hero headline, big titles */
+  --w-wide:var(--container);/* cards, grids, full-bleed rows */
+  --gutter:48px;            /* desktop side padding */
+  --gutter-tablet:32px;     /* <=980px */
+  --gutter-mobile:20px;     /* <=560px */
+
   --serif:'Lora', Georgia, serif;            /* headings & accent */
   --sans:'Manrope', system-ui, -apple-system, sans-serif;  /* body */
   --display:'Playfair Display', Georgia, serif;            /* logo only */
@@ -58,32 +67,47 @@ body{
   font-weight:400;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  /* Uniform -10% scale across the whole site (proportional shrink) */
+  zoom:0.9;
+}
+@supports not (zoom:1){
+  /* Firefox fallback — scale via transform */
+  body{
+    transform:scale(0.9);transform-origin:top center;
+    width:111.111%;margin-left:-5.555%;
+  }
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 img{max-width:100%;display:block}
-.container{max-width:var(--container);margin:0 auto;padding:0 32px}
-@media(max-width:720px){.container{padding:0 20px}}
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--gutter)}
+@media(max-width:980px){.container{padding:0 var(--gutter-tablet)}}
+@media(max-width:560px){.container{padding:0 var(--gutter-mobile)}}
+/* Big screens — content stays bounded, gutter expands */
+@media(min-width:1500px){:root{--gutter:64px}}
+@media(min-width:1800px){:root{--gutter:96px}}
 
-/* ------- TOP BAR (official logo, centered over hero) ------- */
+/* ------- TOP BAR (logo left-aligned, in container) ------- */
 .topbar{
   position:absolute;top:0;left:0;right:0;z-index:30;
-  padding:32px 32px 0;display:flex;align-items:center;justify-content:center;
+  padding:32px 0 0;
 }
+.topbar .container{display:flex;align-items:center;justify-content:flex-start}
 .logo{display:inline-block;line-height:0;color:var(--brand-sage)}
 .logo-mark-img{
-  height:86px;
+  height:64px;
   aspect-ratio:799/259;
   width:auto;display:block;
 }
 @media(max-width:720px){
-  .topbar{padding:24px 20px 0}
-  .logo-mark-img{height:72px}
+  .topbar{padding:22px 0 0}
+  .logo-mark-img{height:54px}
+  .topbar .container{justify-content:center}
 }
 /* footer-variant — horizontal official mark, in cream */
 .footer-logo{display:inline-block;color:var(--bg-cream)}
 .footer-logo-img{
-  height:48px;
+  height:53px;
   aspect-ratio:799/259;
   width:auto;display:block;opacity:.92;
 }
@@ -92,6 +116,78 @@ img{max-width:100%;display:block}
 .gr-sprite{
   position:absolute;width:0;height:0;overflow:hidden;
   pointer-events:none;
+}
+
+/* ------- BURGER (mobile only) ------- */
+.burger{
+  display:none;
+  position:fixed;top:18px;right:18px;z-index:60;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--line);
+  align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:var(--shadow);transition:all .25s ease;
+}
+.burger:hover{border-color:var(--brand-sage)}
+.burger-icon,.burger-icon::before,.burger-icon::after{
+  content:'';display:block;
+  width:18px;height:1.5px;background:var(--text);
+  transition:transform .25s ease,opacity .2s ease,top .25s ease;
+  position:relative;
+}
+.burger-icon::before{position:absolute;top:-6px;left:0}
+.burger-icon::after {position:absolute;top: 6px;left:0}
+.burger.is-open .burger-icon{background:transparent}
+.burger.is-open .burger-icon::before{top:0;transform:rotate(45deg)}
+.burger.is-open .burger-icon::after {top:0;transform:rotate(-45deg)}
+
+/* Full-screen mobile menu */
+.mobile-menu{
+  position:fixed;inset:0;z-index:55;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;padding:80px 24px 40px;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.mobile-menu.is-open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.mobile-menu .mobile-menu-brand{
+  position:absolute;top:24px;left:24px;color:var(--brand-sage);
+}
+.mobile-menu .mobile-menu-brand svg{height:44px;width:auto;display:block}
+.mobile-menu-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.mobile-menu-list a{
+  display:block;padding:14px 8px;
+  font-family:var(--serif);font-size:30px;font-weight:500;
+  color:var(--text);letter-spacing:-.2px;line-height:1.1;
+  transition:color .2s ease;
+}
+.mobile-menu-list a:hover{color:var(--brand-sage)}
+.mobile-menu-foot{
+  margin-top:32px;display:flex;align-items:center;gap:16px;
+  font-size:12px;color:var(--text-mute);letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.mobile-menu-lang{
+  border:1px solid var(--line);background:transparent;
+  padding:8px 14px;border-radius:var(--r-pill);color:var(--text);
+  font-size:12px;letter-spacing:2px;cursor:pointer;
+  transition:all .2s ease;
+}
+.mobile-menu-lang:hover{border-color:var(--brand-sage);color:var(--brand-sage)}
+.mobile-menu-cta{
+  margin-top:24px;
+  padding:14px 28px;border-radius:var(--r-pill);
+  background:var(--text);color:var(--bg);border:1px solid var(--text);
+  font-size:14px;font-weight:500;letter-spacing:.3px;
+}
+
+@media(max-width:820px){
+  .burger{display:flex}
+  body.menu-open{overflow:hidden}
 }
 
 /* ------- BOTTOM NAV (resident-style sticky bottom bar) ------- */
@@ -125,7 +221,7 @@ img{max-width:100%;display:block}
   transition:all .2s ease;flex:0 0 auto;
 }
 .bottomnav-cta:hover{background:var(--text);color:var(--bg-cream)}
-@media(max-width:980px){
+@media(max-width:820px){
   .bottomnav-menu{display:none}
   .bottomnav{justify-content:space-between}
 }
@@ -135,46 +231,81 @@ img{max-width:100%;display:block}
   .bottomnav-cta{padding:10px 20px;font-size:14px}
 }
 
-/* ------- HERO ------- */
+/* ------- HERO (single column, centered editorial) ------- */
 .hero{
-  position:relative;min-height:88vh;
-  display:flex;align-items:center;
-  padding:180px 0 120px;
-  overflow:hidden;
+  position:relative;min-height:680px;
+  overflow:hidden;background:var(--bg);
+  padding:170px 0 60px;
+  text-align:center;
+  /* Anchor content to upper-third — extra air goes between blocks, slack at bottom */
+  justify-content:flex-start;
 }
-@media(max-width:720px){
-  .hero{padding:150px 0 90px;min-height:0}
+/* Soft sand glow behind composition */
+.hero::before{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-46%);
+  width:640px;height:640px;
+  background:radial-gradient(circle, var(--brand-sand-light) 0%, transparent 65%);
+  z-index:0;pointer-events:none;
 }
-/* Content stays in left half — never overlaps the khaki side panel */
-.hero-content{
-  position:relative;z-index:2;
-  max-width:560px;
-  width:54%;
+.hero .container{position:relative;z-index:2}
+
+/* Big brand watermark behind hero text */
+.hero-watermark{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:min(72%, 640px);
+  aspect-ratio:192/207;
+  color:var(--brand-sage);opacity:.12;
+  z-index:1;pointer-events:none;user-select:none;
 }
-@media(max-width:980px){
-  .hero-content{width:100%;max-width:640px}
+@media(max-width:560px){
+  .hero-watermark{width:80%;opacity:.10}
+}
+.hero-eyebrow{
+  font-family:var(--sans);font-size:11px;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--brand-sage);font-weight:600;
+  margin:0 0 22px;display:inline-flex;align-items:center;gap:14px;
+  justify-content:center;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';display:inline-block;width:28px;height:1px;background:var(--brand-sage);
 }
 .hero h1{
   font-family:var(--serif);
   font-weight:500;
-  font-size:clamp(34px,4vw,58px);
+  font-size:clamp(34px,4.2vw,58px);
   line-height:1.1;
-  letter-spacing:-.4px;
+  letter-spacing:-.5px;
   color:var(--text);
-  margin:0 0 24px;
+  margin:0 auto 56px;
+  max-width:var(--w-display);
 }
 .hero h1 em{font-style:italic;font-weight:500;color:var(--brand-sage-dark)}
 .hero-lead{
-  font-size:clamp(15px,1vw,16px);
-  line-height:1.6;
+  font-size:clamp(15px,1.1vw,17px);
+  line-height:1.65;
   color:var(--text-mid);
-  margin:0 0 20px;
-  max-width:480px;
+  margin:0 auto 56px;
+  max-width:var(--w-text);
 }
 .hero-tagline{
-  font-size:12px;letter-spacing:3px;
+  font-size:12px;letter-spacing:3.5px;
   color:var(--brand-sage);text-transform:uppercase;
-  font-weight:600;margin:0 0 30px;
+  font-weight:600;margin:0 0 56px;
+}
+.hero-cta-row{
+  display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;
+}
+.hero-cta-note{
+  font-size:12px;color:var(--text-mute);letter-spacing:.3px;
+}
+
+@media(max-width:820px){
+  .hero{padding:130px 0 80px;min-height:0}
+  .hero::before{width:340px;height:340px}
+  .hero-mark{width:58px;margin-bottom:24px}
 }
 .btn{
   display:inline-flex;align-items:center;gap:10px;
@@ -190,36 +321,29 @@ img{max-width:100%;display:block}
 .btn .arrow{display:inline-block;transition:transform .25s ease}
 .btn:hover .arrow{transform:translateX(4px)}
 
-/* Hero side fill — brand khaki replacing former 'pebbles' decoration */
-.hero-side{
-  position:absolute;top:0;bottom:0;right:0;
-  width:38%;pointer-events:none;z-index:1;
-  background:
-    radial-gradient(ellipse at 70% 35%, rgba(255,255,255,.10), transparent 60%),
-    linear-gradient(160deg, var(--brand-sage) 0%, var(--brand-sage-dark) 100%);
-  clip-path:polygon(22% 0, 100% 0, 100% 100%, 0 100%);
-}
-.hero-side::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 75% 60%, rgba(255,255,255,.05), transparent 55%);
-}
-/* Small cairn watermark inside the khaki panel */
-.hero-side-glyph{
-  position:absolute;right:9%;bottom:16%;
-  width:150px;height:160px;
-  color:#fff;opacity:.22;
-}
-@media(max-width:1100px){
-  .hero-side{width:34%}
-  .hero-side-glyph{width:120px;height:130px;right:7%}
-}
-@media(max-width:980px){
-  .hero-side{width:100%;clip-path:none;opacity:.14}
-  .hero-side-glyph{display:none}
-}
 
 /* ------- SECTION GENERIC ------- */
 section{position:relative;padding:100px 0}
+
+/* ------- FULL-SCREEN SECTIONS ------- */
+/* Compensate for body zoom 0.9: 100vh visually = 100vh / 0.9 = ~111vh in zoomed space */
+:root{--screen-h:calc(100vh / 0.9);--screen-h-d:calc(100dvh / 0.9)}
+.fullscreen{
+  min-height:var(--screen-h);
+  min-height:var(--screen-h-d);
+  display:flex;flex-direction:column;justify-content:center;
+}
+/* Soft scroll snap — gestures gently land on section starts, but free scroll still works */
+html{scroll-snap-type:y proximity}
+section{scroll-snap-align:start;scroll-margin-top:0}
+/* Disable snap on long content-heavy sections to avoid getting stuck on tall pages */
+#process, #programs, #contacts{scroll-snap-align:none}
+/* On narrow screens snapping is more annoying than helpful */
+@media(max-width:820px){
+  html{scroll-snap-type:none}
+  /* Fully neutralize fullscreen behavior on mobile — back to normal flow */
+  .fullscreen{min-height:auto;display:block;justify-content:initial}
+}
 .section-eyebrow{
   display:inline-flex;align-items:center;gap:14px;
   font-family:var(--sans);
@@ -235,13 +359,13 @@ section{position:relative;padding:100px 0}
   font-size:clamp(30px,3.4vw,46px);
   line-height:1.1;letter-spacing:-.4px;
   font-weight:500;color:var(--text);
-  margin:0 0 18px;max-width:820px;
+  margin:0 0 18px;max-width:var(--w-display);
 }
 .section-title em{font-style:italic;color:var(--brand-sage-dark);font-weight:500}
 .section-lead{
   font-size:clamp(15px,1.05vw,17px);
   line-height:1.6;color:var(--text-mid);
-  max-width:720px;margin:0 0 48px;
+  max-width:var(--w-text);margin:0 0 48px;
 }
 .section-divider{
   height:1px;background:var(--line-soft);max-width:var(--container);
@@ -251,67 +375,69 @@ section{position:relative;padding:100px 0}
   section{padding:72px 0}
 }
 
-/* ------- COMPASS ------- */
-.compass-wrap{display:grid;grid-template-columns:540px 1fr;gap:80px;align-items:start}
-@media(max-width:980px){.compass-wrap{grid-template-columns:1fr;gap:40px}}
-.compass-visual{
-  position:relative;aspect-ratio:1/1;width:100%;max-width:540px;
-  display:flex;align-items:center;justify-content:center;
+/* ------- COMPASS (single column, centered) ------- */
+.compass-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:64px;
 }
-.compass-svg{width:100%;height:auto}
-.compass-svg .ring-outer{fill:var(--brand-sand-light)}
-.compass-svg .ring-mid{fill:none;stroke:var(--brand-sage);stroke-opacity:.35;stroke-width:1;stroke-dasharray:3 6}
-.compass-svg .ring-inner{fill:#fff;stroke:var(--brand-sage);stroke-opacity:.3;stroke-width:1}
-.compass-svg .axis{stroke:var(--brand-sage);stroke-opacity:.25;stroke-width:1}
-.compass-svg .needle{stroke:var(--brand-sage);stroke-width:2;fill:none;stroke-linecap:round}
-.compass-svg .needle-soft{stroke:var(--brand-sage);stroke-opacity:.5;stroke-width:1.4;fill:none;stroke-linecap:round}
+.compass-visual{
+  position:relative;aspect-ratio:1/1;width:100%;max-width:440px;
+  margin:0 auto;
+}
+.compass-content{
+  max-width:var(--w-text);width:100%;text-align:center;
+}
+.compass-content h3{margin-left:auto;margin-right:auto}
+.compass-content p{margin-left:auto;margin-right:auto;max-width:var(--w-text)}
+.compass-content ul{max-width:560px;margin-left:auto;margin-right:auto;text-align:left}
+@media(max-width:820px){.compass-wrap{gap:40px}}
+.compass-svg{width:100%;height:auto;display:block}
+.compass-svg .disc{fill:#fff;stroke:var(--line);stroke-width:1}
+.compass-svg .ring-mid{fill:none;stroke:var(--brand-sage);stroke-opacity:.18;stroke-width:1;stroke-dasharray:2 5}
+.compass-svg .ring-inner{fill:var(--bg-soft);stroke:var(--brand-sage);stroke-opacity:.22;stroke-width:1}
+.compass-svg .tick{stroke:var(--brand-sage);stroke-opacity:.35;stroke-width:1.2;stroke-linecap:round}
+.compass-svg .tick-major{stroke:var(--brand-sage);stroke-width:2;stroke-linecap:round}
+.compass-svg .spoke{stroke:var(--brand-sage);stroke-opacity:.18;stroke-width:1;stroke-dasharray:1 4}
+.compass-svg .needle{stroke:var(--brand-sage);stroke-width:2.5;fill:none;stroke-linecap:round}
+.compass-svg .needle-soft{stroke:var(--brand-sage);stroke-opacity:.45;stroke-width:1.6;fill:none;stroke-linecap:round}
 .compass-svg .core{fill:var(--brand-sage)}
 .compass-svg .stones{fill:var(--brand-sage)}
 
+/* 4 quadrant labels — clean text labels at cardinal points, on the ring */
 .compass-pt{
   position:absolute;
   background:var(--surface);
-  border:1.5px solid var(--brand-sage);
-  color:var(--text);font-weight:600;
-  font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
-  padding:14px 22px;border-radius:var(--r-pill);
-  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--brand-sage);
+  color:var(--brand-sage-dark);font-weight:600;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  padding:10px 18px;border-radius:var(--r-pill);
   cursor:pointer;transition:all .25s ease;z-index:2;
-  box-shadow:var(--shadow);white-space:nowrap;
+  box-shadow:0 4px 16px rgba(57,58,52,.06);white-space:nowrap;
 }
-.compass-pt::before{
-  content:'';display:inline-block;width:8px;height:8px;border-radius:50%;
-  background:var(--brand-sage);margin-right:10px;transition:all .25s ease;
+.compass-pt:hover{
+  border-color:var(--brand-sage-dark);color:var(--text);
+  box-shadow:0 6px 20px rgba(57,58,52,.10);
 }
-.compass-pt:hover{border-color:var(--brand-sage-dark);transform:translate(-50%, -50%) scale(1.04)}
 .compass-pt.is-active{
   background:var(--brand-sage);color:#fff;border-color:var(--brand-sage);
-  box-shadow:0 10px 32px rgba(151,154,131,.35);
+  box-shadow:0 8px 24px rgba(151,154,131,.4);
 }
-.compass-pt.is-active::before{background:#fff}
-.compass-pt.p1{top:0%;left:50%;transform:translate(-50%, -50%)}
-.compass-pt.p2{top:50%;left:100%;transform:translate(-50%, -50%)}
-.compass-pt.p3{top:100%;left:50%;transform:translate(-50%, -50%)}
-.compass-pt.p4{top:50%;left:0%;transform:translate(-50%, -50%)}
-.compass-pt.p1:hover,.compass-pt.p1.is-active,
-.compass-pt.p2:hover,.compass-pt.p2.is-active,
-.compass-pt.p3:hover,.compass-pt.p3.is-active,
-.compass-pt.p4:hover,.compass-pt.p4.is-active{transform:translate(-50%, -50%) scale(1.04)}
+/* Position pills ON the ring, anchored by translate */
+.compass-pt.p1{top:0;left:50%;transform:translate(-50%, -50%)}
+.compass-pt.p2{top:50%;right:0;transform:translate(50%, -50%)}
+.compass-pt.p3{bottom:0;left:50%;transform:translate(-50%, 50%)}
+.compass-pt.p4{top:50%;left:0;transform:translate(-50%, -50%)}
 
-/* Mobile: shrink the symbol so side buttons fit inside the viewport */
-@media(max-width:980px){
-  .compass-wrap{grid-template-columns:1fr;gap:40px}
-  .compass-visual{max-width:78%;margin:0 auto}
+@media(max-width:820px){
+  .compass-visual{max-width:78%}
 }
 @media(max-width:560px){
-  .compass-visual{max-width:70%}
-  .compass-pt{font-size:10.5px;padding:8px 12px;letter-spacing:.6px;border-width:1px}
-  .compass-pt::before{width:5px;height:5px;margin-right:6px}
+  .compass-visual{max-width:74%}
+  .compass-pt{font-size:10px;padding:7px 12px;letter-spacing:1.2px}
   .compass-pt.p1,.compass-pt.p3{max-width:60vw}
 }
 @media(max-width:380px){
-  .compass-visual{max-width:62%}
-  .compass-pt{font-size:10px;padding:7px 10px}
+  .compass-visual{max-width:66%}
+  .compass-pt{font-size:9.5px;padding:6px 10px;letter-spacing:1px}
 }
 
 .compass-content{padding-top:10px}
@@ -554,11 +680,23 @@ section{position:relative;padding:100px 0}
 .line-body p:last-child{margin:0}
 
 @media(max-width:780px){
-  .program-head{grid-template-columns:auto 1fr;gap:18px;padding:24px 26px}
-  .program-toggle{grid-column:2;justify-self:end;margin-top:-50px}
-  .program-body-inner{grid-template-columns:1fr;gap:24px;padding:24px 26px 28px}
-  .program-name{font-size:20px}
-  .program-duration .num{font-size:36px}
+  .program-head{
+    grid-template-columns:auto minmax(0,1fr) auto;
+    gap:14px;padding:18px 18px 18px 22px;align-items:center;
+  }
+  .program-toggle{width:34px;height:34px;flex:0 0 auto}
+  .program-toggle::before,.program-toggle::after{width:11px}
+  .program-body-inner{grid-template-columns:1fr;gap:22px;padding:20px 22px 22px}
+  .program-name{font-size:16px;line-height:1.2}
+  .program-tagline{font-size:13px;line-height:1.45}
+  .program-duration .num{font-size:26px}
+  .program-duration .day{font-size:10px;letter-spacing:1.5px}
+}
+@media(max-width:420px){
+  .program-head{gap:10px;padding:16px 14px 16px 18px}
+  .program-name{font-size:15px}
+  .program-tagline{display:none} /* save space on very narrow screens */
+  .program-duration .num{font-size:22px}
 }
 
 /* CONTINUUM */
@@ -579,7 +717,7 @@ section{position:relative;padding:100px 0}
   font-family:var(--serif);font-weight:500;font-size:28px;
   letter-spacing:-.2px;margin:0 0 14px;color:var(--text);
 }
-.continuum-lead{font-size:15px;color:var(--text-mid);margin:0 0 30px;max-width:640px;line-height:1.6}
+.continuum-lead{font-size:15px;color:var(--text-mid);margin:0 0 30px;max-width:var(--w-text);line-height:1.6}
 .continuum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:980px){.continuum-grid{grid-template-columns:1fr}}
 .continuum-card{
@@ -622,7 +760,7 @@ section{position:relative;padding:100px 0}
 .why{background:var(--bg-soft)}
 .why-grid{display:grid;grid-template-columns:1.2fr 2fr;gap:80px;align-items:start}
 @media(max-width:980px){.why-grid{grid-template-columns:1fr;gap:40px}}
-.why-lead{font-size:21px;line-height:1.55;color:var(--text);font-weight:400;margin:0}
+.why-lead{font-size:21px;line-height:1.55;color:var(--text);font-weight:400;margin:0;max-width:var(--w-text)}
 .why-pillars{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 @media(max-width:720px){.why-pillars{grid-template-columns:1fr;gap:24px}}
 .pillar h4{font-size:18px;font-weight:600;margin:0 0 10px;color:var(--text)}
@@ -827,28 +965,56 @@ section{position:relative;padding:100px 0}
 <path transform="matrix(1,0,0,-1,236.19629,258.12696)" d="M454.9663-.422213V19.87021H467.93098V17.094094H457.91154V11.400943H466.23997V8.624825H457.91154V2.353905H467.93098V-.422213H454.9663Z" fill="currentColor"/>
 </symbol><symbol id="gr-glyph" viewBox="-2 -2 192 207"><path transform="matrix(1,0,0,-1,41.76709,203.06836)" d="M107.28852 9.864389C106.63807 7.581306 105.263217 5.569778 103.36988 4.131126 100.04107 1.500679 95.90763 .088917 91.660289 .131725H19.77964C15.638872 .100388 11.606645 1.451286 8.32511 3.969299 6.081205 5.67194 4.171149 7.772205 2.690594 10.164917 1.175676 12.30999 .248545 14.812134 .000867 17.42396-.018478 19.014775 .285934 20.592988 .895702 22.063179 1.50547 23.533371 2.407931 24.86502 3.548527 25.97762 6.978581 29.50528 11.294304 32.051836 16.046484 33.352239 19.831206 34.477865 23.712315 35.251768 27.640135 35.664037 32.253248 36.24663 36.904127 36.47849 41.552515 36.357583 44.056745 36.357583 46.56098 36.218873 49.042024 35.94146 50.943384 35.756517 52.891115 35.68717 54.792474 35.479108 56.693834 35.271047 58.85025 35.016744 60.867547 34.71621 64.85576 34.115144 68.78215 33.344545 72.6467 32.40441 76.8921 31.443064 81.086528 30.27029 85.21422 28.890488 88.86262 27.686295 92.38757 26.138096 95.74126 24.266894 98.45795 22.888894 101.00281 21.197388 103.3235 19.227175 105.1624 17.722115 106.58343 15.772024 107.450839 13.563263 107.73392 12.338419 107.67782 11.059904 107.28852 9.864389Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,18.96875,160.97852)" d="M167.04892 10.038074C166.85053 8.161217 166.12522 6.378208 164.95629 4.893799 163.78734 3.409393 162.22219 2.283791 160.44055 1.646255 158.56223 .798267 156.51998 .372093 154.45822 .397884H149.40338C144.28983 .359726 139.17882 .637676 134.09976 1.230133 127.30588 1.784962 120.512 2.270432 113.74131 3.010208 109.26616 3.495686 104.79101 3.773098 100.31586 4.235458 96.582698 4.628464 92.826358 4.905884 89.0932 5.252655 85.8006 5.576305 82.48481 5.830601 79.192218 6.154255 76.57205 6.40855 73.95188 6.593494 71.33172 6.894028 68.71155 7.194561 66.69425 7.310162 64.37552 7.518223 60.874238 7.864994 57.419328 8.165524 53.825296 8.58165 50.231264 8.997772 46.405359 9.321426 42.718576 9.668198 37.547807 10.176792 32.377038 10.569794 27.252644 11.147743 22.128249 11.725693 16.725605 12.511696 11.508461 13.297707 9.161788 13.664192 6.900025 14.447178 4.830515 15.609505 3.527422 16.219128 2.402358 17.150895 1.562262 18.316227 .722166 19.481562 .194957 20.841742 .030743 22.267485-.122239 24.025046 .298523 25.78484 1.230317 27.284584 2.162111 28.784327 3.555045 29.943717 5.201512 30.589953 7.813501 31.5703 10.516407 32.290468 13.270697 32.739927 16.586482 33.45658 19.925456 34.10389 23.264428 34.728075 24.98029 35.07484 26.742524 35.23667 28.458384 35.53721 31.403174 36.092039 34.371145 36.508157 37.315935 36.947397 40.70128 37.47911 44.086626 37.964593 47.49516 38.450067 52.66593 39.189844 57.85989 39.721559 63.05385 40.48445 68.2478 41.247346 72.908458 41.59411 77.80098 42.310766 81.279079 42.81936 84.75717 43.23549 88.25845 43.65161 92.89591 44.22956 97.53338 44.761278 102.17084 45.31611 105.90399 45.77847 109.61397 46.26394 113.32394 46.772535 117.961399 47.39672 122.59886 48.11338 127.120388 48.737569 129.25362 49.014986 131.38684 49.107454 133.52008 49.38487 137.80974 49.939699 142.12256 50.05529 146.41222 50.217119 150.96389 50.71191 155.55979 49.834135 159.6058 47.697259 161.3697 46.654119 162.86746 45.218015 163.98177 43.501428 165.09607 41.784837 165.79666 39.834375 166.02867 37.802766 166.80455 32.695627 167.26917 27.546278 167.41994 22.383072 167.6528 18.265095 167.52867 14.134762 167.04892 10.038074Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,0,110.791019)" d="M179.98957 17.827986C177.09981 16.84787 174.12763 16.128325 171.10883 15.678015 166.21631 14.753296 161.3006 13.967285 156.31534 13.366219 153.9966 13.111919 151.67787 12.834507 149.35915 12.67268 146.06655 12.464619 142.82032 12.025375 139.5741 11.678608L125.40665 10.106583C121.117 9.597988 116.85053 9.066277 112.56088 8.580799 109.523349 8.257145 106.46262 8.002842 103.42509 7.725426 101.10635 7.517365 98.94993 7.193718 96.70076 7.078125 92.89804 6.800713 89.118518 6.384586 85.33899 5.991577L72.49322 4.58139C67.85576 4.072796 63.357419 3.65667 58.76633 3.21743L45.503198 2.130882C41.93235 1.807232 38.31513 1.552929 34.74428 1.252396 31.91543 .9981 29.132954 .628212 26.350478 .466385 23.583292 .216141 20.803103 .138931 18.026234 .23521 16.727746 .23521 15.406068 .23521 14.130766 .23521 12.302859 .279224 10.502114 .686272 8.833902 1.432537 7.16569 2.178806 5.663518 3.249306 4.415285 4.58139 2.699656 6.789017 1.639277 9.432037 1.354561 12.21032 .43663 17.09593-.005982 22.058499 .032885 27.028939-.108069 30.002463 .20466 32.980089 .960377 35.86 1.438364 37.65598 2.310293 39.323766 3.513237 40.742994 4.716182 42.16222 6.22014 43.297494 7.916569 44.06688 10.32629 45.262346 12.921036 46.04391 15.591567 46.378679 20.507966 46.95585 25.464457 47.11825 30.408257 46.86416 34.883409 46.748567 39.358556 46.378679 43.833707 46.26309 49.189973 46.101266 54.523054 45.708257 59.856134 45.407724L64.957347 45.10719 82.301448 44.20559C85.10711 44.09 87.93596 44.089998 90.74162 43.881937 94.35884 43.650758 97.99926 43.41958 101.61648 43.095926 104.81632 42.81851 108.03936 42.726037 111.21602 42.494859 116.89691 42.101854 122.55461 41.89379 128.18914 41.385198 129.76587 41.246488 131.36579 41.385198 132.94252 41.385198 138.19832 41.10778 143.46183 40.807249 148.73308 40.483598 153.09229 40.25242 157.4515 40.044355 161.78754 39.697587 166.63368 39.327699 171.5262 39.212106 176.34917 38.472333 178.29305 38.30063 180.15956 37.631624 181.76816 36.530038 183.37674 35.42845 184.67295 33.931577 185.53134 32.184244 188.24425 26.381634 186.80664 20.4172 179.98957 17.827986Z" fill="currentColor"/><path transform="matrix(1,0,0,-1,95.57178,51.13672)" d="M50.28749 24.017586C50.22502 22.57596 50.023134 21.143712 49.684629 19.74076 48.70633 15.481575 46.600454 11.561829 43.58636 8.389835 41.106397 5.735893 38.075727 3.653118 34.70562 2.286694 30.440642 .643871 25.817242 .148602 21.299572 .850601 16.781903 1.552601 12.528956 3.427166 8.96771 6.286102 5.770636 8.852543 3.314154 12.219109 1.849207 16.041886 .839963 18.623282 .237686 21.344912 .063783 24.110058-.083889 26.265267 .025077 28.430329 .388404 30.55997 .654403 32.168046 1.162531 33.72683 1.895583 35.183565 3.155474 37.81415 4.830822 40.225999 6.857665 42.327016 8.975021 44.46577 11.445746 46.225297 14.161671 47.52856 16.041193 48.514596 18.034646 49.26767 20.097617 49.771005 22.619072 50.404638 25.232462 50.592428 27.818995 50.325834 31.963084 49.842668 35.934823 48.393358 39.412649 46.095247 41.306909 44.789667 43.015104 43.234334 44.490667 41.47165 46.239999 39.552774 47.644109 37.347326 48.641199 34.952386 49.304834 33.303483 49.764245 31.580023 50.009248 29.820195 50.009248 28.803006 50.17156 27.785815 50.380247 26.768624 50.4519 25.851023 50.420789 24.92832 50.28749 24.017586Z" fill="currentColor"/></symbol></svg>
 
-<!-- Top bar with centered official logo -->
+<!-- Top bar with official logo -->
 <header class="topbar">
-  <a href="#" class="logo" aria-label="Garden Recovery — Medical Residence">
-    <svg class="logo-mark-img" role="img" aria-label="Garden Recovery — Medical Residence"><use href="#gr-logo"/></svg>
-  </a>
+  <div class="container">
+    <a href="#" class="logo" aria-label="Garden Recovery — Medical Residence">
+      <svg class="logo-mark-img" role="img" aria-label="Garden Recovery — Medical Residence"><use href="#gr-logo"/></svg>
+    </a>
+  </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-side" aria-hidden="true">
-    <svg class="hero-side-glyph" aria-hidden="true"><use href="#gr-glyph"/></svg>
+<!-- Burger (mobile only) -->
+<button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+  <span class="burger-icon"></span>
+</button>
+
+<!-- Mobile overlay menu -->
+<nav class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#" class="mobile-menu-brand" aria-label="Garden Recovery">
+    <svg><use href="#gr-glyph"/></svg>
+  </a>
+  <ul class="mobile-menu-list">
+    <li><a href="#compass" data-menu-link>Компас</a></li>
+    <li><a href="#process" data-menu-link>Подход</a></li>
+    <li><a href="#programs" data-menu-link>Программы</a></li>
+    <li><a href="#why" data-menu-link>Почему мы</a></li>
+    <li><a href="#team" data-menu-link>Команда</a></li>
+    <li><a href="#contacts" data-menu-link>Контакты</a></li>
+  </ul>
+  <a href="#contacts" class="mobile-menu-cta" data-menu-link>Получить консультацию</a>
+  <div class="mobile-menu-foot">
+    <button class="mobile-menu-lang" id="mobile-lang">RU · EN</button>
   </div>
-  <div class="container hero-content">
-    <h1>Приватная медицинская <em>резиденция</em><br>на побережье Адриатики</h1>
+</nav>
+
+<!-- HERO -->
+<section class="hero fullscreen" id="hero">
+  <svg class="hero-watermark" aria-hidden="true"><use href="#gr-glyph"/></svg>
+  <div class="container">
+    <p class="hero-eyebrow">Свети-Стефан · Черногория</p>
+    <h1>Приватная медицинская <em>резиденция</em> на побережье Адриатики</h1>
     <p class="hero-lead">Профессиональное решение деликатных задач в&nbsp;психоэмоциональной сфере. Работаем с&nbsp;состояниями, которые сложно назвать, но&nbsp;невозможно игнорировать.</p>
     <p class="hero-tagline">Персонально · Системно · Конфиденциально</p>
-    <a href="#contacts" class="btn">Получить консультацию <span class="arrow">→</span></a>
+    <div class="hero-cta-row">
+      <a href="#contacts" class="btn">Получить консультацию <span class="arrow">→</span></a>
+      <span class="hero-cta-note">До 8 гостей · Полная приватность</span>
+    </div>
   </div>
 </section>
 
 <!-- COMPASS -->
-<section id="compass">
+<section id="compass" class="fullscreen">
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">Компас</p>
@@ -860,21 +1026,54 @@ section{position:relative;padding:100px 0}
       <!-- Visual -->
       <div class="compass-visual">
         <svg class="compass-svg" viewBox="0 0 540 540" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- concentric rings -->
-          <circle class="ring-outer" cx="270" cy="270" r="240"/>
-          <circle class="ring-mid"   cx="270" cy="270" r="190"/>
-          <circle class="ring-inner" cx="270" cy="270" r="130"/>
-          <!-- axes -->
-          <line class="axis" x1="270" y1="50"  x2="270" y2="490"/>
-          <line class="axis" x1="50"  y1="270" x2="490" y2="270"/>
-          <!-- DNA-helix double arc (life-line through the system) -->
-          <path class="needle"      d="M270,90 C340,180 200,360 270,450"/>
-          <path class="needle-soft" d="M270,90 C200,180 340,360 270,450"/>
-          <!-- cairn (stones) — brand symbol at the core -->
-          <g class="stones" transform="translate(270,270)">
-            <ellipse cx="0" cy="-22" rx="11" ry="7"/>
-            <ellipse cx="0" cy="-2"  rx="24" ry="8"/>
-            <ellipse cx="0" cy="18"  rx="17" ry="6.5"/>
+          <defs>
+            <!-- 24 ticks around the dial: minor every 15°, major every 90° -->
+            <g id="cmp-tick"><line class="tick" x1="270" y1="38" x2="270" y2="54"/></g>
+            <g id="cmp-tick-major"><line class="tick-major" x1="270" y1="32" x2="270" y2="58"/></g>
+          </defs>
+          <!-- disc + concentric rings -->
+          <circle class="disc"       cx="270" cy="270" r="232"/>
+          <circle class="ring-mid"   cx="270" cy="270" r="184"/>
+          <circle class="ring-inner" cx="270" cy="270" r="118"/>
+          <!-- diagonal spokes (4 secondary, dashed) -->
+          <line class="spoke" x1="270" y1="270" x2="425.6" y2="114.4"/>
+          <line class="spoke" x1="270" y1="270" x2="425.6" y2="425.6"/>
+          <line class="spoke" x1="270" y1="270" x2="114.4" y2="425.6"/>
+          <line class="spoke" x1="270" y1="270" x2="114.4" y2="114.4"/>
+          <!-- ticks on the outer ring: minor every 15°, major at N/E/S/W -->
+          <g transform="rotate(15 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(30 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(45 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(60 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(75 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(105 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(120 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(135 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(150 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(165 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(195 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(210 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(225 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(240 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(255 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(285 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(300 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(315 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(330 270 270)"><use href="#cmp-tick"/></g>
+          <g transform="rotate(345 270 270)"><use href="#cmp-tick"/></g>
+          <!-- 4 major ticks at cardinal points -->
+          <use href="#cmp-tick-major"/>
+          <g transform="rotate(90 270 270)"><use href="#cmp-tick-major"/></g>
+          <g transform="rotate(180 270 270)"><use href="#cmp-tick-major"/></g>
+          <g transform="rotate(270 270 270)"><use href="#cmp-tick-major"/></g>
+          <!-- DNA-helix double arc through the disc -->
+          <path class="needle"      d="M270,112 C336,196 204,344 270,428"/>
+          <path class="needle-soft" d="M270,112 C204,196 336,344 270,428"/>
+          <!-- cairn (stones) — brand mark in the core -->
+          <g class="stones" transform="translate(270,270) scale(1.15)">
+            <ellipse cx="0" cy="-26" rx="11" ry="7"/>
+            <ellipse cx="0" cy="-4"  rx="26" ry="8.5"/>
+            <ellipse cx="0" cy="18"  rx="18" ry="6.5"/>
           </g>
         </svg>
         <button class="compass-pt p1 is-active" data-tab="0">Кто мы</button>
@@ -1344,7 +1543,7 @@ section{position:relative;padding:100px 0}
 </section>
 
 <!-- TEAM -->
-<section id="team" class="bg-soft">
+<section id="team" class="bg-soft fullscreen">
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">Команда</p>
@@ -1426,7 +1625,7 @@ section{position:relative;padding:100px 0}
 </section>
 
 <!-- CONTACTS -->
-<section id="contacts" class="contacts bottom-safe">
+<section id="contacts" class="contacts bottom-safe fullscreen">
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">Контакты</p>
@@ -1472,7 +1671,7 @@ section{position:relative;padding:100px 0}
         </div>
         <div class="contact-geo">
           <strong>Светосавски пут б/б</strong><br>
-          Близикуче · Черногория<br>
+          Свети-Стефан · Черногория<br>
           Посёлок на холме над Адриатикой, в 20 минутах от аэропорта Тиват.<br>
           <span style="color:var(--text-mute);font-size:13px">Инструкции по приезду — после консультации.</span>
         </div>
@@ -1577,15 +1776,34 @@ document.querySelectorAll('.line').forEach(line => {
   });
 });
 
+// ----- Smooth-scroll #contacts links so the form lands centered in viewport -----
+(() => {
+  const scrollFormIntoCenter = () => {
+    const form = document.getElementById('consultation-form');
+    if (!form) return;
+    // Native API handles body zoom and scroll-snap correctly
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  document.querySelectorAll('a[href="#contacts"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollFormIntoCenter();
+    });
+  });
+  window.__scrollFormIntoCenter = scrollFormIntoCenter;
+})();
+
 // ----- Program CTA -> form -----
 document.querySelectorAll('[data-program-cta]').forEach(cta => {
   cta.addEventListener('click', (e) => {
+    e.preventDefault();
     const interest = cta.dataset.programCta;
     document.getElementById('program-interest').value = interest;
+    if (window.__scrollFormIntoCenter) window.__scrollFormIntoCenter();
     setTimeout(() => {
       const nameField = document.getElementById('name');
-      if (nameField) nameField.focus();
-    }, 600);
+      if (nameField) nameField.focus({preventScroll:true});
+    }, 700);
   });
 });
 
@@ -1633,6 +1851,43 @@ langBtn.addEventListener('click', () => {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2400);
 });
+
+// ----- Mobile burger menu -----
+(() => {
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobile-menu');
+  if (!burger || !menu) return;
+  const close = () => {
+    burger.classList.remove('is-open');
+    menu.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+  };
+  const open = () => {
+    burger.classList.add('is-open');
+    menu.classList.add('is-open');
+    document.body.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+  };
+  burger.addEventListener('click', () => {
+    menu.classList.contains('is-open') ? close() : open();
+  });
+  menu.querySelectorAll('[data-menu-link]').forEach(a => {
+    a.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) close();
+  });
+  const mobileLang = document.getElementById('mobile-lang');
+  if (mobileLang) {
+    mobileLang.addEventListener('click', () => {
+      const langBtn = document.getElementById('lang-toggle');
+      if (langBtn) langBtn.click();
+    });
+  }
+})();
 
 // ----- Team carousel -----
 (() => {
