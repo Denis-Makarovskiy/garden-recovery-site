@@ -924,6 +924,12 @@ section{scroll-snap-align:start;scroll-margin-top:0}
 /* ------- PAGE BOTTOM SAFE AREA ------- */
 .bottom-safe{padding-bottom:90px}
 @media(max-width:720px){.bottom-safe{padding-bottom:80px}}
+
+/* ------- HERO VIDEO ------- */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.35}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,240,233,.3) 0%,rgba(244,240,233,.85) 70%,rgba(244,240,233,1) 100%);z-index:1;pointer-events:none}
+.hero .container{z-index:2;position:relative}
+@media(max-width:820px){.hero-video{display:none}}
 </style>
 </head>
 <body>
@@ -1000,6 +1006,9 @@ section{scroll-snap-align:start;scroll-margin-top:0}
 
 <!-- HERO -->
 <section class="hero fullscreen" id="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
   <svg class="hero-watermark" aria-hidden="true"><use href="#gr-glyph"/></svg>
   <div class="container">
     <p class="hero-eyebrow">Свети-Стефан · Черногория</p>
@@ -1019,7 +1028,7 @@ section{scroll-snap-align:start;scroll-margin-top:0}
     <div class="section-header">
       <p class="section-eyebrow">Компас</p>
       <h2 class="section-title">Кто мы и как работаем</h2>
-      <p class="section-lead">Не клиника и не ретрит — отдельный формат. Резиденция, в которой медицинская экспертиза и психоэмоциональная компетенция работают как одна команда.</p>
+      <p class="section-lead">Мы — остановка на пути, место, где восстановление становится частью жизни.</p>
     </div>
 
     <div class="compass-wrap">
@@ -1086,28 +1095,40 @@ section{scroll-snap-align:start;scroll-margin-top:0}
       <div class="compass-content">
 
         <div class="compass-tab is-active" data-tab="0">
-          <h3>Экосистема, а не клиника</h3>
-          <p>Медицинская экспертиза и психоэмоциональная компетенция работают как одна команда. Не клиника и не ретрит — отдельный формат: резиденция, где врачи, психологи и терапевты ведут гостя в едином протоколе.</p>
+          <h3>Частная медицинская резиденция</h3>
+          <p>Garden Recovery — это частная медицинская резиденция, где восстановление рассматривается как комплексный процесс. Среда, в которой человек, утративший опоры, снова вспоминает, что такое внутренний порядок, ясность, достоинство и вкус к жизни.</p>
         </div>
 
         <div class="compass-tab" data-tab="1">
-          <h3>Программное восстановление</h3>
-          <p>Выстраиваем систему с фокусом на управляемый результат: каждый этап измерим, каждый шаг согласован с командой. Не курс и не процедура — протокол под конкретное состояние.</p>
+          <h3>Персональные программы</h3>
+          <p>Мы создаём персональные программы восстановления, которые помогают человеку заново научиться чувствовать, понимать и регулировать своё состояние. Вы выбираете программу и длительность пребывания — организацию всего процесса мы берём на себя.</p>
         </div>
 
         <div class="compass-tab" data-tab="2">
-          <h3>Для тех, кто функционирует на грани</h3>
-          <p>Выгорание, расстройства пищевого поведения, скрытые формы зависимости, тревожные и депрессивные состояния. Для людей, которые не готовы выпадать из жизни, но понимают: собственного ресурса уже не хватает.</p>
-          <p style="color:var(--accent);font-style:italic;margin-top:18px">Если вы не уверены, ваш ли это формат, — начните с консультации.</p>
+          <h3>Для тех, кто ищет перемен</h3>
+          <ul>
+            <li>Для тех, кто работают в режиме постоянной интенсивности</li>
+            <li>Для тех, кто хотят сформировать здоровые привычки питания</li>
+            <li>Для тех, кому необходимо реабилитационное сопровождение после эстетических вмешательств</li>
+            <li>Для тех, кто системно подходят к качеству своей жизни</li>
+            <li>Для тех, кто ценят доверие, конфиденциальность и индивидуальный подход</li>
+          </ul>
         </div>
 
         <div class="compass-tab" data-tab="3">
           <h3>Формат резиденции</h3>
           <ul>
-            <li>До 8 гостей одновременно — приватное пространство без потока.</li>
-            <li>Медицинская команда работает внутри одной системы, а не как набор специалистов.</li>
-            <li>Индивидуальный ритм, а не общее расписание.</li>
-            <li>Полная конфиденциальность — на уровне приёма, документов и пребывания.</li>
+            <li>Проживание в одноместном люксе с видом на море</li>
+            <li>Трёхразовое питание от шеф-повара по индивидуальному плану</li>
+            <li>Медицинская диагностика</li>
+            <li>Персональный план восстановления</li>
+            <li>Ежедневное сопровождение врача</li>
+            <li>Консультации нутрициолога</li>
+            <li>Инфузионная терапия</li>
+            <li>Физиотерапия: массаж, ЛФК</li>
+            <li>Психотерапевтические сессии</li>
+            <li>Фармакологическая поддержка</li>
+            <li>Итоговый отчёт и план пост-реабилитационного сопровождения</li>
           </ul>
         </div>
       </div>
@@ -1119,9 +1140,9 @@ section{scroll-snap-align:start;scroll-margin-top:0}
 <section id="process" class="bg-soft">
   <div class="container">
     <div class="section-header">
-      <p class="section-eyebrow">Подход</p>
-      <h2 class="section-title">Восстановление как управляемый процесс</h2>
-      <p class="section-lead">Контроль над процессом мы берём на себя. Результат — гость возвращает контроль над собственным состоянием, а не «проходит программу».</p>
+      <p class="section-eyebrow">Путь гостя</p>
+      <h2 class="section-title">Путь <em>восстановления</em></h2>
+      <p class="section-lead">Каждый гость проходит через пять этапов — от первого разговора до стабилизации результата.</p>
     </div>
 
     <div class="process-stages">
@@ -1132,7 +1153,7 @@ section{scroll-snap-align:start;scroll-margin-top:0}
           <div class="stage-toggle"></div>
         </div>
         <div class="stage-body">
-          <p>Фиксируем исходное состояние. Понимаем запрос, проверяем соответствие формату, договариваемся о следующих шагах. Это разговор без обязательств — формат вступает в силу только после взаимного согласия.</p>
+          <p>Фиксируем исходное состояние и запрос, задаём направление восстановления.</p>
         </div>
       </article>
 
@@ -1143,40 +1164,40 @@ section{scroll-snap-align:start;scroll-margin-top:0}
           <div class="stage-toggle"></div>
         </div>
         <div class="stage-body">
-          <p>Смотрим систему, а не отдельные симптомы. Лабораторные исследования, функциональная диагностика, психоэмоциональный профиль. Собираем протокол под конкретного гостя.</p>
+          <p>Исследуем работу организма как единой системы и определяем причины изменений состояния.</p>
         </div>
       </article>
 
       <article class="stage" data-stage>
         <div class="stage-head">
           <div class="stage-num">03</div>
-          <h3 class="stage-title">Интенсив</h3>
+          <h3 class="stage-title">Протокол</h3>
           <div class="stage-toggle"></div>
         </div>
         <div class="stage-body">
-          <p>Вход в контролируемую среду. Настройка состояния: медицинская и немедикаментозная поддержка, режим, питание, сон, нагрузка. От 3 до 7 дней под наблюдением команды.</p>
+          <p>Формируем персональную программу восстановления на основе результатов диагностики и наблюдаем динамику состояния.</p>
         </div>
       </article>
 
       <article class="stage" data-stage>
         <div class="stage-head">
           <div class="stage-num">04</div>
-          <h3 class="stage-title">Протокол</h3>
+          <h3 class="stage-title">Интенсив</h3>
           <div class="stage-toggle"></div>
         </div>
         <div class="stage-body">
-          <p>Наблюдаем динамику и корректируем по реакции. Команда синхронизируется ежедневно — изменения в одном модуле сразу видят все специалисты. План не фиксируется на входе, а живёт под состояние.</p>
+          <p>Создаём условия для глубокой перезагрузки организма, восстановления физических сил и эмоционального ресурса под наблюдением специалистов.</p>
         </div>
       </article>
 
       <article class="stage" data-stage>
         <div class="stage-head">
           <div class="stage-num">05</div>
-          <h3 class="stage-title">Контроль</h3>
+          <h3 class="stage-title">Стабилизация</h3>
           <div class="stage-toggle"></div>
         </div>
         <div class="stage-body">
-          <p>Оценка результата, стабилизация, план поддержания. После выезда — точки контроля по согласованному графику. Восстановление продолжается в обычной жизни, но под наблюдением.</p>
+          <p>Оцениваем, закрепляем результат и выстраиваем стратегию сохранения прогресса после программы.</p>
         </div>
       </article>
     </div>
@@ -1189,293 +1210,102 @@ section{scroll-snap-align:start;scroll-margin-top:0}
     <div class="section-header">
       <p class="section-eyebrow">Программы</p>
       <h2 class="section-title">Форматы входа в систему</h2>
-      <p class="section-lead">Программы — форматы, через которые запускается персональный протокол. Длительность определяется состоянием и задачей: от точечной перезагрузки между циклами нагрузки до полной архитектурной перезагрузки.</p>
+      <p class="section-lead">Каждая программа — это персональный протокол восстановления. Выберите направление, а мы подберём оптимальную длительность.</p>
     </div>
 
     <div class="programs-list">
 
-      <!-- 1. Pulse Reset -->
-      <article class="program" data-program data-depth="1">
+      <!-- 1. Executive Recovery -->
+      <article class="program" data-program data-depth="2">
         <div class="program-head">
-          <div class="program-duration"><span class="num">3</span><span class="day">Дня</span></div>
+          <div class="program-duration"><span class="num">&rarr;</span></div>
           <div class="program-info">
-            <h3 class="program-name">Pulse Reset</h3>
-            <p class="program-tagline">Точечная перезагрузка нервной системы между циклами высокой нагрузки.</p>
+            <h3 class="program-name">Executive Recovery</h3>
+            <p class="program-tagline">Выгорание и перенапряжение</p>
           </div>
           <div class="program-toggle"></div>
         </div>
         <div class="program-body">
           <div class="program-body-inner">
-            <div>
-              <h4>Для кого</h4>
-              <ul>
-                <li>Накопленная усталость, ощущение «нужно остановиться, но не хочу выпадать».</li>
-                <li>Перед важным событием — переговоры, выступление, длительный перелёт.</li>
-                <li>После события, потребовавшего значительного ресурса.</li>
-                <li>Знакомство с резиденцией перед выбором длинной программы.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Что входит</h4>
-              <ul>
-                <li>Размещение в одноместном люксе с видом на море.</li>
-                <li>Питание от шеф-повара по индивидуальным предпочтениям.</li>
-                <li>Базовая диагностика на входе и ежедневный осмотр врача.</li>
-                <li>Курс восстановительных капельниц.</li>
-                <li>Индивидуальные сессии с психологом.</li>
-                <li>Консультация нутрициолога.</li>
-                <li>Массаж и дыхательные практики на свежем воздухе.</li>
-              </ul>
-              <h4 style="margin-top:18px">Что после</h4>
-              <p>Краткий отчёт по состоянию, рекомендации на ближайшие 2 недели. При необходимости — переход в более длинную программу.</p>
+            <div style="grid-column:1/-1">
+              <img src="assets/img/programs/executive-recovery.jpg" alt="Executive Recovery" style="width:100%;max-height:280px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:24px">
+              <p>Программа для восстановления после хронического стресса, эмоционального выгорания и высоких нагрузок. Направлена на стабилизацию нервной системы, восстановление энергии, концентрации, сна и общего ресурса организма.</p>
             </div>
             <div class="program-cta-row">
               <span class="note">Условия обсуждаем на консультации.</span>
-              <a href="#contacts" class="btn btn-ghost" data-program-cta="Pulse Reset">Обсудить формат →</a>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Executive Recovery">Обсудить формат &rarr;</a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 2. Standard Recovery -->
+      <!-- 2. Body Balance Reset -->
       <article class="program" data-program data-depth="2">
         <div class="program-head">
-          <div class="program-duration"><span class="num">5</span><span class="day">Дней</span></div>
+          <div class="program-duration"><span class="num">&rarr;</span></div>
           <div class="program-info">
-            <h3 class="program-name">Standard Recovery</h3>
-            <p class="program-tagline">Базовое восстановление по одной из четырёх клинических линий.</p>
+            <h3 class="program-name">Body Balance Reset</h3>
+            <p class="program-tagline">Обмен веществ и саморегуляция</p>
           </div>
           <div class="program-toggle"></div>
         </div>
         <div class="program-body">
           <div class="program-body-inner">
-            <div>
-              <h4>Что это</h4>
-              <p>Пятидневный формат, в рамках которого выбирается одна из четырёх линий — с врачом, по результатам входной диагностики. Линии отличаются акцентами, общая структура программы сохраняется.</p>
-              <h4 style="margin-top:18px">Что после</h4>
-              <p>Подробный отчёт на выписке, рекомендации на 3 месяца, контрольные анализы через 30 дней.</p>
+            <div style="grid-column:1/-1">
+              <img src="assets/img/programs/body-balance.png" alt="Body Balance Reset" style="width:100%;max-height:280px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:24px">
+              <p>Программа мягкого восстановления метаболического баланса и пищевого поведения. Помогает снизить уровень стресса, восстановить энергетический обмен и поддержать работу нервной системы и внутренних процессов организма.</p>
             </div>
-            <div>
-              <h4>Что входит во всех линиях</h4>
-              <ul>
-                <li>Размещение в одноместном люксе с видом на море.</li>
-                <li>Питание от шеф-повара.</li>
-                <li>Лабораторная диагностика на входе.</li>
-                <li>Ежедневный осмотр врача.</li>
-                <li>Курс инфузионной терапии — индивидуальная схема.</li>
-                <li>Mind Restoration Protocol — 7-часовая программа в 5 этапов.</li>
-                <li>Консультация нутрициолога, массаж, ЛФК, дыхательные практики.</li>
-              </ul>
-            </div>
-
-            <div class="lines-block">
-              <div class="lines-block-head">
-                <h4 class="lines-block-title">Клинические линии</h4>
-                <p class="lines-block-note">Одна линия — на выбор с врачом по результатам диагностики</p>
-              </div>
-              <div class="lines">
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Executive Recovery</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Восстановление при выгорании, высокой нагрузке, нарушении сна. Подготовка к высоконагруженному периоду или возвращение в ритм после него.</p>
-                    <p><strong>Акценты:</strong> регуляция сна и циркадных ритмов, разгрузка стресс-оси, когнитивная функция, индивидуальная фармакологическая поддержка нервной системы по показаниям.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Body Balance Reset</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Восстановление обмена веществ, нервной системы и саморегуляции в отношениях с телом и питанием.</p>
-                    <p><strong>Акценты:</strong> метаболические маркеры, нутрициологический протокол, работа с поведенческими паттернами питания, мягкая фармакологическая поддержка по показаниям.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Human Reserve Program</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Поддержание высокого уровня энергии, иммунитета и когнитивной функции у здоровых людей. Профилактический формат.</p>
-                    <p><strong>Акценты:</strong> расширенная лабораторная диагностика, иммунный профиль, нутрицевтическая и инфузионная поддержка, программа физической активности.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Post-Surgery Recovery</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Восстановление после хирургических вмешательств — пластических, эстетических, ортопедических. Не ранний послеоперационный период.</p>
-                    <p><strong>Акценты:</strong> мягкая физиотерапия, регенеративные протоколы, лимфодренаж, нутрициологическая поддержка восстановления тканей.</p>
-                  </div>
-                </article>
-              </div>
-            </div>
-
             <div class="program-cta-row">
-              <span class="note">Линия выбирается с врачом по результатам диагностики.</span>
-              <a href="#contacts" class="btn btn-ghost" data-program-cta="Standard Recovery">Обсудить формат →</a>
+              <span class="note">Условия обсуждаем на консультации.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Body Balance Reset">Обсудить формат &rarr;</a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 3. Extended Recovery -->
+      <!-- 3. Post-Surgery Recovery -->
       <article class="program" data-program data-depth="3">
         <div class="program-head">
-          <div class="program-duration"><span class="num">7</span><span class="day">Дней</span></div>
+          <div class="program-duration"><span class="num">&rarr;</span></div>
           <div class="program-info">
-            <h3 class="program-name">Extended Recovery</h3>
-            <p class="program-tagline">Расширенный формат тех же четырёх клинических линий.</p>
+            <h3 class="program-name">Post-Surgery Recovery</h3>
+            <p class="program-tagline">Послеоперационная реабилитация</p>
           </div>
           <div class="program-toggle"></div>
         </div>
         <div class="program-body">
           <div class="program-body-inner">
-            <div>
-              <h4>Что это</h4>
-              <p>Семидневный формат — те же четыре линии, но с более глубокой работой. Используется, когда пяти дней недостаточно: при выраженной симптоматике, после длительного периода истощения, при необходимости развёрнутой работы с психологом.</p>
+            <div style="grid-column:1/-1">
+              <img src="assets/img/programs/post-surgery.jpg" alt="Post-Surgery Recovery" style="width:100%;max-height:280px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:24px">
+              <p>Программа восстановления после хирургических вмешательств и медикаментозной нагрузки. Направлена на ускорение регенерации, снижение отёков, восстановление энергии и безопасное возвращение к привычному уровню активности.</p>
             </div>
-            <div>
-              <h4>Что добавляется к Standard</h4>
-              <ul>
-                <li>Дополнительные дни в люксе.</li>
-                <li>Расширенный курс инфузионной терапии.</li>
-                <li>Mind Restoration Protocol до 10 часов: + блок схема-терапии и + блок EMDR.</li>
-                <li>Дополнительные сессии физиотерапии и массажа.</li>
-                <li>Расширенная диагностика — биохимические маркеры, опционально пищевая непереносимость и генетический скрининг.</li>
-                <li><strong>30-day Integration Support онлайн</strong> — четыре сессии после выписки.</li>
-              </ul>
-            </div>
-
-            <div class="lines-block">
-              <div class="lines-block-head">
-                <h4 class="lines-block-title">Клинические линии</h4>
-                <p class="lines-block-note">Та же четвёрка, в более глубоком формате</p>
-              </div>
-              <div class="lines">
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Executive Recovery</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Выгорание, высокая нагрузка, нарушения сна. Углублённая работа со стресс-осью и когнитивной функцией.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Body Balance Reset</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Метаболизм, нервная система, отношения с телом и питанием. Расширенный нутрициологический и поведенческий блок.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Human Reserve Program</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Поддержание энергии, иммунитета, когнитивной функции у здоровых. Расширенная диагностика и индивидуальный план поддержания ресурса.</p>
-                  </div>
-                </article>
-                <article class="line" data-line>
-                  <div class="line-head">
-                    <h5>Post-Surgery Recovery</h5>
-                    <div class="line-toggle"></div>
-                  </div>
-                  <div class="line-body">
-                    <p>Восстановление после плановых хирургических вмешательств. Расширенная физиотерапия, лимфодренаж, регенеративные протоколы.</p>
-                  </div>
-                </article>
-              </div>
-            </div>
-
             <div class="program-cta-row">
-              <span class="note">Длительность — 7 дней. Далее — индивидуальный протокол.</span>
-              <a href="#contacts" class="btn btn-ghost" data-program-cta="Extended Recovery">Обсудить формат →</a>
+              <span class="note">Условия обсуждаем на консультации.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Post-Surgery Recovery">Обсудить формат &rarr;</a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 4. Garden Foundations -->
-      <article class="program" data-program data-depth="4">
+      <!-- 4. Human Reserve -->
+      <article class="program" data-program data-depth="3">
         <div class="program-head">
-          <div class="program-duration"><span class="num">14</span><span class="day">Дней</span></div>
+          <div class="program-duration"><span class="num">&rarr;</span></div>
           <div class="program-info">
-            <h3 class="program-name">Garden Foundations</h3>
-            <p class="program-tagline">Глубокая программа с перестройкой паттернов саморегуляции.</p>
+            <h3 class="program-name">Human Reserve</h3>
+            <p class="program-tagline">Поддержание ресурса</p>
           </div>
           <div class="program-toggle"></div>
         </div>
         <div class="program-body">
           <div class="program-body-inner">
-            <div>
-              <h4>Для кого</h4>
-              <ul>
-                <li>Длительное (более полугода) истощение, не отвечающее на короткие восстановительные форматы.</li>
-                <li>Повторяющиеся сбои режима сна, питания, активности — несмотря на попытки самокоррекции.</li>
-                <li>Привычки, направленные на снятие напряжения, которые перестали работать на ресурс.</li>
-                <li>Ощущение «дальше так нельзя», но без острой клинической ситуации.</li>
-                <li>Подготовка к существенным жизненным изменениям, требующая внутренней опоры.</li>
-              </ul>
-            </div>
-            <div>
-              <h4>Структура (14 дней)</h4>
-              <ul>
-                <li><strong>Дни 1–3 — Стабилизация и диагностика.</strong> Полный медицинский и психологический профиль, усиленное наблюдение врача, инфузионная терапия, индивидуальная фармакологическая поддержка нервной системы по показаниям.</li>
-                <li><strong>Дни 4–10 — Активная фаза.</strong> Ежедневная индивидуальная психотерапевтическая работа, схема-терапия, EMDR, расширенная инфузионная терапия, Executive circle.</li>
-                <li><strong>Дни 11–14 — Проектирование и интеграция.</strong> Поведенческий протокол, личный протокол восстановления, опционально — системная сессия с близким, финальная диагностика, 90-дневный график.</li>
-              </ul>
-              <h4 style="margin-top:18px">Что после</h4>
-              <p>Continuum — Integration Support 30 дней + рекомендация по дальнейшему сопровождению.</p>
+            <div style="grid-column:1/-1">
+              <img src="assets/img/programs/human-reserve.jpg" alt="Human Reserve" style="width:100%;max-height:280px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:24px">
+              <p>Профилактическая программа для поддержания энергии, иммунитета и устойчивости организма при высоких физических и интеллектуальных нагрузках. Помогает восполнить дефициты, улучшить восстановление и сохранить высокий уровень ресурса.</p>
             </div>
             <div class="program-cta-row">
-              <span class="note">В пакет включён 30-day Integration Support онлайн.</span>
-              <a href="#contacts" class="btn btn-ghost" data-program-cta="Garden Foundations">Обсудить формат →</a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5. Garden Sabbatical -->
-      <article class="program" data-program data-depth="5">
-        <div class="program-head">
-          <div class="program-duration"><span class="num">30</span><span class="day">Дней</span></div>
-          <div class="program-info">
-            <h3 class="program-name">Garden Sabbatical</h3>
-            <p class="program-tagline">Полная архитектурная перезагрузка жизни.</p>
-          </div>
-          <div class="program-toggle"></div>
-        </div>
-        <div class="program-body">
-          <div class="program-body-inner">
-            <div>
-              <h4>Что это</h4>
-              <p>Месяц, в который гость выходит из своей жизни, чтобы вернуться в неё иначе. Sabbatical — это не отпуск и не интенсив. Это полная перезагрузка: медицинская стабилизация, глубинная работа со специалистами, перестройка поведенческих паттернов и проектирование возвращения.</p>
-              <h4 style="margin-top:18px">Что после</h4>
-              <p>Continuum — Integration Support 90 дней + рекомендация по дальнейшему сопровождению. Возможен Annual Retreat через 6–12 месяцев.</p>
-            </div>
-            <div>
-              <h4>Структура (4 недели)</h4>
-              <ul>
-                <li><strong>Неделя 1 — Стабилизация.</strong> Полный медицинский и психологический профиль, усиленное наблюдение, интенсивная инфузионная терапия.</li>
-                <li><strong>Неделя 2 — Глубинная работа.</strong> Ежедневная индивидуальная работа, схема-терапия, EMDR, поведенческий аудит, Executive circle.</li>
-                <li><strong>Неделя 3 — Перестройка.</strong> Интеграция результатов, новые поведенческие стратегии, системная сессия с близким, активная физическая работа.</li>
-                <li><strong>Неделя 4 — Архитектура жизни и интеграция.</strong> Проектирование возвращения, личный протокол, финальная диагностика, рекомендации на 6 месяцев, переход в Continuum.</li>
-              </ul>
-            </div>
-            <div class="program-cta-row">
-              <span class="note">В пакет включён 90-day Integration Support онлайн.</span>
-              <a href="#contacts" class="btn btn-ghost" data-program-cta="Garden Sabbatical">Обсудить формат →</a>
+              <span class="note">Условия обсуждаем на консультации.</span>
+              <a href="#contacts" class="btn btn-ghost" data-program-cta="Human Reserve">Обсудить формат &rarr;</a>
             </div>
           </div>
         </div>
@@ -1483,13 +1313,40 @@ section{scroll-snap-align:start;scroll-margin-top:0}
 
     </div>
 
-    <p class="fixation">Каждый протокол собирается под состояние гостя. Условия обсуждаем на консультации.</p>
+    <!-- Duration options -->
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <div style="background:var(--surface);border-radius:var(--r-sm);padding:30px 28px;border:1px solid var(--line-soft);text-align:center">
+        <div style="font-family:var(--serif);font-size:36px;font-weight:500;font-style:italic;color:var(--brand-sage-dark);margin-bottom:6px">3</div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-sage);font-weight:600;margin-bottom:14px">дня</div>
+        <div style="font-family:var(--serif);font-size:18px;font-weight:500;color:var(--text)">Fast Recovery</div>
+        <div style="font-size:28px;font-weight:500;color:var(--text);margin-top:8px">2 500 &euro;</div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--r-sm);padding:30px 28px;border:1px solid var(--line-soft);text-align:center">
+        <div style="font-family:var(--serif);font-size:36px;font-weight:500;font-style:italic;color:var(--brand-sage-dark);margin-bottom:6px">7</div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-sage);font-weight:600;margin-bottom:14px">дней</div>
+        <div style="font-family:var(--serif);font-size:18px;font-weight:500;color:var(--text)">Basic Recovery</div>
+        <div style="font-size:28px;font-weight:500;color:var(--text);margin-top:8px">5 500 &euro;</div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--r-sm);padding:30px 28px;border:1px solid var(--line-soft);text-align:center">
+        <div style="font-family:var(--serif);font-size:36px;font-weight:500;font-style:italic;color:var(--brand-sage-dark);margin-bottom:6px">30</div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-sage);font-weight:600;margin-bottom:14px">дней</div>
+        <div style="font-family:var(--serif);font-size:18px;font-weight:500;color:var(--text)">Full Recovery</div>
+        <div style="font-size:28px;font-weight:500;color:var(--text);margin-top:8px">15 000 &euro;</div>
+      </div>
+      <div style="background:var(--surface);border-radius:var(--r-sm);padding:30px 28px;border:1px solid var(--line-soft);text-align:center">
+        <div style="font-family:var(--serif);font-size:20px;font-weight:500;font-style:italic;color:var(--brand-sage-dark);margin-bottom:6px">&infin;</div>
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-sage);font-weight:600;margin-bottom:14px">индивидуально</div>
+        <div style="font-family:var(--serif);font-size:18px;font-weight:500;color:var(--text)">Свой формат</div>
+        <div style="font-size:28px;font-weight:500;color:var(--text);margin-top:8px">900 &euro;<span style="font-size:14px;color:var(--text-mute)">/день</span></div>
+      </div>
+    </div>
 
     <!-- CONTINUUM -->
     <div class="continuum">
       <p class="continuum-eyebrow">Garden Recovery Continuum</p>
       <h3 class="continuum-title">Сопровождение после программы</h3>
-      <p class="continuum-lead">Восстановление продолжается дома. Continuum — структурированная поддержка после выписки: онлайн-сессии с тем же специалистом, регулярная сверка, повторные визиты в резиденцию.</p>
+      <p class="continuum-lead">Поддерживающее сопровождение после завершения программы. Помогает сохранить достигнутые результаты, поддерживать связь со специалистами и удерживать положительную динамику.</p>
+      <img src="assets/img/programs/post-continuum.jpg" alt="Continuum" style="width:100%;max-height:240px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:30px">
 
       <div class="continuum-grid">
         <div class="continuum-card tier-1">
@@ -1522,20 +1379,20 @@ section{scroll-snap-align:start;scroll-margin-top:0}
       </div>
       <div class="why-pillars">
         <div class="pillar">
-          <h4>Команда как система</h4>
-          <p>Врач, психолог, физиотерапевт, нутрициолог обмениваются данными ежедневно — не лечат «по своим вертикалям».</p>
+          <h4>Целостность</h4>
+          <p>Тело, разум и душа. Программы охватывают все аспекты жизни человека. Благодаря комплексному подходу к оздоровлению — полное восстановление.</p>
         </div>
         <div class="pillar">
-          <h4>Протокол под динамику</h4>
-          <p>План не фиксируется на входе, а корректируется по реакции организма и состоянию.</p>
+          <h4>Индивидуальный подход</h4>
+          <p>Программа подбирается с учётом особенностей и предпочтений гостя. Путь начинается с консультации со специалистом, который помогает подобрать программу.</p>
         </div>
         <div class="pillar">
-          <h4>Среда без шума</h4>
-          <p>До 8 гостей, отсутствие потока, своя территория — гостю не нужно тратить ресурс на адаптацию.</p>
+          <h4>Богатство природы</h4>
+          <p>Расположение Черногории уникально: на одной территории объединены горы, море и лес. Адриатика — природная среда для восстановления.</p>
         </div>
         <div class="pillar">
-          <h4>Конфиденциальность</h4>
-          <p>Документы, расчёты, переписка — закрытый контур. Конфиденциальность по умолчанию, на всех уровнях.</p>
+          <h4>Тишина и спокойствие</h4>
+          <p>Уединённое место, где сочетание адриатического моря и горного массива обеспечивают тишину и покой для гостей.</p>
         </div>
       </div>
     </div>
@@ -1547,8 +1404,8 @@ section{scroll-snap-align:start;scroll-margin-top:0}
   <div class="container">
     <div class="section-header">
       <p class="section-eyebrow">Команда</p>
-      <h2 class="section-title">Экосистема <em>заботы</em></h2>
-      <p class="section-lead">Не «набор специалистов», а единая команда: врачи, психологи, физиотерапевт, нутрициолог, шеф, эстетический блок. Один протокол, одна история, одно направление работы.</p>
+      <h2 class="section-title">С вами будут <em>работать</em></h2>
+      <p class="section-lead">Команда, которой можно доверить своё восстановление. Один протокол, одна история, одно направление работы.</p>
     </div>
 
     <div class="team-carousel">
@@ -1670,13 +1527,22 @@ section{scroll-snap-align:start;scroll-margin-top:0}
           <a href="mailto:hello@gardenrecovery.me">hello@gardenrecovery.me →</a>
         </div>
         <div class="contact-geo">
-          <strong>Светосавски пут б/б</strong><br>
-          Свети-Стефан · Черногория<br>
-          Посёлок на холме над Адриатикой, в 20 минутах от аэропорта Тиват.<br>
-          <span style="color:var(--text-mute);font-size:13px">Инструкции по приезду — после консультации.</span>
+          <p><strong>Светосавски пут б/б</strong><br>Свети-Стефан · Черногория</p>
+          <p style="margin-top:10px">Посёлок, расположенный на живописном холме над Адриатическим морем, всего в 20 минутах езды от аэропорта Тиват.</p>
+          <p style="margin-top:8px;font-style:italic">Инструкции по приезду — после консультации.</p>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FINAL SLIDE -->
+<section id="final" class="fullscreen" style="background:var(--text);color:var(--bg-soft);text-align:center;display:flex;align-items:center;justify-content:center">
+  <div class="container">
+    <p style="font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--brand-sage);font-weight:600;margin:0 0 28px">Garden Recovery</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(28px,3.6vw,48px);font-weight:500;line-height:1.15;letter-spacing:-.4px;color:var(--bg-soft);margin:0 auto 32px;max-width:640px">Иногда лучшее решение — <em style="font-style:italic;color:var(--brand-sage)">остановиться</em></h2>
+    <p style="font-size:17px;line-height:1.6;color:rgba(248,245,240,.7);max-width:480px;margin:0 auto 40px">Чтобы восстановить силы. Чтобы вернуть ясность. Чтобы обрести внутреннюю опору.</p>
+    <p style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,245,240,.4)">Персонально · Системно · Конфиденциально</p>
   </div>
 </section>
 
