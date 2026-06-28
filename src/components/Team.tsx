@@ -1,68 +1,28 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useReveal } from '../hooks/useReveal'
 
+const BASE = import.meta.env.BASE_URL
+
 interface Member {
   monogram: string
+  photo?: string
   name: string
   role: string
   value: string
 }
 
+// Content per the Figma «Команда» (Desktop-33). The macet has real photos for the
+// first four; the rest are placeholders (3 names + 5 photos still TODO from client).
 const MEMBERS: Member[] = [
-  {
-    monogram: 'Л',
-    name: 'Лена',
-    role: 'Главврач',
-    value: '«Точная диагностика — основа любого протокола. Лечим систему, а не симптом.»',
-  },
-  {
-    monogram: 'Д',
-    name: 'Денис',
-    role: 'Психолог',
-    value: '«Восстановление — работа на глубине. Поверхностные решения дают поверхностный результат.»',
-  },
-  {
-    monogram: 'Р',
-    name: 'Роман',
-    role: 'Основатель',
-    value: '«Garden — про то, что можно вернуться к себе, не выпадая из жизни.»',
-  },
-  {
-    monogram: 'В',
-    name: 'Влад',
-    role: 'Физиотерапевт',
-    value: '«Тело хранит то, что не успевает обработать голова. Без работы с телом восстановление неполное.»',
-  },
-  {
-    monogram: 'Н',
-    name: 'Нутрициолог',
-    role: 'Питание и метаболизм',
-    value: '«Питание — не диета, а инструмент стабилизации.»',
-  },
-  {
-    monogram: 'Ш',
-    name: 'Шеф-повар',
-    role: 'Кухня резиденции',
-    value: '«Полезно и вкусно — не противоречие, а навык.»',
-  },
-  {
-    monogram: 'М',
-    name: 'Массажист',
-    role: 'Тело и тонус',
-    value: '«Расслабление — управляемое состояние, а не случайность.»',
-  },
-  {
-    monogram: 'Д',
-    name: 'Дерматолог',
-    role: 'Здоровье кожи',
-    value: '«Кожа — маркер внутреннего здоровья.»',
-  },
-  {
-    monogram: 'К',
-    name: 'Косметолог',
-    role: 'Эстетика',
-    value: '«Эстетика — завершающий штрих, а не главная цель.»',
-  },
+  { photo: 'lena', monogram: 'Л', name: 'Лена', role: 'Главврач', value: '«Точная диагностика — основа любого протокола. Мы работаем с причиной, а не только с симптомом».' },
+  { photo: 'denis', monogram: 'Д', name: 'Денис', role: 'Психолог', value: '«Восстановление требует глубокой работы. Поверхностные решения дают поверхностный результат».' },
+  { photo: 'roman', monogram: 'Р', name: 'Роман', role: 'Основатель', value: '«Garden появился из простой идеи: человеку иногда нужно место, где можно остановиться и снова услышать себя».' },
+  { photo: 'vlad', monogram: 'В', name: 'Влад', role: 'Физиотерапевт', value: '«Тело хранит то, что не успевает обработать голова».' },
+  { monogram: 'Н', name: 'Имя', role: 'Нутрициолог', value: '«Питание — часть восстановления, и оно может приносить удовольствие».' },
+  { monogram: 'С', name: 'Саша', role: 'Шеф-повар', value: '«Полезно и вкусно — не компромисс, а правильный подход».' },
+  { monogram: 'М', name: 'Имя', role: 'Массажист', value: '«Сначала расслабляется тело, затем восстанавливается мозг».' },
+  { monogram: 'С', name: 'Софья', role: 'Дерматолог', value: '«Кожа — отражение внутреннего состояния организма».' },
+  { monogram: 'К', name: 'Имя', role: 'Косметолог', value: '«Эстетика — завершающий штрих, а не главная цель».' },
 ]
 
 export default function Team() {
@@ -74,7 +34,6 @@ export default function Team() {
   const [prevDisabled, setPrevDisabled] = useState(true)
   const [nextDisabled, setNextDisabled] = useState(false)
 
-  // Distance between two adjacent cards (card width + gap).
   const step = useCallback(() => {
     const track = trackRef.current
     if (!track) return 1
@@ -106,7 +65,6 @@ export default function Team() {
     setActiveIdx(Math.round(x / step()))
   }, [step])
 
-  // Recompute dots + state on mount and on resize.
   useEffect(() => {
     const refresh = () => {
       setPageCount(computePageCount())
@@ -118,29 +76,20 @@ export default function Team() {
   }, [computePageCount, updateState])
 
   const handlePrev = () => {
-    const track = trackRef.current
-    if (!track) return
-    track.scrollBy({ left: -step() * Math.max(1, visibleCount() - 1), behavior: 'smooth' })
+    trackRef.current?.scrollBy({ left: -step() * Math.max(1, visibleCount() - 1), behavior: 'smooth' })
   }
-
   const handleNext = () => {
-    const track = trackRef.current
-    if (!track) return
-    track.scrollBy({ left: step() * Math.max(1, visibleCount() - 1), behavior: 'smooth' })
+    trackRef.current?.scrollBy({ left: step() * Math.max(1, visibleCount() - 1), behavior: 'smooth' })
   }
-
   const handleDot = (i: number) => {
-    const track = trackRef.current
-    if (!track) return
-    track.scrollTo({ left: i * step(), behavior: 'smooth' })
+    trackRef.current?.scrollTo({ left: i * step(), behavior: 'smooth' })
   }
-
-  const handleWatch = (_e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleWatch = () => {
     // TODO: open member video modal/player — placeholder, no-op for now.
   }
 
   return (
-    <section id="team" className="bg-soft fullscreen" ref={ref}>
+    <section id="team" className="bg-soft" ref={ref}>
       <div className="container">
         <div className="section-header" data-reveal>
           <p className="section-eyebrow">Команда</p>
@@ -148,29 +97,19 @@ export default function Team() {
           <p className="section-lead">Команда, которой можно доверить своё восстановление. Один протокол, одна история, одно направление работы.</p>
         </div>
 
-        <div className="team-carousel" data-reveal>
-          <button
-            className="team-arrow prev"
-            id="team-prev"
-            aria-label="Назад"
-            onClick={handlePrev}
-            disabled={prevDisabled}
-          >
-            ‹
-          </button>
-          <button
-            className="team-arrow next"
-            id="team-next"
-            aria-label="Вперёд"
-            onClick={handleNext}
-            disabled={nextDisabled}
-          >
-            ›
-          </button>
-          <div className="team-track" id="team-track" ref={trackRef} onScroll={updateState}>
+        <div className="team-carousel">
+          <button className="team-arrow prev" aria-label="Назад" onClick={handlePrev} disabled={prevDisabled}>‹</button>
+          <button className="team-arrow next" aria-label="Вперёд" onClick={handleNext} disabled={nextDisabled}>›</button>
+          <div className="team-track" ref={trackRef} onScroll={updateState}>
             {MEMBERS.map((m, i) => (
-              <article className="member" key={`${m.name}-${i}`} data-reveal={i < 3 ? '' : undefined}>
-                <div className="member-photo">{m.monogram}</div>
+              <article className="member" key={`${m.name}-${i}`}>
+                <div className={`member-photo${m.photo ? ' has-photo' : ''}`}>
+                  {m.photo ? (
+                    <img src={`${BASE}assets/img/team/${m.photo}.jpg`} alt={m.name} loading="lazy" />
+                  ) : (
+                    m.monogram
+                  )}
+                </div>
                 <h3 className="member-name">{m.name}</h3>
                 <p className="member-role">{m.role}</p>
                 <p className="member-value">{m.value}</p>
@@ -178,12 +117,7 @@ export default function Team() {
               </article>
             ))}
           </div>
-          <div
-            className="team-dots"
-            id="team-dots"
-            aria-hidden="true"
-            style={{ display: pageCount <= 1 ? 'none' : 'flex' }}
-          >
+          <div className="team-dots" aria-hidden="true" style={{ display: pageCount <= 1 ? 'none' : 'flex' }}>
             {pageCount > 1 &&
               Array.from({ length: pageCount }, (_, i) => (
                 <button

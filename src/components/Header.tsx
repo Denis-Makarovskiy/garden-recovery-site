@@ -1,16 +1,42 @@
 import { useCallback, useEffect, useState } from 'react'
+import { scrollToHash } from '../lib/scroll'
 
-const SECTION_IDS = ['hero', 'compass', 'process', 'programs', 'why', 'team', 'contacts']
+const SECTION_IDS = ['hero', 'about', 'process', 'programs', 'why', 'team', 'contacts']
+
+const NAV = [
+  { href: '#about', label: 'О нас' },
+  { href: '#process', label: 'Подход' },
+  { href: '#programs', label: 'Программы' },
+  { href: '#why', label: 'Почему мы' },
+  { href: '#team', label: 'Команда' },
+  { href: '#contacts', label: 'Контакты' },
+]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeId, setActiveId] = useState<string>('hero')
-  const [lang, setLang] = useState<'RU' | 'EN'>('RU')
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
-  // (b) Compact/scrolled topbar past a threshold.
+  // Smooth-scroll in-page anchors via Lenis instead of the broken native hash jump.
+  const onNav = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    const href = e.currentTarget.getAttribute('href') || ''
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      if (href === '#') scrollToHash('#hero')
+      else scrollToHash(href)
+    }
+  }, [])
+
+  const onNavMobile = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      onNav(e)
+      closeMenu()
+    },
+    [onNav, closeMenu],
+  )
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
@@ -18,13 +44,11 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // (a) Lock body scroll + reflect open state on <body> while the menu is open.
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen)
     return () => document.body.classList.remove('menu-open')
   }, [menuOpen])
 
-  // (a) Escape closes the mobile menu.
   useEffect(() => {
     if (!menuOpen) return
     const onKey = (e: KeyboardEvent) => {
@@ -34,7 +58,7 @@ export default function Header() {
     return () => document.removeEventListener('keydown', onKey)
   }, [menuOpen])
 
-  // (c) Active-section highlight as the user scrolls.
+  // Active-section highlight as the user scrolls.
   useEffect(() => {
     const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null,
@@ -44,11 +68,8 @@ export default function Header() {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            visible.set(entry.target.id, entry.intersectionRatio)
-          } else {
-            visible.delete(entry.target.id)
-          }
+          if (entry.isIntersecting) visible.set(entry.target.id, entry.intersectionRatio)
+          else visible.delete(entry.target.id)
         }
         let best: string | null = null
         let bestRatio = 0
@@ -67,16 +88,13 @@ export default function Header() {
   }, [])
 
   const toggleMenu = () => setMenuOpen((v) => !v)
-  const toggleLang = () => setLang((v) => (v === 'RU' ? 'EN' : 'RU'))
-
   const isActive = (href: string) => activeId === href.replace(/^#/, '')
 
   return (
     <>
-      {/* Top bar with official logo */}
       <header className={`topbar${scrolled ? ' is-scrolled' : ''}`}>
         <div className="container">
-          <a href="#" className="logo" aria-label="Garden Recovery — Medical Residence">
+          <a href="#" className="logo" aria-label="Garden Recovery — Medical Residence" onClick={onNav}>
             <svg className="logo-mark-img" role="img" aria-label="Garden Recovery — Medical Residence">
               <use href="#gr-logo" />
             </svg>
@@ -84,7 +102,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Burger (mobile only) */}
       <button
         className={`burger${menuOpen ? ' is-open' : ''}`}
         id="burger"
@@ -96,87 +113,40 @@ export default function Header() {
         <span className="burger-icon"></span>
       </button>
 
-      {/* Mobile overlay menu */}
-      <nav
-        className={`mobile-menu${menuOpen ? ' is-open' : ''}`}
-        id="mobile-menu"
-        aria-hidden={!menuOpen}
-      >
-        <a href="#" className="mobile-menu-brand" aria-label="Garden Recovery">
+      <nav className={`mobile-menu${menuOpen ? ' is-open' : ''}`} id="mobile-menu" aria-hidden={!menuOpen}>
+        <a href="#" className="mobile-menu-brand" aria-label="Garden Recovery" onClick={onNavMobile}>
           <svg>
             <use href="#gr-glyph" />
           </svg>
         </a>
         <ul className="mobile-menu-list">
-          <li>
-            <a href="#compass" data-menu-link onClick={closeMenu}>
-              Компас
-            </a>
-          </li>
-          <li>
-            <a href="#process" data-menu-link onClick={closeMenu}>
-              Подход
-            </a>
-          </li>
-          <li>
-            <a href="#programs" data-menu-link onClick={closeMenu}>
-              Программы
-            </a>
-          </li>
-          <li>
-            <a href="#why" data-menu-link onClick={closeMenu}>
-              Почему мы
-            </a>
-          </li>
-          <li>
-            <a href="#team" data-menu-link onClick={closeMenu}>
-              Команда
-            </a>
-          </li>
-          <li>
-            <a href="#contacts" data-menu-link onClick={closeMenu}>
-              Контакты
-            </a>
-          </li>
+          {NAV.map((n) => (
+            <li key={n.href}>
+              <a href={n.href} data-menu-link onClick={onNavMobile}>
+                {n.label}
+              </a>
+            </li>
+          ))}
         </ul>
-        <a href="#contacts" className="mobile-menu-cta" data-menu-link onClick={closeMenu}>
+        <a href="#contacts" className="mobile-menu-cta" data-menu-link onClick={onNavMobile}>
           Получить консультацию
         </a>
-        <div className="mobile-menu-foot">
-          <button className="mobile-menu-lang" id="mobile-lang" onClick={toggleLang}>
-            RU · EN
-          </button>
-        </div>
       </nav>
 
-      {/* BOTTOM NAV */}
       <nav className="bottomnav" aria-label="Главное меню">
-        <button
-          className="bottomnav-lang"
-          id="lang-toggle"
-          aria-label="Переключить язык"
-          onClick={toggleLang}
-        >
-          {lang}
-        </button>
         <div className="bottomnav-menu">
-          <a href="#compass" className={isActive('#compass') ? 'active' : undefined}>
-            Подход
-          </a>
-          <a href="#programs" className={isActive('#programs') ? 'active' : undefined}>
-            Программы
-          </a>
-          <a href="#team" className={isActive('#team') ? 'active' : undefined}>
-            Команда
-          </a>
-          <a href="#why" className={isActive('#why') ? 'active' : undefined}>
-            Почему мы
-          </a>
-          <a href="#contacts" className={isActive('#contacts') ? 'active' : undefined}>
-            Контакты
-          </a>
+          {NAV.filter((n) => n.href !== '#contacts').map((n) => (
+            <a
+              key={n.href}
+              href={n.href}
+              className={isActive(n.href) ? 'active' : undefined}
+              onClick={onNav}
+            >
+              {n.label}
+            </a>
+          ))}
         </div>
-        <a href="#contacts" className="bottomnav-cta">
+        <a href="#contacts" className="bottomnav-cta" onClick={onNav}>
           Консультация
         </a>
       </nav>

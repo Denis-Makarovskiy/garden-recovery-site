@@ -1,33 +1,38 @@
 import { useEffect, useRef } from 'react'
-import { gsap, prefersReducedMotion } from '../lib/scroll'
+import { prefersReducedMotion } from '../lib/scroll'
 
 /**
- * Scroll-triggered reveal. Attach the returned ref to a section; mark the
- * elements to animate with `data-reveal`. If none are marked, the section
- * itself animates. No-op under prefers-reduced-motion.
+ * Scroll-reveal via IntersectionObserver + CSS classes. Bulletproof: the hidden
+ * state is applied by JS (`.reveal-init`), so if JS never runs the content stays
+ * visible; the reveal fires through the native IO (independent of the Lenis/GSAP
+ * ticker), so it can never get stuck hidden. Mark children with `data-reveal`;
+ * if none are marked the section itself animates. No-op under reduced motion.
  */
-export function useReveal<T extends HTMLElement = HTMLDivElement>(opts?: {
-  y?: number
-  stagger?: number
-  start?: string
-}) {
+export function useReveal<T extends HTMLElement = HTMLDivElement>() {
   const ref = useRef<T>(null)
   useEffect(() => {
     const el = ref.current
     if (!el || prefersReducedMotion()) return
     const marked = el.querySelectorAll<HTMLElement>('[data-reveal]')
-    const items: Element[] = marked.length ? Array.from(marked) : [el]
-    const ctx = gsap.context(() => {
-      gsap.from(items, {
-        y: opts?.y ?? 28,
-        autoAlpha: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        stagger: opts?.stagger ?? 0.08,
-        scrollTrigger: { trigger: el, start: opts?.start ?? 'top 82%', once: true },
-      })
-    }, el)
-    return () => ctx.revert()
-  }, [opts?.start, opts?.stagger, opts?.y])
+    const items: HTMLElement[] = marked.length ? Array.from(marked) : [el]
+    items.forEach((it, i) => {
+      it.style.setProperty('--reveal-delay', `${Math.min(i, 8) * 90}ms`)
+      // data-reveal="slide" → cards slide in from the right (Figma «Почему»)
+      it.classList.add(it.getAttribute('data-reveal') === 'slide' ? 'reveal-init-slide' : 'reveal-init')
+    })
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('reveal-in')
+            io.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    )
+    items.forEach((it) => io.observe(it))
+    return () => io.disconnect()
+  }, [])
   return ref
 }

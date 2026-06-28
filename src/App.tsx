@@ -3,7 +3,7 @@ import { initSmoothScroll } from './lib/scroll'
 import LogoSprite from './components/LogoSprite'
 import Header from './components/Header'
 import Hero from './components/Hero'
-import Compass from './components/Compass'
+import About from './components/About'
 import Process from './components/Process'
 import Programs from './components/Programs'
 import Why from './components/Why'
@@ -24,7 +24,7 @@ export default function App() {
       <LogoSprite />
       <Header />
       <Hero />
-      <Compass />
+      <About />
       <Process />
       <Programs />
       <Why />

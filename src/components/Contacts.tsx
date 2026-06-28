@@ -57,7 +57,7 @@ export default function Contacts() {
 
   return (
     <>
-      <section ref={ref} id="contacts" className="contacts bottom-safe fullscreen">
+      <section ref={ref} id="contacts" className="contacts bottom-safe">
         <div className="container">
           <div className="section-header" data-reveal>
             <p className="section-eyebrow">Контакты</p>
@@ -162,14 +162,11 @@ export default function Contacts() {
       {/* FINAL SLIDE */}
       <section
         id="final"
-        className="fullscreen"
         style={{
           background: 'var(--text)',
           color: 'var(--bg-soft)',
           textAlign: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          padding: 'clamp(90px, 14vh, 150px) 0',
         }}
       >
         <div className="container">
