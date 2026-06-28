@@ -1,4 +1,5 @@
 @import './styles-base.css';
+@import './styles/figma-sections.css';
 
 #root { isolation: isolate; }
 

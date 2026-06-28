@@ -18,13 +18,14 @@ export default function Why() {
         stagger: 0.08,
         scrollTrigger: { trigger: el, start: 'top 78%', once: true },
       })
+      // Figma Desktop-66: cards slide in from the right, 0.1s apart, 0.5s EASE_OUT.
       gsap.from('.why-pillars .pillar', {
-        xPercent: 55,
-        scale: 0.9,
+        xPercent: 70,
+        scale: 0.92,
         autoAlpha: 0,
-        duration: 0.85,
-        ease: 'power3.out',
-        stagger: 0.14,
+        duration: 0.5,
+        ease: 'power2.out',
+        stagger: 0.1,
         scrollTrigger: { trigger: '.why-pillars', start: 'top 82%', once: true },
       })
     }, el)

@@ -1,0 +1,138 @@
+/* Faithful Figma sections — exact auto-play animations from "Новый сайт Garden".
+   Tokens come from styles-base.css :root (--serif, --sans, --text, --accent, etc.). */
+
+/* ===== Путь гостя (Figma Desktop-64): auto-advancing stepper + photo crossfade ===== */
+.guest-path {
+  padding: clamp(64px, 9vw, 132px) 0;
+  background: var(--bg-soft, #f6f0e7);
+}
+.guest-path .gp-head {
+  max-width: 560px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.guest-path .gp-eyebrow {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute, #9a9d8c);
+  margin: 0 0 18px;
+}
+.guest-path .gp-title {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--text, #2e342f);
+  margin: 0 0 18px;
+}
+.guest-path .gp-lead {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.6;
+  color: var(--text-mid, #515247);
+  margin: 0;
+}
+
+.gp-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(36px, 5.5vw, 88px);
+  align-items: center;
+}
+
+/* left: the stepper */
+.gp-steps { display: flex; flex-direction: column; gap: 4px; }
+.gp-step {
+  border-top: 1px solid var(--line-soft, #e8e2d5);
+  padding: clamp(14px, 1.6vw, 22px) 0;
+  cursor: pointer;
+}
+.gp-step:last-child { border-bottom: 1px solid var(--line-soft, #e8e2d5); }
+.gp-step-head { display: flex; align-items: baseline; gap: 16px; }
+.gp-step-num {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-mute, #9a9d8c);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gp-step-title {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: clamp(22px, 2.5vw, 33px);
+  line-height: 1.12;
+  color: var(--text-mute, #9a9d8c);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gp-step.is-active .gp-step-title,
+.gp-step.is-active .gp-step-num { color: var(--text, #2e342f); }
+.gp-step-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-left: 32px;
+  transition: grid-template-rows 0.34s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gp-step.is-active .gp-step-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 12px;
+}
+.gp-step-body > div { overflow: hidden; }
+.gp-step-body p {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 15px;
+  line-height: 1.58;
+  color: var(--text-mid, #515247);
+  margin: 0;
+  max-width: 30ch;
+}
+
+/* right: crossfading photo */
+.gp-photo {
+  position: relative;
+  aspect-ratio: 5 / 6;
+  border-radius: var(--r, 24px);
+  overflow: hidden;
+  background: var(--line-soft, #e8e2d5);
+  box-shadow: var(--shadow, 0 6px 24px rgba(57, 58, 52, 0.06));
+}
+.gp-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.5s ease, transform 6s ease-out;
+}
+.gp-photo img.is-active { opacity: 1; transform: scale(1.06); }
+.gp-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.gp-progress span {
+  display: block; height: 100%; width: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+.gp-progress span.run { width: 100%; transition: width 5s linear; }
+
+@media (max-width: 900px) {
+  .gp-grid { grid-template-columns: 1fr; gap: 28px; }
+  .gp-photo { order: -1; aspect-ratio: 4 / 3; }
+  .gp-step-body p { max-width: none; }
+}
+
+/* ===== respect reduced motion: show everything, no auto-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .gp-photo img { transition: opacity 0.2s; transform: none; }
+  .gp-photo img.is-active { transform: none; }
+  .gp-progress { display: none; }
+}
