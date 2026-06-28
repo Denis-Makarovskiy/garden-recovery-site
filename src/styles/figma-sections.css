@@ -136,3 +136,46 @@
   .gp-photo img.is-active { transform: none; }
   .gp-progress { display: none; }
 }
+
+/* ===== Smooth hover micro-states (Figma 2-state components → smart-animate feel) =====
+   The prototype CSS toggles shadow/transform on :hover but defines no transition,
+   so hovers snap. Add a soft ease + a subtle lift to the cards that only had shadow. */
+.btn,
+.program,
+.member,
+.line,
+.continuum-card,
+.compass-pt,
+.pillar,
+.contact-channels a,
+.team-arrow,
+.bottomnav-cta,
+.bottomnav-lang,
+.gp-step .gp-step-title,
+.gp-step .gp-step-num {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    opacity 0.25s ease;
+}
+.btn .arrow { transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* cards that previously only changed shadow now also lift gently */
+.program:hover,
+.line:hover { transform: translateY(-3px); }
+
+/* "Почему" pillars: hover lift (Figma 2-state) */
+.pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-strong, 0 12px 40px rgba(57, 58, 52, 0.1));
+}
+
+/* hovering a "Путь гостя" step hints it's clickable */
+.gp-step:not(.is-active):hover .gp-step-title { color: var(--text-mid, #515247); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .program, .member, .line, .continuum-card, .pillar, .compass-pt { transition: none; }
+}
