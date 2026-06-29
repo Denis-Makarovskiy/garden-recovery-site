@@ -107,6 +107,11 @@ export default function Footer() {
 
         <div className="ft-bottom" data-reveal>
           <span className="ft-copy">© 2026 Garden Recovery. Все права защищены.</span>
+          <span className="ft-lang" aria-label="Переключатель языков">
+            <button type="button" aria-current="true">RU</button>
+            <span className="ft-lang-sep" aria-hidden="true">·</span>
+            <button type="button">EN</button>
+          </span>
         </div>
       </div>
     </footer>

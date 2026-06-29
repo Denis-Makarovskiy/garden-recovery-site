@@ -10,27 +10,28 @@
 
 .secwhy-head{
   max-width:none;
-  margin:0 0 72px;
+  margin:0 0 112px;
 }
 
 .secwhy-title{
   font-family:var(--serif, Lora, serif);
-  font-weight:500;
-  font-size:clamp(36px, 4.2vw, 56px);
-  line-height:1.04;
+  font-weight:400;
+  font-size:clamp(44px, 5.4vw, 72px);
+  line-height:1.06;
   letter-spacing:-.02em;
   color:var(--text, #2E342F);
-  margin:0 0 26px;
+  margin:0 0 32px;
   white-space:nowrap;
+  text-align:left;
 }
 
 .secwhy-lead{
   font-family:var(--sans, Manrope, sans-serif);
-  font-size:clamp(15px, 1.1vw, 17px);
-  line-height:1.55;
+  font-size:clamp(17px, 1.3vw, 20px);
+  line-height:1.5;
   color:var(--text-mid, #515247);
   margin:0;
-  max-width:480px;
+  max-width:520px;
 }
 
 /* --- 4-card row --- */
@@ -41,18 +42,19 @@
 }
 
 .secwhy-card{
-  background:var(--bg-soft, #F6F0E7);
-  border-radius:var(--r-sm, 14px);
-  padding:40px 32px 48px;
+  background:#F1ECE2;
+  border-radius:6px;
+  padding:52px 44px;
   display:flex;
   flex-direction:column;
+  min-height:370px;
 }
 
 .secwhy-card h3{
   font-family:var(--serif, Lora, serif);
-  font-weight:500;
-  font-size:clamp(22px, 1.7vw, 27px);
-  line-height:1.12;
+  font-weight:400;
+  font-size:clamp(26px, 2.1vw, 32px);
+  line-height:1.14;
   letter-spacing:-.01em;
   color:var(--text, #2E342F);
   margin:0 0 32px;
@@ -61,22 +63,25 @@
 .secwhy-card p{
   font-family:var(--sans, Manrope, sans-serif);
   font-size:15px;
-  line-height:1.5;
-  color:var(--text-mid, #515247);
+  line-height:1.45;
+  color:#2B2722;
   margin:0;
+  max-width:210px;
 }
 
 /* --- responsive: 2x2 on tablet, single column on phone --- */
 @media (max-width:980px){
   .secwhy{padding:80px 0 96px}
   .secwhy-grid{grid-template-columns:repeat(2, 1fr)}
-  .secwhy-head{margin-bottom:56px}
+  .secwhy-head{margin-bottom:72px}
   .secwhy-title{white-space:normal}
+  .secwhy-card{min-height:0;padding:40px 32px}
 }
 
 @media (max-width:560px){
   .secwhy{padding:64px 0 80px}
   .secwhy-grid{grid-template-columns:1fr}
-  .secwhy-card{padding:32px 28px 36px}
+  .secwhy-card{padding:32px 28px 36px;min-height:0}
   .secwhy-card h3{margin-bottom:20px}
+  .secwhy-card p{max-width:none}
 }

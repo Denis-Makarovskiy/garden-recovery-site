@@ -5,7 +5,7 @@
 }
 
 .pf-head {
-  margin-bottom: 56px;
+  margin-bottom: 32px;
   max-width: 720px;
 }
 
@@ -15,15 +15,15 @@
   font-weight: 500;
   letter-spacing: -0.5px;
   color: var(--text);
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   line-height: 1.05;
 }
 
 .pf-lead {
   font-family: var(--sans);
   font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-mute);
+  line-height: 1.55;
+  color: var(--text-mid);
   margin: 0;
   max-width: 480px;
 }
@@ -33,7 +33,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .pf-card {
@@ -43,21 +43,22 @@
 
 .pf-card-name {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: clamp(24px, 2.2vw, 30px);
   font-weight: 500;
   font-style: italic;
-  line-height: 1.15;
+  line-height: 1.1;
   color: var(--text);
-  margin: 0 0 8px;
-  min-height: 2.3em;
+  margin: 0 0 6px;
+  min-height: 2.2em;
+  white-space: pre-line;
 }
 
 .pf-card-tag {
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
-  color: var(--text-mute);
-  margin: 0 0 18px;
+  color: var(--text-mid);
+  margin: 0 0 10px;
   letter-spacing: 0.2px;
 }
 
@@ -92,7 +93,7 @@
 .pf-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
 }
 
 .pf-pill {
@@ -100,22 +101,22 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--text-mid);
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 9px 20px;
+  background: var(--bg-soft);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 10px 22px;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .pf-pill:hover {
-  border-color: var(--accent);
+  background: var(--line);
   color: var(--text);
 }
 
 .pf-pill.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--text);
+  border-color: var(--text);
   color: #fff;
 }
 

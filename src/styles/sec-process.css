@@ -5,7 +5,7 @@
 
 .sp-section {
   padding: clamp(56px, 6vw, 96px) 0;
-  background: #faf8f4;
+  background: #f1ece4;
 }
 
 /* заголовок + лид: слева, узкой колонкой */
@@ -31,12 +31,12 @@
   margin: 0;
 }
 
-/* основной ряд: список этапов слева, крупное фото справа */
+/* основной ряд: список этапов слева (~45%), крупное фото справа (~50%) */
 .sp-grid {
   display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
-  gap: clamp(40px, 6vw, 96px);
-  align-items: stretch;
+  grid-template-columns: 45fr 50fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
 }
 
 /* левая колонка — отодвинута от левого края, как в макете */
@@ -44,8 +44,8 @@
   padding-left: clamp(0px, 2vw, 28px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: clamp(8px, 1vw, 14px);
+  justify-content: flex-start;
+  gap: clamp(10px, 1.1vw, 16px);
 }
 
 .sp-step {
@@ -62,29 +62,32 @@
 .sp-step-head {
   display: flex;
   align-items: baseline;
-  gap: clamp(14px, 1.4vw, 22px);
+  gap: clamp(10px, 0.9vw, 14px);
 }
 .sp-step-num {
   flex: none;
-  width: 1.6em;
+  width: 1.8em;
   font-family: var(--sans, Manrope, sans-serif);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--text-mute, #9a9d8c);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-mid, #515247);
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .sp-step-title {
   font-family: var(--serif, Lora, serif);
   font-weight: 500;
-  font-size: clamp(26px, 3.4vw, 46px);
-  line-height: 1.08;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.06;
   letter-spacing: -0.01em;
   color: var(--text-mute, #9a9d8c);
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .sp-step.is-active .sp-step-num,
 .sp-step.is-active .sp-step-title { color: var(--text, #2e342f); }
+.sp-step.is-active .sp-step-title {
+  font-size: clamp(32px, 4vw, 48px);
+}
 .sp-step:not(.is-active):hover .sp-step-title { color: var(--text-mid, #515247); }
 
 /* описание раскрывается под активным этапом */
@@ -92,7 +95,7 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  margin-left: calc(1.6em + clamp(14px, 1.4vw, 22px));
+  margin-left: calc(1.8em + clamp(10px, 0.9vw, 14px));
   transition: grid-template-rows 0.36s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.36s cubic-bezier(0.4, 0, 0.2, 1),
               margin-top 0.36s cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,27 +103,28 @@
 .sp-step.is-active .sp-step-body {
   grid-template-rows: 1fr;
   opacity: 1;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 .sp-step-body > span { display: block; overflow: hidden; }
 .sp-step-p {
   display: block;
   font-family: var(--sans, Manrope, sans-serif);
-  font-size: clamp(14px, 1vw, 15px);
-  line-height: 1.6;
+  font-size: clamp(14px, 1.05vw, 15px);
+  line-height: 1.55;
   color: var(--text-mid, #515247);
   margin: 0;
-  max-width: 34ch;
+  max-width: 36ch;
 }
 
-/* правая колонка — крупное фото со скруглёнными углами, почти на всю высоту */
+/* правая колонка — крупное фото со скруглёнными углами, выравнено вверх с активным шагом */
 .sp-photo {
   position: relative;
-  border-radius: var(--r, 24px);
+  border-radius: clamp(28px, 3vw, 36px);
   overflow: hidden;
   background: var(--line-soft, #e8e2d5);
   box-shadow: var(--shadow, 0 6px 24px rgba(57, 58, 52, 0.06));
   min-height: clamp(360px, 42vw, 560px);
+  margin-top: clamp(-12px, -1vw, 0px);
 }
 .sp-photo img {
   position: absolute;
@@ -137,8 +141,10 @@
 @media (max-width: 900px) {
   .sp-grid { grid-template-columns: 1fr; gap: 28px; }
   .sp-steps { padding-left: 0; }
-  .sp-photo { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
+  .sp-photo { order: -1; min-height: 0; aspect-ratio: 4 / 3; margin-top: 0; border-radius: clamp(20px, 4vw, 28px); }
   .sp-step-p { max-width: none; }
+  .sp-step-title { font-size: clamp(26px, 7vw, 36px); }
+  .sp-step.is-active .sp-step-title { font-size: clamp(28px, 7.6vw, 40px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

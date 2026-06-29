@@ -24,14 +24,15 @@
   object-position: center;
 }
 
-/* Darkening overlay so the white type stays readable */
+/* Darkening overlay so the white type stays readable.
+   Warmer brown tone + stronger opacity (~52%) — image recedes, type pops. */
 .secHero__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(38, 44, 54, 0.50) 0%, rgba(38, 44, 54, 0.34) 45%, rgba(38, 44, 54, 0.56) 100%),
-    rgba(38, 44, 54, 0.20);
+    linear-gradient(180deg, rgba(48, 36, 28, 0.56) 0%, rgba(48, 36, 28, 0.48) 45%, rgba(48, 36, 28, 0.60) 100%),
+    rgba(48, 36, 28, 0.18);
 }
 
 .secHero__inner {
@@ -42,16 +43,17 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-block: 88px;
+  padding-block: clamp(110px, 14vh, 160px) 96px;
 }
 
-/* Logo lockup centered at the top of the content stack */
+/* Logo lockup centered at the top of the content stack — enlarged ~1.5×
+   and pushed down from the top edge to match the figma rhythm */
 .secHero__logo {
   display: block;
-  width: clamp(220px, 26vw, 340px);
+  width: clamp(320px, 38vw, 500px);
   height: auto;
   color: #fff;
-  margin: 0 auto clamp(40px, 7vh, 72px);
+  margin: 0 auto clamp(60px, 8.5vh, 96px);
   filter: drop-shadow(0 1px 18px rgba(0, 0, 0, 0.28));
 }
 
@@ -67,11 +69,11 @@
 .secHero__title {
   font-family: var(--serif), Georgia, serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   color: #fff;
-  font-size: clamp(2rem, 4.4vw, 3.4rem);
-  line-height: 1.12;
-  letter-spacing: 0.005em;
+  font-size: clamp(2.25rem, 5.4vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: 0.002em;
   max-width: 14em;
   margin: 0 auto;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.30);
@@ -79,12 +81,13 @@
 
 .secHero__lead {
   font-family: var(--sans), system-ui, sans-serif;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(0.92rem, 1.25vw, 1.05rem);
-  line-height: 1.6;
-  max-width: 46em;
-  margin: clamp(20px, 3.2vh, 32px) auto 0;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  max-width: 32em;
+  margin: clamp(28px, 4vh, 44px) auto 0;
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.30);
 }
 
@@ -112,18 +115,21 @@
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
   .secHero__inner {
-    padding-block: 72px;
+    padding-block: 96px 72px;
   }
   .secHero__logo {
-    width: clamp(190px, 56vw, 260px);
-    margin-bottom: 36px;
+    width: clamp(220px, 64vw, 300px);
+    margin-bottom: 44px;
   }
   .secHero__title {
-    font-size: clamp(1.7rem, 7.8vw, 2.2rem);
+    font-size: clamp(1.8rem, 8.2vw, 2.4rem);
+    line-height: 1.18;
     max-width: 16em;
   }
   .secHero__lead {
-    font-size: 0.92rem;
-    max-width: 32em;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    max-width: 28em;
+    margin-top: 24px;
   }
 }

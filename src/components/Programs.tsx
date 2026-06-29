@@ -11,10 +11,10 @@ interface Program {
 }
 
 const PROGRAMS: Program[] = [
-  { name: 'Executive Recovery', tagline: 'Выгорание и перенапряжение', img: 'p1' },
-  { name: 'Body Balance Reset', tagline: 'Обмен веществ и саморегуляция', img: 'p2' },
-  { name: 'Post-Surgery Recovery', tagline: 'Послеоперационная реабилитация', img: 'p3' },
-  { name: 'Human Reserve', tagline: 'Поддержание ресурса', img: 'p4' },
+  { name: 'Executive\nRecovery', tagline: 'Выгорание и перенапряжение', img: 'p1' },
+  { name: 'Body Balance\nReset', tagline: 'Обмен веществ и саморегуляция', img: 'p2' },
+  { name: 'Post-Surgery\nRecovery', tagline: 'Послеоперационная реабилитация', img: 'p3' },
+  { name: 'Human\nReserve', tagline: 'Поддержание ресурса', img: 'p4' },
 ]
 
 interface Duration {
@@ -49,7 +49,7 @@ export default function Programs() {
               <h3 className="pf-card-name">{p.name}</h3>
               <p className="pf-card-tag">{p.tagline}</p>
               <div className="pf-card-media">
-                <img src={`${BASE}assets/img/programs-fig/${p.img}.jpg`} alt={p.name} />
+                <img src={`${BASE}assets/img/programs-fig/${p.img}.jpg`} alt={p.name.replace(/\n/g, ' ')} />
               </div>
             </article>
           ))}

@@ -71,7 +71,12 @@ export default function Contacts() {
               noValidate
               onSubmit={handleSubmit}
             >
-              <p className="sec-contacts__lead">Заполните форму, чтобы получить бесплатную консультацию</p>
+              <p className="sec-contacts__lead">
+                Заполните форму,<br />
+                чтобы получить<br />
+                бесплатную<br />
+                консультацию
+              </p>
               <p className="sec-contacts__note">
                 Заявки обрабатываем лично. Ответим в течение рабочего дня.
               </p>

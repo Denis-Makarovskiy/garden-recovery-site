@@ -1,29 +1,29 @@
-/* ===== Секция «Команда» — тёмно-оливковая, светлый текст ===== */
+/* ===== Секция «Команда» — оливково-серая, светлый текст ===== */
 .team-sec {
-  background: #5f6450;
+  background: #7d8270;
   color: #F4F0E9;
   padding: 96px 0 104px;
   overflow: hidden;
 }
 
 .team-head {
-  max-width: 640px;
+  max-width: 720px;
   margin-bottom: 56px;
 }
 .team-title {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
-  line-height: 1.08;
+  font-weight: 300;
+  font-size: clamp(2.6rem, 5.2vw, 4rem);
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: #F6F0E7;
-  margin: 0 0 18px;
+  margin: 0 0 22px;
 }
 .team-lead {
   font-family: var(--sans);
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(244, 240, 233, 0.72);
+  color: rgba(244, 240, 233, 0.78);
   margin: 0;
   max-width: 460px;
 }
@@ -34,11 +34,11 @@
 }
 .team-track {
   display: flex;
-  gap: 22px;
+  gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 64px 0 4px;
+  padding: 80px 0 4px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -46,13 +46,13 @@
 
 /* ---- Карточка ---- */
 .team-card {
-  flex: 0 0 calc((100% - 3 * 22px) / 4);
+  flex: 0 0 calc((100% - 4 * 16px) / 4.5);
   scroll-snap-align: start;
   position: relative;
-  background: #F6F0E7;
+  background: #EFEAE0;
   color: var(--text);
   border-radius: 4px;
-  padding: 70px 26px 30px;
+  padding: 82px 22px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,14 +62,14 @@
 
 /* крупный аватар, выступающий над верхней кромкой карточки */
 .team-avatar {
-  width: 118px;
-  height: 118px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
   background: #E8E2D5;
   display: grid;
   place-items: center;
-  margin: -129px auto 18px;
+  margin: -160px auto 18px;
   flex: 0 0 auto;
   box-shadow: 0 6px 20px rgba(46, 52, 47, 0.18);
 }
@@ -81,30 +81,32 @@
 }
 .team-avatar .team-mono {
   font-family: var(--serif);
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   font-weight: 500;
   color: var(--accent-dark);
 }
 
 .team-name {
   font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.22rem;
+  font-weight: 500;
+  font-size: 1.32rem;
   color: var(--text);
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 .team-role {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-style: normal;
+  font-size: 0.92rem;
+  font-weight: 400;
   color: var(--text-mute);
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   letter-spacing: 0.01em;
 }
 .team-quote {
   font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-style: normal;
+  font-size: 0.94rem;
+  line-height: 1.65;
   color: var(--text-mid);
   margin: 0 0 22px;
   flex: 1 1 auto;
@@ -155,11 +157,16 @@
 
 /* ---- Адаптив ---- */
 @media (max-width: 1024px) {
-  .team-card { flex: 0 0 calc((100% - 2 * 22px) / 3); }
+  .team-card { flex: 0 0 calc((100% - 3 * 16px) / 3.2); }
 }
 @media (max-width: 760px) {
   .team-sec { padding: 72px 0 80px; }
   .team-card { flex: 0 0 78%; }
+  .team-avatar {
+    width: 118px;
+    height: 118px;
+    margin-top: -136px;
+  }
 }
 @media (max-width: 520px) {
   .team-card { flex: 0 0 86%; }

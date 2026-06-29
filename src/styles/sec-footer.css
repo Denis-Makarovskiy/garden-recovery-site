@@ -15,11 +15,11 @@
 /* ---- Левая колонка: контакты ---- */
 .ft-title {
   font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 3.4vw, 2.75rem);
   line-height: 1.1;
-  letter-spacing: -0.005em;
-  color: rgba(244, 240, 233, 0.62);
+  letter-spacing: -0.01em;
+  color: rgba(244, 240, 233, 0.78);
   margin: 0 0 34px;
 }
 
@@ -40,33 +40,34 @@
 }
 .ft-link:hover { color: #fff; }
 
-/* ---- Круглые иконки мессенджеров ---- */
+/* ---- Иконки мессенджеров (без плашек, белые) ---- */
 .ft-socials {
   display: flex;
-  gap: 14px;
+  gap: 22px;
   margin-bottom: 34px;
 }
 .ft-soc {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 0;
   display: grid;
   place-items: center;
-  background: rgba(244, 240, 233, 0.12);
+  background: transparent;
   color: #F4F0E9;
   border: 0;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 .ft-soc:hover {
-  background: rgba(244, 240, 233, 0.22);
-  transform: translateY(-2px);
+  background: transparent;
+  color: #fff;
+  transform: translateY(-1px);
 }
 .ft-soc svg {
-  width: 17px;
-  height: 17px;
+  width: 26px;
+  height: 26px;
   display: block;
 }
 
@@ -93,7 +94,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 8px;
   min-width: 180px;
 }
 .ft-nav a {
@@ -112,14 +113,45 @@
 
 /* ---- Нижняя строка ---- */
 .ft-bottom {
-  margin-top: 70px;
-  padding: 28px 0 32px;
+  margin-top: 44px;
+  padding: 18px 0 22px;
   border-top: 1px solid rgba(244, 240, 233, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 .ft-copy {
   font-family: var(--sans);
   font-size: 0.9rem;
   color: rgba(244, 240, 233, 0.6);
+}
+
+.ft-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: rgba(244, 240, 233, 0.7);
+}
+.ft-lang button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+.ft-lang button:hover {
+  color: #fff;
+}
+.ft-lang button[aria-current="true"] {
+  color: #fff;
+}
+.ft-lang-sep {
+  opacity: 0.6;
 }
 
 /* ---- Адаптив ---- */
@@ -130,5 +162,10 @@
     gap: 40px;
   }
   .ft-title { margin-bottom: 26px; }
-  .ft-bottom { margin-top: 48px; }
+  .ft-bottom {
+    margin-top: 36px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
 }
