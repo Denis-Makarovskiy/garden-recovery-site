@@ -31,16 +31,12 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="secHero" id="hero">
-      <video
+      <img
         className="secHero__media"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={`${BASE}assets/img/hero/hero-bg.jpg`}
-      >
-        <source src={`${BASE}assets/video/hero.mp4`} type="video/mp4" />
-      </video>
+        src={`${BASE}assets/img/hero/hero-bg.jpg`}
+        alt=""
+        aria-hidden="true"
+      />
       <div className="secHero__overlay" aria-hidden="true" />
 
       <div className="secHero__inner container">

@@ -9,18 +9,19 @@
 }
 
 .secwhy-head{
-  max-width:560px;
+  max-width:none;
   margin:0 0 72px;
 }
 
 .secwhy-title{
   font-family:var(--serif, Lora, serif);
   font-weight:500;
-  font-size:clamp(40px, 5vw, 64px);
+  font-size:clamp(36px, 4.2vw, 56px);
   line-height:1.04;
   letter-spacing:-.02em;
   color:var(--text, #2E342F);
   margin:0 0 26px;
+  white-space:nowrap;
 }
 
 .secwhy-lead{
@@ -70,6 +71,7 @@
   .secwhy{padding:80px 0 96px}
   .secwhy-grid{grid-template-columns:repeat(2, 1fr)}
   .secwhy-head{margin-bottom:56px}
+  .secwhy-title{white-space:normal}
 }
 
 @media (max-width:560px){

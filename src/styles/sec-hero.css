@@ -30,8 +30,8 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(46, 52, 47, 0.42) 0%, rgba(46, 52, 47, 0.30) 45%, rgba(46, 52, 47, 0.48) 100%),
-    rgba(46, 52, 47, 0.18);
+    linear-gradient(180deg, rgba(38, 44, 54, 0.50) 0%, rgba(38, 44, 54, 0.34) 45%, rgba(38, 44, 54, 0.56) 100%),
+    rgba(38, 44, 54, 0.20);
 }
 
 .secHero__inner {
