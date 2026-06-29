@@ -1,0 +1,147 @@
+/* ===== Путь гостя — приведено к макету Figma =====
+   Тёплый бежевый фон, крупные засечные названия этапов, крупное фото справа
+   со скруглёнными углами, контент с отступом слева, описание под активным этапом.
+   Токены берутся из styles-base.css :root. */
+
+.sp-section {
+  padding: clamp(64px, 9vw, 132px) 0;
+  background: var(--bg-soft, #f6f0e7);
+}
+
+/* заголовок + лид: слева, узкой колонкой */
+.sp-head {
+  max-width: 560px;
+  margin-bottom: clamp(40px, 6vw, 76px);
+}
+.sp-title {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: clamp(38px, 5.4vw, 70px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--text, #2e342f);
+  margin: 0 0 20px;
+}
+.sp-lead {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.6;
+  color: var(--text-mute, #9a9d8c);
+  max-width: 46ch;
+  margin: 0;
+}
+
+/* основной ряд: список этапов слева, крупное фото справа */
+.sp-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: stretch;
+}
+
+/* левая колонка — отодвинута от левого края, как в макете */
+.sp-steps {
+  padding-left: clamp(8px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(10px, 1.4vw, 20px);
+}
+
+.sp-step {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.sp-step-head {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(14px, 1.4vw, 22px);
+}
+.sp-step-num {
+  flex: none;
+  width: 1.6em;
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-mute, #9a9d8c);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sp-step-title {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: clamp(26px, 3.4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--text-mute, #9a9d8c);
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sp-step.is-active .sp-step-num,
+.sp-step.is-active .sp-step-title { color: var(--text, #2e342f); }
+.sp-step:not(.is-active):hover .sp-step-title { color: var(--text-mid, #515247); }
+
+/* описание раскрывается под активным этапом */
+.sp-step-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-left: calc(1.6em + clamp(14px, 1.4vw, 22px));
+  transition: grid-template-rows 0.36s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.36s cubic-bezier(0.4, 0, 0.2, 1),
+              margin-top 0.36s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sp-step.is-active .sp-step-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 12px;
+}
+.sp-step-body > span { display: block; overflow: hidden; }
+.sp-step-p {
+  display: block;
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: clamp(14px, 1vw, 15px);
+  line-height: 1.6;
+  color: var(--text-mid, #515247);
+  margin: 0;
+  max-width: 34ch;
+}
+
+/* правая колонка — крупное фото со скруглёнными углами, почти на всю высоту */
+.sp-photo {
+  position: relative;
+  border-radius: var(--r, 24px);
+  overflow: hidden;
+  background: var(--line-soft, #e8e2d5);
+  box-shadow: var(--shadow, 0 6px 24px rgba(57, 58, 52, 0.06));
+  min-height: clamp(360px, 42vw, 560px);
+}
+.sp-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.6s ease, transform 6s ease-out;
+}
+.sp-photo img.is-active { opacity: 1; transform: scale(1.06); }
+
+@media (max-width: 900px) {
+  .sp-grid { grid-template-columns: 1fr; gap: 28px; }
+  .sp-steps { padding-left: 0; }
+  .sp-photo { order: -1; min-height: 0; aspect-ratio: 4 / 3; }
+  .sp-step-p { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-photo img { transition: opacity 0.2s; transform: none; }
+  .sp-photo img.is-active { transform: none; }
+}

@@ -1,36 +1,50 @@
+import '../styles/sec-why.css'
 import { useReveal } from '../hooks/useReveal'
 
-// Figma Desktop-66: heading + lead fade up, then the 4 pillars slide in from the
-// right with a slight scale-up, one after another (EASE_OUT). Reveal on scroll.
+// Figma Desktop-66: large serif title + intro lead (fade up), then a horizontal
+// row of 4 sand pillar cards that slide in one after another.
+type Pillar = { title: string; text: string }
+
+const PILLARS: Pillar[] = [
+  {
+    title: 'Целостность',
+    text: 'Тело, разум и душа. Garden Recovery предлагает программы, которые охватывают все аспекты жизни человека — тело, разум и душу. Благодаря комплексному подходу к оздоровлению человек может получить полное восстановление.',
+  },
+  {
+    title: 'Индивидуальный подход',
+    text: 'Программа подбирается с учётом особенностей и предпочтений гостя. Путь начинается с консультации со специалистом, который помогает подобрать программу.',
+  },
+  {
+    title: 'Богатство природы',
+    text: 'Расположение Черногории уникально: на одной территории объединены горы, море и лес. Адриатика — природная среда для восстановления.',
+  },
+  {
+    title: 'Тишина и спокойствие',
+    text: 'Уединённое место, где сочетание адриатического моря и горного массива обеспечивают тишину и покой для гостей.',
+  },
+]
+
 export default function Why() {
   const ref = useReveal<HTMLElement>()
 
   return (
-    <section className="why" id="why" ref={ref}>
+    <section className="secwhy" id="why" ref={ref}>
       <div className="container">
-        <div className="why-grid">
-          <div data-reveal>
-            <p className="section-eyebrow">Почему это работает</p>
-            <p className="why-lead">Это не отдых, не разовая помощь и не временное решение. Это система. Восстановление становится управляемым процессом, а не надеждой на лучшее.</p>
-          </div>
-          <div className="why-pillars">
-            <div className="pillar" data-reveal="slide">
-              <h4>Целостность</h4>
-              <p>Тело, разум и душа. Программы охватывают все аспекты жизни человека. Благодаря комплексному подходу к оздоровлению — полное восстановление.</p>
-            </div>
-            <div className="pillar" data-reveal="slide">
-              <h4>Индивидуальный подход</h4>
-              <p>Программа подбирается с учётом особенностей и предпочтений гостя. Путь начинается с консультации со специалистом, который помогает подобрать программу.</p>
-            </div>
-            <div className="pillar" data-reveal="slide">
-              <h4>Богатство природы</h4>
-              <p>Расположение Черногории уникально: на одной территории объединены горы, море и лес. Адриатика — природная среда для восстановления.</p>
-            </div>
-            <div className="pillar" data-reveal="slide">
-              <h4>Тишина и спокойствие</h4>
-              <p>Уединённое место, где сочетание адриатического моря и горного массива обеспечивают тишину и покой для гостей.</p>
-            </div>
-          </div>
+        <header className="secwhy-head" data-reveal>
+          <h2 className="secwhy-title">Почему это работает</h2>
+          <p className="secwhy-lead">
+            Это не отдых, не разовая помощь и не временное решение. Это система.
+            Восстановление становится управляемым процессом, а не надеждой на лучшее.
+          </p>
+        </header>
+
+        <div className="secwhy-grid">
+          {PILLARS.map((p) => (
+            <article className="secwhy-card" key={p.title} data-reveal="slide">
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

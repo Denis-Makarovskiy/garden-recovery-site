@@ -1,0 +1,90 @@
+/* Section: О нас — повторяет макет Figma (figR_about).
+   Заголовок слева, короткий лид, ряд из 4 портретных фото
+   с короткими подписями по центру под каждым. Токены из styles-base.css. */
+
+.sec-about {
+  background: var(--bg, #f4f0e9);
+  padding: 88px 0 96px;
+}
+
+.sec-about__head {
+  max-width: 640px;
+  margin: 0 0 44px;
+}
+
+.sec-about__title {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.05;
+  color: var(--text, #2e342f);
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.sec-about__lead {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-mute, #9a9d8c);
+  margin: 0;
+  max-width: 460px;
+}
+
+.sec-about__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.sec-about__col {
+  display: flex;
+  flex-direction: column;
+}
+
+.sec-about__photo {
+  border-radius: var(--r-sm, 14px);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--line-soft, #e8e2d5);
+}
+
+.sec-about__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sec-about__cap {
+  font-family: var(--serif, Lora, serif);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--text, #2e342f);
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .sec-about__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 22px;
+  }
+}
+
+/* Mobile — складываем в колонку */
+@media (max-width: 560px) {
+  .sec-about {
+    padding: 64px 0 72px;
+  }
+  .sec-about__grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .sec-about__photo {
+    aspect-ratio: 4 / 3;
+  }
+}

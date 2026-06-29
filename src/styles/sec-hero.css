@@ -1,0 +1,108 @@
+/* ===== Hero — full-screen residence photo, centered logo + serif headline ===== */
+
+.secHero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+}
+
+/* Background video / poster fills the section */
+.secHero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Darkening overlay so the white type stays readable */
+.secHero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(46, 52, 47, 0.42) 0%, rgba(46, 52, 47, 0.30) 45%, rgba(46, 52, 47, 0.48) 100%),
+    rgba(46, 52, 47, 0.18);
+}
+
+.secHero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: 88px;
+}
+
+/* Logo lockup centered at the top of the content stack */
+.secHero__logo {
+  display: block;
+  width: clamp(220px, 26vw, 340px);
+  height: auto;
+  color: #fff;
+  margin: 0 auto clamp(40px, 7vh, 72px);
+  filter: drop-shadow(0 1px 18px rgba(0, 0, 0, 0.28));
+}
+
+.secHero__logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* gr-logo viewBox ratio 799.021 / 258.973 */
+  aspect-ratio: 799.021 / 258.973;
+  fill: currentColor;
+}
+
+.secHero__title {
+  font-family: var(--serif), Georgia, serif;
+  font-style: normal;
+  font-weight: 500;
+  color: #fff;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  max-width: 14em;
+  margin: 0 auto;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.30);
+}
+
+.secHero__lead {
+  font-family: var(--sans), system-ui, sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.92rem, 1.25vw, 1.05rem);
+  line-height: 1.6;
+  max-width: 46em;
+  margin: clamp(20px, 3.2vh, 32px) auto 0;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.30);
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 640px) {
+  .secHero__inner {
+    padding-block: 72px;
+  }
+  .secHero__logo {
+    width: clamp(190px, 56vw, 260px);
+    margin-bottom: 36px;
+  }
+  .secHero__title {
+    font-size: clamp(1.7rem, 7.8vw, 2.2rem);
+    max-width: 16em;
+  }
+  .secHero__lead {
+    font-size: 0.92rem;
+    max-width: 32em;
+  }
+}

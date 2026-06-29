@@ -1,0 +1,80 @@
+/* === SECTION: Почему это работает ===
+   Tokens come from styles-base.css :root (--serif, --sans, --bg-soft, etc.).
+   Layout: large serif title top-left, intro lead beneath, then a horizontal
+   row of 4 sand-coloured pillar cards with serif sub-headings. */
+
+.secwhy{
+  padding:96px 0 120px;
+  background:var(--bg, #F4F0E9);
+}
+
+.secwhy-head{
+  max-width:560px;
+  margin:0 0 72px;
+}
+
+.secwhy-title{
+  font-family:var(--serif, Lora, serif);
+  font-weight:500;
+  font-size:clamp(40px, 5vw, 64px);
+  line-height:1.04;
+  letter-spacing:-.02em;
+  color:var(--text, #2E342F);
+  margin:0 0 26px;
+}
+
+.secwhy-lead{
+  font-family:var(--sans, Manrope, sans-serif);
+  font-size:clamp(15px, 1.1vw, 17px);
+  line-height:1.55;
+  color:var(--text-mid, #515247);
+  margin:0;
+  max-width:480px;
+}
+
+/* --- 4-card row --- */
+.secwhy-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:24px;
+}
+
+.secwhy-card{
+  background:var(--bg-soft, #F6F0E7);
+  border-radius:var(--r-sm, 14px);
+  padding:40px 32px 48px;
+  display:flex;
+  flex-direction:column;
+}
+
+.secwhy-card h3{
+  font-family:var(--serif, Lora, serif);
+  font-weight:500;
+  font-size:clamp(22px, 1.7vw, 27px);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  color:var(--text, #2E342F);
+  margin:0 0 32px;
+}
+
+.secwhy-card p{
+  font-family:var(--sans, Manrope, sans-serif);
+  font-size:15px;
+  line-height:1.5;
+  color:var(--text-mid, #515247);
+  margin:0;
+}
+
+/* --- responsive: 2x2 on tablet, single column on phone --- */
+@media (max-width:980px){
+  .secwhy{padding:80px 0 96px}
+  .secwhy-grid{grid-template-columns:repeat(2, 1fr)}
+  .secwhy-head{margin-bottom:56px}
+}
+
+@media (max-width:560px){
+  .secwhy{padding:64px 0 80px}
+  .secwhy-grid{grid-template-columns:1fr}
+  .secwhy-card{padding:32px 28px 36px}
+  .secwhy-card h3{margin-bottom:20px}
+}

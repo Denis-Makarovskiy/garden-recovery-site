@@ -1,3 +1,4 @@
+import '../styles/sec-process.css'
 import { useEffect, useRef, useState } from 'react'
 import { prefersReducedMotion } from '../lib/scroll'
 
@@ -18,8 +19,8 @@ const STAGES: Stage[] = [
   { num: '05', title: 'Стабилизация', body: 'Оцениваем, закрепляем результат и выстраиваем стратегию сохранения прогресса после программы.', photo: '05-stabilization' },
 ]
 
-// Figma Desktop-64 "Путь гостя": each stage is shown for 5s, then a 0.3s smart-animate
-// to the next; loops. Auto-play pauses when off-screen; clicking a stage jumps to it.
+// Figma Desktop-64 "Путь гостя": each stage holds for 5s, then auto-advances; loops.
+// Auto-play pauses when off-screen; clicking a stage jumps to it and restarts.
 const HOLD = 5000
 
 export default function Process() {
@@ -42,7 +43,6 @@ export default function Process() {
       stop()
       timer.current = window.setInterval(() => setActive((a) => (a + 1) % STAGES.length), HOLD)
     }
-    // expose start to the click handler via the element dataset-free closure
     ;(el as HTMLElement & { _start?: () => void })._start = start
 
     const io = new IntersectionObserver(
@@ -66,37 +66,39 @@ export default function Process() {
   }
 
   return (
-    <section id="process" className="guest-path" ref={ref}>
+    <section id="process" className="sp-section" ref={ref}>
       <div className="container">
-        <div className="gp-head">
-          <h2 className="gp-title">Путь гостя</h2>
-          <p className="gp-lead">
+        <div className="sp-head">
+          <h2 className="sp-title">Путь гостя</h2>
+          <p className="sp-lead">
             Путь восстановления начинается с понимания состояния и продолжается до тех пор, пока результат не станет устойчивым.
           </p>
         </div>
 
-        <div className="gp-grid">
-          <div className="gp-steps">
+        <div className="sp-grid">
+          <div className="sp-steps">
             {STAGES.map((stage, i) => (
-              <div
+              <button
+                type="button"
                 key={stage.num}
-                className={`gp-step${active === i ? ' is-active' : ''}`}
+                className={`sp-step${active === i ? ' is-active' : ''}`}
                 onClick={() => pick(i)}
+                aria-pressed={active === i}
               >
-                <div className="gp-step-head">
-                  <span className="gp-step-num">{stage.num}</span>
-                  <span className="gp-step-title">{stage.title}</span>
-                </div>
-                <div className="gp-step-body">
-                  <div>
-                    <p>{stage.body}</p>
-                  </div>
-                </div>
-              </div>
+                <span className="sp-step-head">
+                  <span className="sp-step-num">{stage.num}</span>
+                  <span className="sp-step-title">{stage.title}</span>
+                </span>
+                <span className="sp-step-body">
+                  <span>
+                    <span className="sp-step-p">{stage.body}</span>
+                  </span>
+                </span>
+              </button>
             ))}
           </div>
 
-          <div className="gp-photo">
+          <div className="sp-photo">
             {STAGES.map((stage, i) => (
               <img
                 key={stage.photo}
