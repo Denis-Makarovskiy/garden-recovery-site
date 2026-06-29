@@ -88,6 +88,27 @@
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.30);
 }
 
+.secHero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(28px, 4.5vh, 46px);
+  padding: 15px 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(2px);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.secHero__cta:hover { background: #fff; color: var(--text, #2e342f); border-color: #fff; }
+.secHero__cta span { transition: transform 0.25s ease; }
+.secHero__cta:hover span { transform: translateX(4px); }
+
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
   .secHero__inner {

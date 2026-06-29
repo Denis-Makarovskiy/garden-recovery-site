@@ -93,6 +93,16 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+
+          {/* ЮРИДИЧЕСКОЕ */}
+          <nav data-reveal aria-label="Юридическая информация">
+            <p className="ft-col-title">Юридическое</p>
+            <ul className="ft-nav">
+              <li><a href="#">Политика конфиденциальности</a></li>
+              <li><a href="#">Согласие на обработку ПД</a></li>
+              <li><a href="#">Cookie-политика</a></li>
+            </ul>
+          </nav>
         </div>
 
         <div className="ft-bottom" data-reveal>

@@ -14,12 +14,12 @@
 
 .sec-about__title {
   font-family: var(--serif, Lora, serif);
-  font-weight: 500;
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: 1.05;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.06;
   color: var(--text, #2e342f);
   margin: 0 0 16px;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 .sec-about__lead {
@@ -34,8 +34,8 @@
 
 .sec-about__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .sec-about__col {
@@ -44,7 +44,7 @@
 }
 
 .sec-about__photo {
-  border-radius: var(--r-sm, 14px);
+  border-radius: 5px;
   overflow: hidden;
   aspect-ratio: 3 / 4;
   background: var(--line-soft, #e8e2d5);

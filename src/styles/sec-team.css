@@ -38,7 +38,7 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding-bottom: 4px;
+  padding: 64px 0 4px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -48,10 +48,11 @@
 .team-card {
   flex: 0 0 calc((100% - 3 * 22px) / 4);
   scroll-snap-align: start;
+  position: relative;
   background: #F6F0E7;
   color: var(--text);
   border-radius: 4px;
-  padding: 30px 26px 26px;
+  padding: 70px 26px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,16 +60,18 @@
   min-height: 100%;
 }
 
+/* крупный аватар, выступающий над верхней кромкой карточки */
 .team-avatar {
-  width: 92px;
-  height: 92px;
+  width: 118px;
+  height: 118px;
   border-radius: 50%;
   overflow: hidden;
   background: #E8E2D5;
   display: grid;
   place-items: center;
-  margin-bottom: 20px;
+  margin: -129px auto 18px;
   flex: 0 0 auto;
+  box-shadow: 0 6px 20px rgba(46, 52, 47, 0.18);
 }
 .team-avatar img {
   width: 100%;

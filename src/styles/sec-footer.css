@@ -7,8 +7,8 @@
 
 .ft-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 48px 64px;
+  grid-template-columns: 1fr auto auto;
+  gap: 48px 72px;
   align-items: start;
 }
 

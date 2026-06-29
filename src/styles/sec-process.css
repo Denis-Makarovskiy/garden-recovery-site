@@ -4,14 +4,14 @@
    Токены берутся из styles-base.css :root. */
 
 .sp-section {
-  padding: clamp(64px, 9vw, 132px) 0;
+  padding: clamp(56px, 6vw, 96px) 0;
   background: #faf8f4;
 }
 
 /* заголовок + лид: слева, узкой колонкой */
 .sp-head {
   max-width: 560px;
-  margin-bottom: clamp(40px, 6vw, 76px);
+  margin-bottom: clamp(28px, 4vw, 52px);
 }
 .sp-title {
   font-family: var(--serif, Lora, serif);
@@ -41,11 +41,11 @@
 
 /* левая колонка — отодвинута от левого края, как в макете */
 .sp-steps {
-  padding-left: clamp(8px, 4vw, 64px);
+  padding-left: clamp(0px, 2vw, 28px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(10px, 1.4vw, 20px);
+  gap: clamp(8px, 1vw, 14px);
 }
 
 .sp-step {
