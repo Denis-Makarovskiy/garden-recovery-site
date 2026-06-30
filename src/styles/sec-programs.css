@@ -1,7 +1,7 @@
 /* ===== Section: Программы (Figma-aligned) ===== */
 .pf-section {
   padding: 96px 0;
-  background: var(--bg);
+  background: #FFFFFF;
 }
 
 .pf-head {
@@ -11,19 +11,20 @@
 
 .pf-title {
   font-family: var(--serif);
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: 55px;
   font-weight: 500;
-  letter-spacing: -0.5px;
-  color: var(--text);
+  letter-spacing: 0;
+  color: #000000;
   margin: 0 0 12px;
-  line-height: 1.05;
+  line-height: 62.68px;
 }
 
 .pf-lead {
   font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--text-mid);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.6px;
+  color: #47473F;
   margin: 0;
   max-width: 480px;
 }
@@ -32,7 +33,7 @@
 .pf-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 22px;
   margin-bottom: 48px;
 }
 
@@ -43,11 +44,11 @@
 
 .pf-card-name {
   font-family: var(--serif);
-  font-size: clamp(24px, 2.2vw, 30px);
+  font-size: 29px;
   font-weight: 500;
   font-style: italic;
-  line-height: 1.1;
-  color: var(--text);
+  line-height: 37.12px;
+  color: #000000;
   margin: 0 0 6px;
   min-height: 2.2em;
   white-space: pre-line;
@@ -55,11 +56,12 @@
 
 .pf-card-tag {
   font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--text-mid);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.6px;
+  color: #47473F;
   margin: 0 0 10px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0;
 }
 
 .pf-card-media {
@@ -83,41 +85,44 @@
 }
 
 .pf-duration-label {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
+  font-family: var(--serif);
+  font-size: 29px;
+  font-weight: 500;
+  line-height: 37.12px;
+  color: #000000;
   margin: 0 0 18px;
+  letter-spacing: 0;
 }
 
 .pf-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 18px;
 }
 
 .pf-pill {
   font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-mid);
-  background: var(--bg-soft);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.6px;
+  color: #47473F;
+  background: #F7F6F2;
   border: 1px solid transparent;
-  border-radius: 6px;
-  padding: 10px 22px;
+  border-radius: 0;
+  padding: 18px 22px;
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .pf-pill:hover {
   background: var(--line);
-  color: var(--text);
+  color: #000000;
 }
 
 .pf-pill.is-active {
-  background: var(--text);
-  border-color: var(--text);
-  color: #fff;
+  background: #AC9775;
+  border-color: #AC9775;
+  color: #FFFFFF;
 }
 
 /* selected duration → program name + price */
@@ -131,13 +136,13 @@
   font-family: var(--serif);
   font-size: 18px;
   font-style: italic;
-  color: var(--text);
+  color: #000000;
 }
 .pf-price-val {
   font-family: var(--serif);
   font-size: 26px;
   font-weight: 500;
-  color: var(--text);
+  color: #000000;
 }
 
 /* Continuum block spacing below the programs */

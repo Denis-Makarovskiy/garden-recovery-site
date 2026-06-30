@@ -67,27 +67,27 @@
 }
 
 .secHero__title {
-  font-family: var(--serif), Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-style: normal;
-  font-weight: 400;
-  color: #fff;
-  font-size: clamp(2.25rem, 5.4vw, 4rem);
-  line-height: 1.15;
-  letter-spacing: 0.002em;
-  max-width: 14em;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-size: 55px;
+  line-height: 59.4px;
+  letter-spacing: 0;
+  max-width: 747px;
   margin: 0 auto;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.30);
 }
 
 .secHero__lead {
-  font-family: var(--sans), system-ui, sans-serif;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 14px;
-  line-height: 1.7;
-  letter-spacing: 0.04em;
-  max-width: 32em;
-  margin: clamp(28px, 4vh, 44px) auto 0;
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-weight: 400;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 23.6px;
+  letter-spacing: 0;
+  max-width: 633px;
+  margin: 81px auto 0;
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.30);
 }
 
@@ -95,15 +95,17 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: clamp(28px, 4.5vh, 46px);
-  padding: 15px 34px;
+  margin-top: 24px;
+  padding: 12px 40px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  font-family: var(--sans, Manrope, sans-serif);
-  font-size: 15px;
+  background: rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 23.6px;
+  letter-spacing: 0;
   text-decoration: none;
   backdrop-filter: blur(2px);
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;

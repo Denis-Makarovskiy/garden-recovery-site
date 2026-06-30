@@ -1,11 +1,9 @@
 /* === SECTION: Почему это работает ===
-   Tokens come from styles-base.css :root (--serif, --sans, --bg-soft, etc.).
-   Layout: large serif title top-left, intro lead beneath, then a horizontal
-   row of 4 sand-coloured pillar cards with serif sub-headings. */
+   Exact values from Figma spec (1440px). */
 
 .secwhy{
   padding:96px 0 120px;
-  background:var(--bg, #F4F0E9);
+  background:#FFFFFF;
 }
 
 .secwhy-head{
@@ -14,24 +12,26 @@
 }
 
 .secwhy-title{
-  font-family:var(--serif, Lora, serif);
-  font-weight:400;
-  font-size:clamp(44px, 5.4vw, 72px);
-  line-height:1.06;
-  letter-spacing:-.02em;
-  color:var(--text, #2E342F);
+  font-family:Lora, serif;
+  font-weight:500;
+  font-size:55px;
+  line-height:59.4px;
+  letter-spacing:0;
+  color:#000000;
   margin:0 0 32px;
   white-space:nowrap;
   text-align:left;
 }
 
 .secwhy-lead{
-  font-family:var(--sans, Manrope, sans-serif);
-  font-size:clamp(17px, 1.3vw, 20px);
-  line-height:1.5;
-  color:var(--text-mid, #515247);
+  font-family:Manrope, sans-serif;
+  font-weight:400;
+  font-size:16px;
+  line-height:23.6px;
+  letter-spacing:0;
+  color:#47473F;
   margin:0;
-  max-width:520px;
+  max-width:480px;
 }
 
 /* --- 4-card row --- */
@@ -42,26 +42,27 @@
 }
 
 .secwhy-card{
-  background:#F1ECE2;
-  border-radius:6px;
-  padding:52px 44px;
+  background:#F7F6F2;
+  border-radius:0;
+  padding:27px 27px 27px 27px;
   display:flex;
   flex-direction:column;
-  min-height:370px;
+  gap:51px;
+  min-height:365px;
 }
 
 .secwhy-card h3{
-  font-family:var(--serif, Lora, serif);
-  font-weight:400;
-  font-size:clamp(26px, 2.1vw, 32px);
-  line-height:1.14;
-  letter-spacing:-.01em;
-  color:var(--text, #2E342F);
-  margin:0 0 32px;
+  font-family:Lora, serif;
+  font-weight:500;
+  font-size:26px;
+  line-height:33.28px;
+  letter-spacing:0;
+  color:#000000;
+  margin:0;
 }
 
 .secwhy-card p{
-  font-family:var(--sans, Manrope, sans-serif);
+  font-family:Manrope, sans-serif;
   font-size:15px;
   line-height:1.45;
   color:#2B2722;
@@ -81,7 +82,6 @@
 @media (max-width:560px){
   .secwhy{padding:64px 0 80px}
   .secwhy-grid{grid-template-columns:1fr}
-  .secwhy-card{padding:32px 28px 36px;min-height:0}
-  .secwhy-card h3{margin-bottom:20px}
+  .secwhy-card{padding:32px 28px 36px;min-height:0;gap:32px}
   .secwhy-card p{max-width:none}
 }

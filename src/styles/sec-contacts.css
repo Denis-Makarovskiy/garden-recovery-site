@@ -4,17 +4,17 @@
    справа крупное фото на всю высоту со скруглением. Токены из styles-base.css. */
 
 .sec-contacts {
-  background: var(--bg, #f4f0e9);
+  background: #F9F6EF;
   padding: 88px 0 96px;
 }
 
 .sec-contacts__title {
-  font-family: var(--serif, Lora, serif);
-  font-weight: 400;
-  font-size: clamp(44px, 5.4vw, 72px);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--text, #2e342f);
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 59.4px;
+  letter-spacing: 0;
+  color: #000000;
   margin: 0 0 40px;
 }
 
@@ -22,7 +22,7 @@
 .sec-contacts__card {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  background: var(--surface, #fff);
+  background: #E8E3D9;
   border: 1px solid var(--line-soft, #e8e2d5);
   border-radius: 22px;
   overflow: hidden;
@@ -36,22 +36,23 @@
 }
 
 .sec-contacts__lead {
-  font-family: var(--serif, Lora, serif);
-  font-weight: 400;
-  font-size: clamp(24px, 2.4vw, 30px);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: var(--text, #2e342f);
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 62.68px;
+  letter-spacing: 0;
+  color: #000000;
   margin: 0 0 14px;
-  max-width: 280px;
+  max-width: 386px;
 }
 
 .sec-contacts__note {
-  font-family: var(--sans, Manrope, sans-serif);
+  font-family: Manrope, sans-serif;
   font-weight: 400;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-mute, #9a9d8c);
+  font-size: 16px;
+  line-height: 23.6px;
+  letter-spacing: 0;
+  color: #47473F;
   margin: 0 0 26px;
   max-width: 340px;
 }

@@ -1,0 +1,113 @@
+/* ===== Continuum (Figma Desktop-16) — точные значения =====
+   Источник: figma_spec.json -> continuum
+   Frames: 1202×367 серая плашка #CCCBCB, точки пагинации #D1D1C7 r=15. */
+
+.cnt-section {
+  background: #FFFFFF;
+  padding: 79px 0 96px;
+  max-width: 1202px;
+  margin: 0 auto;
+}
+
+.cnt-head {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  margin-bottom: 63px;
+  max-width: 573px;
+}
+
+.cnt-title {
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 59.4px;
+  letter-spacing: 0;
+  color: #000000;
+  margin: 0;
+}
+
+.cnt-lead {
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23.6px;
+  letter-spacing: 0;
+  color: #47473F;
+  margin: 0;
+}
+
+/* Серая плашка — точно по spec: 1202×367 #CCCBCB */
+.cnt-card {
+  background: #CCCBCB;
+  width: 100%;
+  min-height: 367px;
+  padding: 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.cnt-tier-eyebrow {
+  font-family: Manrope, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #47473F;
+  margin: 0;
+}
+
+.cnt-tier-title {
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 29px;
+  line-height: 37.12px;
+  letter-spacing: 0;
+  color: #000000;
+  margin: 0;
+}
+
+.cnt-tier-body {
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23.6px;
+  letter-spacing: 0;
+  color: #47473F;
+  margin: 0;
+  max-width: 640px;
+}
+
+/* Точки пагинации — spec: 9×9 #D1D1C7 radius 15px, активная 29×9 */
+.cnt-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 22px;
+}
+.cnt-dot {
+  width: 9px;
+  height: 9px;
+  background: #D1D1C7;
+  border: 0;
+  border-radius: 15px;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+.cnt-dot.is-active {
+  width: 29px;
+  background: #70715C;
+}
+
+@media (max-width: 900px) {
+  .cnt-section { padding: 56px 16px 72px; }
+  .cnt-head { margin-bottom: 40px; gap: 24px; }
+  .cnt-title { font-size: 36px; line-height: 1.1; }
+  .cnt-card { padding: 32px 24px; min-height: 0; }
+  .cnt-tier-title { font-size: 22px; line-height: 1.2; }
+}

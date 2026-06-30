@@ -30,21 +30,8 @@ section li {
   color: var(--brand-text);
 }
 
-/* Заголовки секций: 55px medium, чёрный.
-   Покрываем все классы заголовков, которые мы используем в секциях. */
-.sec-about__title,
-.sp-title,
-.pf-title,
-.continuum-title,
-.secwhy-title,
-.sec-contacts__title,
-.team-title {
-  font-size: 55px;
-  font-weight: 500;
-  line-height: 1.1;
-  color: var(--brand-title);
-  letter-spacing: -0.01em;
-}
+/* Заголовки — точные значения берутся из sec-*.css (Figma-spec), здесь
+   override отключён (раньше перебивал точную типографику). */
 
 /* На тёмной секции «Команда» заголовок и текст под ним — белые */
 .team-sec,

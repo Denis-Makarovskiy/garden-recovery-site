@@ -1,41 +1,46 @@
 /* Section: О нас — повторяет макет Figma (figR_about).
    Заголовок слева, короткий лид, ряд из 3 квадратных фото
-   с короткими подписями по центру под каждым. Токены из styles-base.css. */
+   с короткими подписями по центру под каждым. Значения из Figma spec. */
 
 .sec-about {
-  background: #ece7df;
+  background: #FFFFFF;
   padding: 88px 0 96px;
 }
 
 .sec-about__head {
   max-width: 640px;
   margin: 0 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
 }
 
 .sec-about__title {
   font-family: var(--serif, Lora, serif);
-  font-weight: 400;
-  font-size: clamp(48px, 6.2vw, 76px);
-  line-height: 1.05;
-  color: #2a2a2a;
-  margin: 0 0 20px;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 59.4px;
+  letter-spacing: 0;
+  color: #000000;
+  margin: 0;
 }
 
 .sec-about__lead {
-  font-family: var(--sans, Manrope, sans-serif);
+  font-family: var(--serif, Lora, serif);
   font-weight: 400;
-  font-size: 14px;
-  line-height: 1.55;
-  color: #8a8a8a;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 26.88px;
+  letter-spacing: 0;
+  color: #47473F;
   margin: 0;
-  max-width: 460px;
+  max-width: 502px;
 }
 
 .sec-about__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 44px;
+  gap: 22px;
 }
 
 .sec-about__col {
@@ -45,7 +50,6 @@
 }
 
 .sec-about__photo {
-  border-radius: 2px;
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background: var(--line-soft, #e8e2d5);
@@ -61,14 +65,16 @@
 .sec-about__cap {
   font-family: var(--serif, Lora, serif);
   font-weight: 400;
-  font-size: 19px;
-  line-height: 1.3;
-  color: #2a2a2a;
+  font-style: italic;
+  font-size: 21px;
+  line-height: 26.88px;
+  letter-spacing: 0;
+  color: #47473F;
   text-align: center;
-  margin: 28px 0 0;
-  background: transparent;
+  margin: 0;
+  background: #F9F6EF;
   border: 0;
-  padding: 0;
+  padding: 22px 0;
 }
 
 /* Tablet */
@@ -78,7 +84,7 @@
   }
   .sec-about__grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px 28px;
+    gap: 32px 22px;
   }
 }
 
@@ -89,9 +95,11 @@
   }
   .sec-about__head {
     margin: 0 0 40px;
+    gap: 28px;
   }
   .sec-about__title {
-    font-size: clamp(40px, 11vw, 56px);
+    font-size: clamp(40px, 11vw, 55px);
+    line-height: 1.08;
   }
   .sec-about__grid {
     grid-template-columns: 1fr;
@@ -102,6 +110,7 @@
   }
   .sec-about__cap {
     font-size: 18px;
-    margin-top: 20px;
+    line-height: 1.28;
+    padding: 18px 0;
   }
 }

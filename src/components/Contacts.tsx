@@ -178,61 +178,52 @@ export default function Contacts() {
         </div>
       </section>
 
-      {/* FINAL SLIDE */}
+      {/* FINAL — Figma Desktop-25: белый фон, чёрный текст, центрирование */}
       <section
         id="final"
         style={{
-          background: 'var(--text)',
-          color: 'var(--bg-soft)',
+          background: '#FFFFFF',
+          color: '#000000',
           textAlign: 'center',
-          padding: 'clamp(90px, 14vh, 150px) 0',
+          padding: '160px 0',
         }}
       >
         <div className="container">
-          <p
-            style={{
-              fontSize: '14px',
-              letterSpacing: '3px',
-              textTransform: 'uppercase',
-              color: 'var(--brand-sage)',
-              fontWeight: 600,
-              margin: '0 0 28px',
-            }}
-          >
-            Garden Recovery
-          </p>
           <h2
             style={{
-              fontFamily: 'var(--serif)',
-              fontSize: 'clamp(28px,3.6vw,48px)',
-              fontWeight: 500,
-              lineHeight: 1.15,
-              letterSpacing: '-.4px',
-              color: 'var(--bg-soft)',
-              margin: '0 auto 32px',
-              maxWidth: '640px',
+              fontFamily: 'Lora, serif',
+              fontSize: '52px',
+              fontWeight: 400,
+              lineHeight: '56.16px',
+              letterSpacing: 0,
+              color: '#000000',
+              margin: '0 auto 39px',
+              maxWidth: '606px',
             }}
           >
-            Иногда лучшее решение —{' '}
-            <em style={{ fontStyle: 'italic', color: 'var(--brand-sage)' }}>остановиться</em>
+            Иногда лучшее решение — остановиться
           </h2>
           <p
             style={{
+              fontFamily: 'Manrope, sans-serif',
               fontSize: '17px',
-              lineHeight: 1.6,
-              color: 'rgba(248,245,240,.7)',
-              maxWidth: '480px',
-              margin: '0 auto 40px',
+              fontWeight: 300,
+              lineHeight: '18.26px',
+              color: '#000000',
+              maxWidth: '606px',
+              margin: '0 auto 66px',
             }}
           >
             Чтобы восстановить силы. Чтобы вернуть ясность. Чтобы обрести внутреннюю опору.
           </p>
           <p
             style={{
-              fontSize: '12px',
-              letterSpacing: '3px',
-              textTransform: 'uppercase',
-              color: 'rgba(248,245,240,.4)',
+              fontFamily: 'Manrope, sans-serif',
+              fontSize: '17px',
+              fontWeight: 300,
+              lineHeight: '18.26px',
+              color: '#70715C',
+              margin: 0,
             }}
           >
             Персонально · Системно · Конфиденциально
