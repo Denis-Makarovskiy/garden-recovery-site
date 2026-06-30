@@ -3,12 +3,12 @@ import { scrollToHash } from '../lib/scroll'
 
 const SECTION_IDS = ['hero', 'about', 'process', 'programs', 'why', 'team', 'contacts']
 
+// По брифу дизайнера: 5 пунктов меню (без «Путь гостя»)
 const NAV = [
   { href: '#about', label: 'О нас' },
-  { href: '#process', label: 'Подход' },
   { href: '#programs', label: 'Программы' },
-  { href: '#why', label: 'Почему мы' },
   { href: '#team', label: 'Команда' },
+  { href: '#why', label: 'Почему это работает' },
   { href: '#contacts', label: 'Контакты' },
 ]
 
@@ -19,7 +19,6 @@ export default function Header() {
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
-  // Smooth-scroll in-page anchors via Lenis instead of the broken native hash jump.
   const onNav = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     const href = e.currentTarget.getAttribute('href') || ''
     if (href.startsWith('#')) {
@@ -92,16 +91,38 @@ export default function Header() {
 
   return (
     <>
+      {/* Верхний бар по брифу: язык + лого слева, навигация в центре, CTA справа */}
       <header className={`topbar${scrolled ? ' is-scrolled' : ''}`}>
-        <div className="container">
-          <a href="#" className="logo" aria-label="Garden Recovery — Medical Residence" onClick={onNav}>
-            <svg className="logo-mark-img" role="img" aria-label="Garden Recovery — Medical Residence">
-              <use href="#gr-logo" />
-            </svg>
+        <div className="topbar-inner">
+          <div className="topbar-left">
+            <button type="button" className="topbar-lang" aria-label="Сменить язык">RU</button>
+            <a href="#" className="topbar-logo" aria-label="Garden Recovery — Medical Residence" onClick={onNav}>
+              <svg role="img" aria-label="Garden Recovery">
+                <use href="#gr-logo" />
+              </svg>
+            </a>
+          </div>
+
+          <nav className="topbar-nav" aria-label="Главное меню">
+            {NAV.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                className={isActive(n.href) ? 'active' : undefined}
+                onClick={onNav}
+              >
+                {n.label}
+              </a>
+            ))}
+          </nav>
+
+          <a href="#contacts" className="topbar-cta" onClick={onNav}>
+            Консультация
           </a>
         </div>
       </header>
 
+      {/* Burger / mobile menu — без изменений в логике */}
       <button
         className={`burger${menuOpen ? ' is-open' : ''}`}
         id="burger"
@@ -130,24 +151,6 @@ export default function Header() {
         </ul>
         <a href="#contacts" className="mobile-menu-cta" data-menu-link onClick={onNavMobile}>
           Получить консультацию
-        </a>
-      </nav>
-
-      <nav className="bottomnav" aria-label="Главное меню">
-        <div className="bottomnav-menu">
-          {NAV.filter((n) => n.href !== '#contacts').map((n) => (
-            <a
-              key={n.href}
-              href={n.href}
-              className={isActive(n.href) ? 'active' : undefined}
-              onClick={onNav}
-            >
-              {n.label}
-            </a>
-          ))}
-        </div>
-        <a href="#contacts" className="bottomnav-cta" onClick={onNav}>
-          Консультация
         </a>
       </nav>
     </>

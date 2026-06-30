@@ -1,0 +1,234 @@
+/* =====================================================================
+   BRAND PASS (по брифу дизайнера, 2026-06-30)
+   Глобальные правила. Подключается последним, чтобы перебивать существующие.
+   ===================================================================== */
+
+/* 1. Общий белый фон + базовый цвет основного текста */
+html, body, #root {
+  background: #FFFFFF !important;
+}
+
+:root {
+  --brand-bg: #FFFFFF;
+  --brand-menu-bg: #E8E3D9;
+  --brand-menu-text: #555252;
+  --brand-cta: #AC9775;
+  --brand-title: #000000;
+  --brand-text: #47473F;
+}
+
+/* Базовый параграф */
+p {
+  color: var(--brand-text);
+}
+
+/* Все обычные абзацы основного контента — 16px / #47473F */
+section p,
+section li {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--brand-text);
+}
+
+/* Заголовки секций: 55px medium, чёрный.
+   Покрываем все классы заголовков, которые мы используем в секциях. */
+.sec-about__title,
+.sp-title,
+.pf-title,
+.continuum-title,
+.secwhy-title,
+.sec-contacts__title,
+.team-title {
+  font-size: 55px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--brand-title);
+  letter-spacing: -0.01em;
+}
+
+/* На тёмной секции «Команда» заголовок и текст под ним — белые */
+.team-sec,
+.team-sec p {
+  color: #FFFFFF;
+}
+.team-title { color: #FFFFFF !important; }
+.team-lead { color: #FFFFFF !important; }
+
+/* Lead-абзацы под заголовками — основной цвет текста */
+.sec-about__lead,
+.sp-lead,
+.pf-lead,
+.continuum-lead,
+.secwhy-lead,
+.sec-contacts__lead {
+  color: var(--brand-text);
+  font-size: 16px;
+}
+
+/* 3. Убрать ВСЕ скругления у фото и кнопок */
+img,
+button,
+.btn,
+a.btn,
+a.topbar-cta,
+a.secHero__cta,
+.team-card .team-avatar,
+.team-card .team-avatar img,
+.sec-about__photo,
+.sec-about__photo img,
+.pf-card-media,
+.pf-card-media img,
+.sp-photo,
+.sp-photo img,
+.continuum-card,
+.member-photo,
+.member-photo img,
+.ft-soc,
+.pf-pill,
+.sec-contacts__card,
+.sec-contacts__photo,
+.sec-contacts__photo img,
+.sec-contacts__chan,
+.sec-contacts__submit,
+.team-dot {
+  border-radius: 0 !important;
+}
+
+/* Карточки «Почему» — оставляем плашки, но без скруглений */
+.secwhy-card { border-radius: 0 !important; }
+
+/* =====================================================================
+   2. Верхнее меню (топбар) — фиксированный сверху, кремовая заливка
+   ===================================================================== */
+
+/* Глушим старое нижнее меню (.bottomnav) — оно больше не используется */
+.bottomnav { display: none !important; }
+
+/* Топбар: фиксируем сверху */
+.topbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--brand-menu-bg) !important;
+  border: 0 !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  padding: 0 !important;
+}
+
+.topbar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 14px 48px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 0 0 auto;
+}
+
+/* Переключатель языка — слева */
+.topbar-lang {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--brand-menu-text);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.topbar-lang:hover { color: var(--brand-title); }
+
+/* Логотип в верхнем баре — компактный, тёмный (а не белый, фон же светлый) */
+.topbar-logo {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  color: var(--brand-menu-text);
+}
+.topbar-logo svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 799.021 / 258.973;
+  fill: currentColor;
+}
+
+/* Центральная навигация */
+.topbar-nav {
+  display: flex;
+  gap: 32px;
+  margin: 0 auto;
+}
+.topbar-nav a {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--brand-menu-text);
+  text-decoration: none;
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.18s ease;
+}
+.topbar-nav a:hover { color: var(--brand-title); }
+.topbar-nav a.active { color: var(--brand-title); }
+.topbar-nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+}
+
+/* CTA — оливково-золотой по брифу */
+.topbar-cta {
+  flex: 0 0 auto;
+  font-family: var(--sans, Manrope, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  background: var(--brand-cta) !important;
+  color: #FFFFFF !important;
+  padding: 12px 26px;
+  text-decoration: none;
+  border: 0;
+  transition: filter 0.2s ease;
+}
+.topbar-cta:hover { filter: brightness(0.92); }
+
+/* Сдвигаем контент сайта вниз на высоту фиксированного бара */
+body { padding-top: 76px; }
+
+/* Hero — заполняем экран ПОД топбаром */
+.secHero { min-height: calc(100vh - 76px) !important; }
+
+/* Адаптив топбара */
+@media (max-width: 980px) {
+  .topbar-inner { padding: 12px 20px; gap: 14px; }
+  .topbar-nav { gap: 18px; }
+  .topbar-nav a { font-size: 13px; }
+}
+
+@media (max-width: 760px) {
+  /* На мобайле верхний бар прячется — открывается через бургер (как было) */
+  .topbar { display: none !important; }
+  body { padding-top: 0; }
+  .secHero { min-height: 100vh !important; }
+}
+
+/* =====================================================================
+   Доводки: убираем артефакты под белый фон
+   ===================================================================== */
+
+/* Секции на цветном фоне — оставляем их цвет (Команда, Контакты, About и т.п. */
+/* у каждой свой sec-*.css). Глобальный белый — только для html/body. */
