@@ -1,19 +1,19 @@
-/* ===== Hero — full-screen residence photo, centered logo + serif headline ===== */
+/* ===== Hero — fixed-height residence photo, centered logo + serif headline ===== */
 
 .secHero {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 963px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
   color: #fff;
+  background: #FFFFFF;
 }
 
-/* Background video / poster fills the section */
+/* Background photo fills the section */
 .secHero__media {
   position: absolute;
   inset: 0;
@@ -24,8 +24,7 @@
   object-position: center;
 }
 
-/* Darkening overlay so the white type stays readable.
-   Warmer brown tone + stronger opacity (~52%) — image recedes, type pops. */
+/* Darkening overlay so the white type stays readable. */
 .secHero__overlay {
   position: absolute;
   inset: 0;
@@ -39,21 +38,22 @@
   position: relative;
   z-index: 1;
   width: 100%;
+  max-width: 747px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-block: clamp(110px, 14vh, 160px) 96px;
+  /* Content frame in spec: y=234, h=489 inside 963 → top offset 234, bottom auto */
+  padding-top: 234px;
 }
 
-/* Logo lockup centered at the top of the content stack — enlarged ~1.5×
-   and pushed down from the top edge to match the figma rhythm */
+/* Logo lockup centered above the title — sized to match the figma rhythm */
 .secHero__logo {
   display: block;
-  width: clamp(320px, 38vw, 500px);
+  width: 296px;
   height: auto;
   color: #fff;
-  margin: 0 auto clamp(60px, 8.5vh, 96px);
+  margin: 0 auto 81px;
   filter: drop-shadow(0 1px 18px rgba(0, 0, 0, 0.28));
 }
 
@@ -97,7 +97,6 @@
   gap: 10px;
   margin-top: 24px;
   padding: 12px 40px;
-  border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   background: rgba(0, 0, 0, 0);
   color: #FFFFFF;
@@ -116,8 +115,13 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
+  .secHero {
+    height: auto;
+    min-height: 100svh;
+  }
   .secHero__inner {
-    padding-block: 96px 72px;
+    padding-top: 96px;
+    padding-bottom: 72px;
   }
   .secHero__logo {
     width: clamp(220px, 64vw, 300px);

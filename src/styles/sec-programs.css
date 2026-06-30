@@ -5,7 +5,7 @@
 }
 
 .pf-head {
-  margin-bottom: 32px;
+  margin-bottom: 107px;
   max-width: 720px;
 }
 
@@ -15,7 +15,7 @@
   font-weight: 500;
   letter-spacing: 0;
   color: #000000;
-  margin: 0 0 12px;
+  margin: 0 0 32px;
   line-height: 62.68px;
 }
 
@@ -26,7 +26,7 @@
   line-height: 23.6px;
   color: #47473F;
   margin: 0;
-  max-width: 480px;
+  max-width: 334px;
 }
 
 /* ---- Cards row ---- */
@@ -34,7 +34,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
-  margin-bottom: 48px;
+  margin-bottom: 126px;
 }
 
 .pf-card {
@@ -66,8 +66,8 @@
 
 .pf-card-media {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--r-sm);
+  aspect-ratio: 284 / 442;
+  border-radius: 0;
   overflow: hidden;
   background: var(--line-soft);
 }
@@ -90,7 +90,7 @@
   font-weight: 500;
   line-height: 37.12px;
   color: #000000;
-  margin: 0 0 18px;
+  margin: 0 0 87px;
   letter-spacing: 0;
 }
 
@@ -123,26 +123,6 @@
   background: #AC9775;
   border-color: #AC9775;
   color: #FFFFFF;
-}
-
-/* selected duration → program name + price */
-.pf-price {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-top: 22px;
-}
-.pf-price-prog {
-  font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
-  color: #000000;
-}
-.pf-price-val {
-  font-family: var(--serif);
-  font-size: 26px;
-  font-weight: 500;
-  color: #000000;
 }
 
 /* Continuum block spacing below the programs */

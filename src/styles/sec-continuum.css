@@ -1,10 +1,11 @@
 /* ===== Continuum (Figma Desktop-16) — точные значения =====
    Источник: figma_spec.json -> continuum
-   Frames: 1202×367 серая плашка #CCCBCB, точки пагинации #D1D1C7 r=15. */
+   Контейнер: 1202px (1440 - 119*2), gap head→card=63, gap card→dots=79.
+   Серая плашка #CCCBCB 1202×367. Точки 9×9 #D1D1C7 r=15px, активная 29×9 #70715C. */
 
 .cnt-section {
   background: #FFFFFF;
-  padding: 79px 0 96px;
+  padding: 60px 0 59px;
   max-width: 1202px;
   margin: 0 auto;
 }
@@ -37,17 +38,19 @@
   margin: 0;
 }
 
-/* Серая плашка — точно по spec: 1202×367 #CCCBCB */
+/* Серая плашка — точно по spec: 1202×367 #CCCBCB, без скруглений (radius null) */
 .cnt-card {
   background: #CCCBCB;
-  width: 100%;
-  min-height: 367px;
+  width: 1202px;
+  max-width: 100%;
+  height: 367px;
   padding: 60px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 22px;
-  margin-bottom: 32px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .cnt-tier-eyebrow {
@@ -81,13 +84,14 @@
   max-width: 640px;
 }
 
-/* Точки пагинации — spec: 9×9 #D1D1C7 radius 15px, активная 29×9 */
+/* Точки пагинации — spec: 9×9 #D1D1C7 radius 15px, активная 29×9 #70715C,
+   gap=6, расстояние от плашки до точек=79 (Frame 2147239961 gap). */
 .cnt-dots {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 22px;
+  margin-top: 79px;
 }
 .cnt-dot {
   width: 9px;
@@ -104,10 +108,16 @@
   background: #70715C;
 }
 
+@media (max-width: 1240px) {
+  .cnt-section { padding: 60px 16px 59px; }
+  .cnt-card { height: auto; min-height: 367px; }
+}
+
 @media (max-width: 900px) {
   .cnt-section { padding: 56px 16px 72px; }
   .cnt-head { margin-bottom: 40px; gap: 24px; }
   .cnt-title { font-size: 36px; line-height: 1.1; }
-  .cnt-card { padding: 32px 24px; min-height: 0; }
+  .cnt-card { padding: 32px 24px; height: auto; min-height: 0; }
   .cnt-tier-title { font-size: 22px; line-height: 1.2; }
+  .cnt-dots { margin-top: 40px; }
 }

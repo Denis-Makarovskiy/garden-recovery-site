@@ -4,12 +4,12 @@
 
 .sec-about {
   background: #FFFFFF;
-  padding: 88px 0 96px;
+  padding: 98px 0 69px;
 }
 
 .sec-about__head {
   max-width: 640px;
-  margin: 0 0 80px;
+  margin: 0 0 94px;
   display: flex;
   flex-direction: column;
   gap: 45px;
@@ -46,6 +46,7 @@
 .sec-about__col {
   display: flex;
   flex-direction: column;
+  gap: 0;
   margin: 0;
 }
 
@@ -53,6 +54,7 @@
   overflow: hidden;
   aspect-ratio: 1 / 1;
   background: var(--line-soft, #e8e2d5);
+  display: block;
 }
 
 .sec-about__photo img {
@@ -75,6 +77,7 @@
   background: #F9F6EF;
   border: 0;
   padding: 22px 0;
+  display: block;
 }
 
 /* Tablet */

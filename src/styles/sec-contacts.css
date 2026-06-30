@@ -1,11 +1,10 @@
-/* Section: Консультация — повторяет макет Figma (figR_contacts).
-   Заголовок «Консультация» слева сверху, подзаголовок, затем карточка:
-   слева светлая форма (имя / телефон / каналы связи / отправить / согласие),
-   справа крупное фото на всю высоту со скруглением. Токены из styles-base.css. */
+/* Section: Консультация — точно по макету Figma (figR_contacts).
+   Фон секции #F9F6EF. Заголовок слева. Карточка #E8E3D9 без скруглений.
+   Слева форма, справа фото выступает за пределы карточки сверху и снизу. */
 
 .sec-contacts {
   background: #F9F6EF;
-  padding: 88px 0 96px;
+  padding: 122px 0 123px; /* 122 top до title, до конца секции ~123 */
 }
 
 .sec-contacts__title {
@@ -15,22 +14,29 @@
   line-height: 59.4px;
   letter-spacing: 0;
   color: #000000;
-  margin: 0 0 40px;
+  margin: 0 0 112px; /* 122 + 39 (title h) + 112 = 273 — начало карточки */
 }
 
-/* Карточка: форма + фото */
+/* Карточка: форма (692) + фото (510, со сдвигом) */
 .sec-contacts__card {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  background: #E8E3D9;
-  border: 1px solid var(--line-soft, #e8e2d5);
-  border-radius: 22px;
-  overflow: hidden;
+  grid-template-columns: 692fr 510fr;
+  align-items: stretch;
+  /* без фона у обёртки — фон только у формы */
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 /* Левая колонка — форма */
 .sec-contacts__form {
-  padding: clamp(36px, 4.4vw, 60px);
+  background: #E8E3D9;
+  width: 692px;
+  height: 606px;
+  box-sizing: border-box;
+  padding: 80px 80px 0;  /* x=199 относительно секции (119+80) */
   display: flex;
   flex-direction: column;
 }
@@ -42,7 +48,7 @@
   line-height: 62.68px;
   letter-spacing: 0;
   color: #000000;
-  margin: 0 0 14px;
+  margin: 0;
   max-width: 386px;
 }
 
@@ -53,7 +59,7 @@
   line-height: 23.6px;
   letter-spacing: 0;
   color: #47473F;
-  margin: 0 0 26px;
+  margin: 33px 0 0; /* gap 33 от lead до note */
   max-width: 340px;
 }
 
@@ -70,8 +76,16 @@
   border: 0;
 }
 
+/* Группа с инпутами и кнопками — gap=42 от note до полей */
+.sec-contacts__fields {
+  margin-top: 49px; /* gap 49 между блоком текста и блоком формы */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .sec-contacts__field {
-  margin: 0 0 14px;
+  margin: 0;
 }
 
 .sec-contacts__input {
@@ -80,21 +94,20 @@
   font-family: var(--sans, Manrope, sans-serif);
   font-size: 14px;
   color: var(--text, #2e342f);
-  background: var(--bg-soft, #f6f0e7);
-  border: 1px solid var(--line, #d9d2c5);
-  border-radius: var(--r-sm, 14px);
-  padding: 14px 16px;
+  background: #F4E6DA;
+  border: none;
+  border-radius: 15px;
+  padding: 14px 18px;
   outline: none;
-  transition: border-color 0.18s ease, background 0.18s ease;
+  transition: background 0.18s ease;
 }
 
 .sec-contacts__input::placeholder {
-  color: var(--text-mute, #9a9d8c);
+  color: #9A9D8C;
 }
 
 .sec-contacts__input:focus {
-  border-color: var(--accent, #979a83);
-  background: var(--surface, #fff);
+  background: #FFFFFF;
 }
 
 /* Каналы связи: иконки мессенджеров + кнопка «Звонок» */
@@ -102,36 +115,35 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 6px 0 20px;
+  margin-top: 6px;
 }
 
 .sec-contacts__chan {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   flex: 0 0 auto;
-  border: 1px solid var(--text, #2e342f);
-  border-radius: 50%;
-  background: var(--text, #2e342f);
-  color: var(--surface, #fff);
+  border: none;
+  border-radius: 0;
+  background: #2E342F;
+  color: #FFFFFF;
   cursor: pointer;
-  transition: opacity 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: opacity 0.18s ease;
 }
 
 .sec-contacts__chan svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: block;
 }
 
 .sec-contacts__chan--call {
   width: auto;
-  height: 48px;
-  border-radius: 24px;
-  padding: 0 22px;
-  gap: 8px;
+  height: 40px;
+  border-radius: 0;
+  padding: 0 18px;
   font-family: var(--sans, Manrope, sans-serif);
   font-size: 13px;
   font-weight: 500;
@@ -142,70 +154,71 @@
 }
 
 .sec-contacts__chan.is-active {
-  background: var(--accent, #979a83);
-  border-color: var(--accent, #979a83);
-  color: var(--surface, #fff);
+  background: #1f2520;
 }
 
-/* Кнопка «Отправить» — на отдельной строке под иконками мессенджеров */
+/* Кнопка «Отправить» — на отдельной строке под каналами */
 .sec-contacts__submit {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 190px;
-  height: 48px;
+  width: 160px;
+  height: 40px;
   font-family: var(--sans, Manrope, sans-serif);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--surface, #fff);
-  background: var(--text, #2e342f);
+  color: #FFFFFF;
+  background: #2E342F;
   border: none;
-  border-radius: 8px;
-  padding: 0 24px;
-  margin: 4px 0 0;
+  border-radius: 0;
+  padding: 0 20px;
+  margin-top: 14px;
   cursor: pointer;
   transition: background 0.18s ease;
 }
 
 .sec-contacts__submit:hover {
-  background: var(--accent-dark, #6b7163);
+  background: #1f2520;
 }
 
-/* Чекбокс согласия */
+/* Чекбокс согласия — очень мелкий, внизу формы */
 .sec-contacts__consent {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin: 22px 0 0;
+  gap: 8px;
+  margin-top: 18px;
   cursor: pointer;
 }
 
 .sec-contacts__consent input {
   margin: 2px 0 0;
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   flex: 0 0 auto;
-  accent-color: var(--accent, #979a83);
+  accent-color: #2E342F;
 }
 
 .sec-contacts__consent span {
   font-family: var(--sans, Manrope, sans-serif);
-  font-size: 11px;
-  line-height: 1.5;
-  color: var(--text-mute, #9a9d8c);
+  font-size: 10px;
+  line-height: 1.4;
+  color: #9A9D8C;
 }
 
 .sec-contacts__consent a {
-  color: var(--text-mid, #515247);
+  color: #515247;
   text-decoration: underline;
 }
 
-/* Правая колонка — фото */
+/* Правая колонка — фото, выступает за пределы карточки */
 .sec-contacts__photo {
   position: relative;
-  min-height: 100%;
-  background: var(--line-soft, #e8e2d5);
+  width: 532px;
+  height: 796px;
+  margin-top: -95px;     /* y фото = 178, y карточки = 273 → выступает на 95 вверх */
+  margin-left: -10px;    /* фото x=801, форма заканчивается на 811 → накладывается на 10 */
+  background: transparent;
 }
 
 .sec-contacts__photo img {
@@ -216,24 +229,45 @@
   object-fit: cover;
   object-position: center 30%;
   display: block;
+  border-radius: 0;
 }
 
 /* Tablet / mobile — складываем в колонку */
-@media (max-width: 860px) {
+@media (max-width: 1100px) {
   .sec-contacts {
-    padding: 64px 0 72px;
+    padding: 80px 0 80px;
+  }
+  .sec-contacts__title {
+    margin: 0 0 40px;
+    font-size: 44px;
+    line-height: 1.1;
   }
   .sec-contacts__card {
     grid-template-columns: 1fr;
   }
-  .sec-contacts__photo {
-    min-height: 0;
-    order: -1;
-    aspect-ratio: 16 / 10;
+  .sec-contacts__form {
+    width: 100%;
+    height: auto;
+    padding: 40px 32px 40px;
   }
-  .sec-contacts__lead,
+  .sec-contacts__lead {
+    font-size: 36px;
+    line-height: 1.15;
+    max-width: none;
+  }
   .sec-contacts__note {
     max-width: none;
+  }
+  .sec-contacts__photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    margin: 0;
+    order: -1;
+  }
+  .sec-contacts__photo img {
+    position: relative;
+    inset: auto;
   }
 }
 

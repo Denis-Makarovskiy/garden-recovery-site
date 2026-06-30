@@ -72,48 +72,46 @@ export default function Contacts() {
               onSubmit={handleSubmit}
             >
               <p className="sec-contacts__lead">
-                Заполните форму,<br />
-                чтобы получить<br />
-                бесплатную<br />
-                консультацию
+                Заполните форму, чтобы получить бесплатную консультацию
               </p>
               <p className="sec-contacts__note">
                 Заявки обрабатываем лично. Ответим в течение рабочего дня.
               </p>
 
-              <div className="sec-contacts__field">
-                <label className="sr-only" htmlFor="name">
-                  Имя
-                </label>
-                <input
-                  className="sec-contacts__input"
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Имя"
-                  required
-                  value={name}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-                />
-              </div>
+              <div className="sec-contacts__fields">
+                <div className="sec-contacts__field">
+                  <label className="sr-only" htmlFor="name">
+                    Имя
+                  </label>
+                  <input
+                    className="sec-contacts__input"
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Имя"
+                    required
+                    value={name}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+                  />
+                </div>
 
-              <div className="sec-contacts__field">
-                <label className="sr-only" htmlFor="contact">
-                  Телефон
-                </label>
-                <input
-                  className="sec-contacts__input"
-                  type="text"
-                  id="contact"
-                  name="contact"
-                  placeholder="Телефон"
-                  required
-                  value={contact}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setContact(e.target.value)}
-                />
-              </div>
+                <div className="sec-contacts__field">
+                  <label className="sr-only" htmlFor="contact">
+                    Телефон
+                  </label>
+                  <input
+                    className="sec-contacts__input"
+                    type="text"
+                    id="contact"
+                    name="contact"
+                    placeholder="Телефон"
+                    required
+                    value={contact}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setContact(e.target.value)}
+                  />
+                </div>
 
-              <div className="sec-contacts__channels" role="radiogroup" aria-label="Удобный канал связи">
+                <div className="sec-contacts__channels" role="radiogroup" aria-label="Удобный канал связи">
                 <button
                   type="button"
                   className={`sec-contacts__chan${channel === 'WhatsApp' ? ' is-active' : ''}`}
@@ -146,13 +144,14 @@ export default function Contacts() {
                 >
                   Звонок
                 </button>
+                </div>
+
+                <input type="hidden" id="program-interest" name="program" value={program} readOnly />
+
+                <button type="submit" className="sec-contacts__submit">
+                  Отправить
+                </button>
               </div>
-
-              <input type="hidden" id="program-interest" name="program" value={program} readOnly />
-
-              <button type="submit" className="sec-contacts__submit">
-                Отправить
-              </button>
 
               <label className="sec-contacts__consent">
                 <input
@@ -185,19 +184,42 @@ export default function Contacts() {
           background: '#FFFFFF',
           color: '#000000',
           textAlign: 'center',
-          padding: '160px 0',
+          padding: '142px 0',
         }}
       >
         <div className="container">
+          <div
+            style={{
+              fontFamily: 'Manrope, sans-serif',
+              fontSize: '14px',
+              fontWeight: 400,
+              letterSpacing: '0.25em',
+              color: '#000000',
+              textTransform: 'uppercase',
+              marginBottom: '20px',
+            }}
+          >
+            Garden Recovery
+          </div>
+          <div
+            style={{
+              width: '120px',
+              height: '1px',
+              background: '#000000',
+              margin: '0 auto 39px',
+            }}
+            aria-hidden="true"
+          />
           <h2
             style={{
               fontFamily: 'Lora, serif',
               fontSize: '52px',
               fontWeight: 400,
+              fontStyle: 'italic',
               lineHeight: '56.16px',
               letterSpacing: 0,
               color: '#000000',
-              margin: '0 auto 39px',
+              margin: '0 auto 66px',
               maxWidth: '606px',
             }}
           >
@@ -209,12 +231,14 @@ export default function Contacts() {
               fontSize: '17px',
               fontWeight: 300,
               lineHeight: '18.26px',
+              letterSpacing: '0.85px',
               color: '#000000',
-              maxWidth: '606px',
-              margin: '0 auto 66px',
+              maxWidth: '470px',
+              margin: '0 auto 61px',
             }}
           >
-            Чтобы восстановить силы. Чтобы вернуть ясность. Чтобы обрести внутреннюю опору.
+            Чтобы восстановить силы. Чтобы вернуть ясность.<br />
+            Чтобы обрести внутреннюю опору.
           </p>
           <p
             style={{
@@ -222,7 +246,9 @@ export default function Contacts() {
               fontSize: '17px',
               fontWeight: 300,
               lineHeight: '18.26px',
+              letterSpacing: '0.85px',
               color: '#70715C',
+              textTransform: 'uppercase',
               margin: 0,
             }}
           >

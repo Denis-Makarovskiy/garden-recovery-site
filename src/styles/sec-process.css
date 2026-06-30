@@ -1,15 +1,17 @@
 /* ===== Путь гостя — точные значения из Figma (Desktop-64, 1440) =====
-   Источник: spec process. Только числа из спецификации. */
+   Источник: spec process. Все числа — из спецификации, без clamp(). */
 
 .sp-section {
-  padding: clamp(56px, 6vw, 96px) 0;
+  /* Frame Desktop-64 h=1127; head y=133; photo bottom = 413+592 = 1005;
+     bottom padding = 1127 - 1005 = 122 */
+  padding: 133px 0 122px;
   background: #FFFFFF;
 }
 
-/* заголовок + лид: Frame 2147239893 — w408, gap 45 */
+/* заголовок + лид: Frame 2147239893 — w408, gap 45 (title→lead) */
 .sp-head {
   max-width: 408px;
-  margin-bottom: 45px;
+  margin-bottom: 137px; /* steps y=413 - head bottom y=276 = 137 */
 }
 .sp-title {
   font-family: Lora, serif;
@@ -31,21 +33,23 @@
   margin: 0;
 }
 
-/* основной ряд: список этапов слева (~45%), крупное фото справа (~50%) */
+/* основной ряд: steps w=335 слева, photo w=488 справа, gap = 731-454 = 277 */
 .sp-grid {
   display: grid;
-  grid-template-columns: 45fr 50fr;
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: 335px 488px;
+  justify-content: space-between;
+  gap: 277px;
   align-items: start;
 }
 
-/* левая колонка — Frame 2147239902, w335, gap 28 */
+/* левая колонка — Frame 2147239902, w=335, gap 28 между этапами */
 .sp-steps {
   padding-left: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 28px;
+  width: 335px;
 }
 
 .sp-step {
@@ -96,7 +100,7 @@
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  margin-left: calc(34px + 13px);
+  margin-left: 47px; /* 34px номер + 13px gap */
   transition: grid-template-rows 0.36s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.36s cubic-bezier(0.4, 0, 0.2, 1),
               margin-top 0.36s cubic-bezier(0.4, 0, 0.2, 1);
@@ -116,17 +120,18 @@
   letter-spacing: 0;
   color: #47473F;
   margin: 0;
-  max-width: 282px;
+  max-width: 282px; /* Container w=282 */
 }
 
-/* правая колонка — Frame 2147239981, bg #E9E9E9, w488 h592 */
+/* правая колонка — Frame 2147239981, bg #E9E9E9, w=488, h=592, БЕЗ скругления */
 .sp-photo {
   position: relative;
+  width: 488px;
+  height: 592px;
   border-radius: 0;
   overflow: hidden;
   background: #E9E9E9;
   box-shadow: none;
-  min-height: 592px;
   margin-top: 0;
 }
 .sp-photo img {
@@ -135,16 +140,27 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 0;
   opacity: 0;
   transform: scale(1.02);
   transition: opacity 0.6s ease, transform 6s ease-out;
 }
 .sp-photo img.is-active { opacity: 1; transform: scale(1.06); }
 
+/* Адаптив (только меньшие экраны — десктоп 1440 не трогаем) */
+@media (max-width: 1280px) {
+  .sp-grid {
+    grid-template-columns: 335px minmax(0, 488px);
+    gap: clamp(40px, 6vw, 277px);
+  }
+}
+
 @media (max-width: 900px) {
+  .sp-section { padding: 56px 0; }
+  .sp-head { margin-bottom: 28px; }
   .sp-grid { grid-template-columns: 1fr; gap: 28px; }
-  .sp-steps { padding-left: 0; }
-  .sp-photo { order: -1; min-height: 0; aspect-ratio: 4 / 3; margin-top: 0; border-radius: 0; }
+  .sp-steps { width: 100%; padding-left: 0; }
+  .sp-photo { order: -1; width: 100%; height: auto; aspect-ratio: 488 / 592; border-radius: 0; }
   .sp-step-p { max-width: none; }
   .sp-step-title { font-size: clamp(26px, 7vw, 36px); }
   .sp-step.is-active .sp-step-title { font-size: clamp(28px, 7.6vw, 40px); }

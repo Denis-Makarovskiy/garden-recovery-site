@@ -43,21 +43,22 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 80px 0 4px;
+  padding: 60px 0 4px;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .team-track::-webkit-scrollbar { display: none; }
 
 /* ---- Карточка ---- */
+/* 4.3 видимых карточки — даём подсказку, что справа есть ещё */
 .team-card {
-  flex: 0 0 calc((100% - 3 * 22px) / 4);
+  flex: 0 0 calc((100% - 3.3 * 22px) / 4.3);
   scroll-snap-align: start;
   position: relative;
   background: #EFEAE0;
   color: var(--text);
   border-radius: 4px;
-  padding: 82px 22px 30px;
+  padding: 100px 18px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,16 +66,16 @@
   min-height: 100%;
 }
 
-/* крупный аватар, выступающий над верхней кромкой карточки */
+/* квадратный аватар, выступающий над верхней кромкой карточки */
 .team-avatar {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
   overflow: hidden;
   background: #E8E2D5;
   display: grid;
   place-items: center;
-  margin: -160px auto 18px;
+  margin: -75px auto 22px;
   flex: 0 0 auto;
   box-shadow: 0 6px 20px rgba(46, 52, 47, 0.18);
 }
@@ -101,18 +102,21 @@
 .team-role {
   font-family: var(--sans);
   font-style: normal;
-  font-size: 0.92rem;
+  font-size: 0.86rem;
   font-weight: 400;
-  color: var(--text-mute);
-  margin: 0 0 18px;
+  color: var(--text);
+  background: #E0D9C9;
+  margin: 0 auto 16px;
+  padding: 4px 12px;
+  border-radius: 2px;
   letter-spacing: 0.01em;
 }
 .team-quote {
   font-family: var(--serif);
-  font-style: normal;
-  font-size: 0.94rem;
-  line-height: 1.65;
-  color: var(--text-mid);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #3B3B33;
   margin: 0 0 22px;
   flex: 1 1 auto;
 }
@@ -162,18 +166,18 @@
 
 /* ---- Адаптив ---- */
 @media (max-width: 1024px) {
-  .team-card { flex: 0 0 calc((100% - 2 * 22px) / 3.2); }
+  .team-card { flex: 0 0 calc((100% - 2.3 * 22px) / 3.3); }
   .team-head { margin-bottom: 96px; }
 }
 @media (max-width: 760px) {
   .team-sec { padding: 72px 0 80px; }
   .team-head { margin-bottom: 64px; gap: 28px; }
   .team-title { font-size: 36px; line-height: 1.1; }
-  .team-card { flex: 0 0 78%; }
+  .team-card { flex: 0 0 78%; padding-top: 90px; }
   .team-avatar {
-    width: 118px;
-    height: 118px;
-    margin-top: -136px;
+    width: 128px;
+    height: 128px;
+    margin-top: -64px;
   }
 }
 @media (max-width: 520px) {

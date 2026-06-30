@@ -18,23 +18,11 @@ const PROGRAMS: Program[] = [
   { name: 'Human\nReserve', tagline: 'Поддержание ресурса', img: 'p4' },
 ]
 
-interface Duration {
-  label: string
-  program: string
-  price: string
-}
-
-const DURATIONS: Duration[] = [
-  { label: '3 дня', program: 'Fast Recovery', price: '2 500 €' },
-  { label: '7 дней', program: 'Basic Recovery', price: '5 500 €' },
-  { label: '30 дней', program: 'Full Recovery', price: '15 000 €' },
-  { label: 'Индивидуально', program: 'Свой формат', price: '900 €/день' },
-]
+const DURATIONS: string[] = ['3 дня', '7 дней', '30 дней', 'Индивидуально']
 
 export default function Programs() {
   const ref = useReveal<HTMLElement>()
   const [active, setActive] = useState(0)
-  const d = DURATIONS[active]
 
   return (
     <section id="programs" className="pf-section" ref={ref}>
@@ -59,22 +47,18 @@ export default function Programs() {
         <div className="pf-duration" data-reveal>
           <p className="pf-duration-label">Длительность программы</p>
           <div className="pf-pills" role="tablist">
-            {DURATIONS.map((dd, i) => (
+            {DURATIONS.map((label, i) => (
               <button
-                key={dd.label}
+                key={label}
                 type="button"
                 role="tab"
                 aria-selected={active === i}
                 className={`pf-pill${active === i ? ' is-active' : ''}`}
                 onClick={() => setActive(i)}
               >
-                {dd.label}
+                {label}
               </button>
             ))}
-          </div>
-          <div className="pf-price" aria-live="polite">
-            <span className="pf-price-prog">{d.program}</span>
-            <span className="pf-price-val">{d.price}</span>
           </div>
         </div>
 

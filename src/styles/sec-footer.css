@@ -2,13 +2,14 @@
 .ft {
   background: #70715C;
   color: #FFFFFF;
-  padding: 92px 0 0;
+  padding: 92px 0 32px;
 }
 
 .ft-grid {
   display: grid;
-  grid-template-columns: 451px auto;
-  gap: 50px 369px;
+  grid-template-columns: 451px 163px;
+  justify-content: space-between;
+  gap: 0;
   align-items: start;
 }
 
@@ -46,11 +47,11 @@
 .ft-socials {
   display: flex;
   gap: 22px;
-  margin-bottom: 34px;
+  margin-bottom: 50px;
 }
 .ft-soc {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 0;
   display: grid;
   place-items: center;
@@ -90,7 +91,7 @@
   font-size: 17px;
   line-height: 18.257px;
   letter-spacing: 0.85px;
-  text-transform: none;
+  text-transform: uppercase;
   color: #ACAD9B;
   margin: 0 0 20px;
 }
@@ -123,8 +124,8 @@
 /* ---- Нижняя строка ---- */
 .ft-bottom {
   margin-top: 87px;
-  padding: 21px 0 32px;
-  border-top: 0;
+  padding: 21px 0 0;
+  border-top: 1px solid rgba(229, 226, 216, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
