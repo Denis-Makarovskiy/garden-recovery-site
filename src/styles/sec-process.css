@@ -82,15 +82,16 @@
 .sp-step-title {
   font-family: Lora, serif;
   font-weight: 500;
+  font-style: italic;
   font-size: 28px;
   line-height: 1.06;
   letter-spacing: 0;
-  color: #9a9d8c;
+  color: #70715C;
   transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.sp-step.is-active .sp-step-num,
-.sp-step.is-active .sp-step-title { color: #000000; }
+.sp-step.is-active .sp-step-num { color: #000000; }
 .sp-step.is-active .sp-step-title {
+  color: #70715C;
   font-size: 32px;
 }
 .sp-step:not(.is-active):hover .sp-step-title { color: #47473F; }
@@ -111,6 +112,10 @@
   margin-top: 7px;
 }
 .sp-step-body > span { display: block; overflow: hidden; }
+.sp-step.is-active .sp-step-body > span {
+  border-left: 0.5px solid #999B84;
+  padding-left: 16px;
+}
 .sp-step-p {
   display: block;
   font-family: Manrope, sans-serif;

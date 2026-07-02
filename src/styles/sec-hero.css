@@ -24,14 +24,12 @@
   object-position: center;
 }
 
-/* Darkening overlay so the white type stays readable. */
+/* Overlay: solid #555645 @ 60% per Figma (frame Desktop-45 → #555645). */
 .secHero__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(48, 36, 28, 0.56) 0%, rgba(48, 36, 28, 0.48) 45%, rgba(48, 36, 28, 0.60) 100%),
-    rgba(48, 36, 28, 0.18);
+  background: rgba(85, 86, 69, 0.6);
 }
 
 .secHero__inner {
@@ -52,7 +50,7 @@
   display: block;
   width: 296px;
   height: auto;
-  color: #fff;
+  color: #FFFFFF;
   margin: 0 auto 81px;
   filter: drop-shadow(0 1px 18px rgba(0, 0, 0, 0.28));
 }
@@ -63,8 +61,11 @@
   height: auto;
   /* gr-logo viewBox ratio 799.021 / 258.973 */
   aspect-ratio: 799.021 / 258.973;
-  fill: currentColor;
+  color: #FFFFFF;
+  fill: #FFFFFF;
 }
+
+.secHero__logo svg * { fill: #FFFFFF; }
 
 .secHero__title {
   font-family: 'Lora', Georgia, serif;
@@ -90,28 +91,6 @@
   margin: 81px auto 0;
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.30);
 }
-
-.secHero__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 24px;
-  padding: 12px 40px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background: rgba(0, 0, 0, 0);
-  color: #FFFFFF;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 23.6px;
-  letter-spacing: 0;
-  text-decoration: none;
-  backdrop-filter: blur(2px);
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-.secHero__cta:hover { background: #fff; color: var(--text, #2e342f); border-color: #fff; }
-.secHero__cta span { transition: transform 0.25s ease; }
-.secHero__cta:hover span { transform: translateX(4px); }
 
 /* ===== Mobile ===== */
 @media (max-width: 640px) {

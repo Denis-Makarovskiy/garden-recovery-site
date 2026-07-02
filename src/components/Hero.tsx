@@ -1,6 +1,6 @@
 import '../styles/sec-hero.css'
 import { useEffect, useRef } from 'react'
-import { gsap, prefersReducedMotion, scrollToHash } from '../lib/scroll'
+import { gsap, prefersReducedMotion } from '../lib/scroll'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -46,23 +46,14 @@ export default function Hero() {
           </svg>
         </span>
         <h1 className="secHero__title" data-reveal>
-          Частная медицинская резиденция на&nbsp;побережье Адриатического&nbsp;моря
+          Частная медицинская резиденция<br />
+          на&nbsp;побережье<br />
+          Адриатического&nbsp;моря
         </h1>
         <p className="secHero__lead" data-reveal>
           Профессиональное решение деликатных задач в&nbsp;психоэмоциональной сфере. Работаем
           с&nbsp;состояниями, которые сложно назвать, но&nbsp;невозможно игнорировать.
         </p>
-        <a
-          href="#contacts"
-          className="secHero__cta"
-          data-reveal
-          onClick={(e) => {
-            e.preventDefault()
-            scrollToHash('#contacts')
-          }}
-        >
-          Получить консультацию <span aria-hidden="true">→</span>
-        </a>
       </div>
     </section>
   )

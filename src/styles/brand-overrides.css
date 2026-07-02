@@ -76,9 +76,13 @@ a.secHero__cta,
 .sec-contacts__photo,
 .sec-contacts__photo img,
 .sec-contacts__chan,
-.sec-contacts__submit,
-.team-dot {
+.sec-contacts__submit {
   border-radius: 0 !important;
+}
+
+/* Пагинация (точки) — оставляем скруглённой (правило: dots круглые) */
+.team-dot {
+  border-radius: 50% !important;
 }
 
 /* Карточки «Почему» — оставляем плашки, но без скруглений */
@@ -135,19 +139,9 @@ a.secHero__cta,
 }
 .topbar-lang:hover { color: var(--brand-title); }
 
-/* Логотип в верхнем баре — компактный, тёмный (а не белый, фон же светлый) */
+/* Логотип в верхнем баре — по брифу дизайнера УБРАН (остаётся в Hero и футере) */
 .topbar-logo {
-  display: inline-flex;
-  align-items: center;
-  height: 28px;
-  color: var(--brand-menu-text);
-}
-.topbar-logo svg {
-  display: block;
-  height: 100%;
-  width: auto;
-  aspect-ratio: 799.021 / 258.973;
-  fill: currentColor;
+  display: none !important;
 }
 
 /* Центральная навигация */
@@ -189,9 +183,9 @@ a.secHero__cta,
   padding: 12px 26px;
   text-decoration: none;
   border: 0;
-  transition: filter 0.2s ease;
+  transition: background-color 0.25s ease;
 }
-.topbar-cta:hover { filter: brightness(0.92); }
+.topbar-cta:hover { background: #927E5F !important; }
 
 /* Сдвигаем контент сайта вниз на высоту фиксированного бара */
 body { padding-top: 76px; }

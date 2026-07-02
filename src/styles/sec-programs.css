@@ -29,17 +29,37 @@
   max-width: 334px;
 }
 
-/* ---- Cards row ---- */
-.pf-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+/* ---- Horizontal slider ----
+   Figma: контент-контейнер 1202px @ x=119, слайдер Frame 2147239888 w=1610, gap=22.
+   Карточка 386×560. Первая карточка выровнена по контейнеру (x=119),
+   правые карточки уходят за правый край до скролла/hover. */
+.pf-slider-wrap {
   margin-bottom: 126px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Отступ слева = у контейнера padding-left, чтобы первая карточка совпала с текстом */
+  padding-left: max(119px, calc((100vw - 1202px) / 2));
+  padding-right: 24px;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+.pf-slider-wrap::-webkit-scrollbar { display: none; }
+
+.pf-slider {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  width: max-content;
 }
 
 .pf-card {
   display: flex;
   flex-direction: column;
+  width: 386px;
+  flex: 0 0 386px;
+  scroll-snap-align: start;
 }
 
 .pf-card-name {
@@ -65,8 +85,9 @@
 }
 
 .pf-card-media {
+  position: relative;
   width: 100%;
-  aspect-ratio: 284 / 442;
+  aspect-ratio: 386 / 442;
   border-radius: 0;
   overflow: hidden;
   background: var(--line-soft);
@@ -79,9 +100,84 @@
   display: block;
 }
 
+/* Hover-плашка — выезжает сверху вниз */
+.pf-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(247, 246, 242, 0.94);
+  color: #000000;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  display: flex;
+  align-items: flex-end;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.pf-card:hover .pf-card-overlay,
+.pf-card:focus-within .pf-card-overlay {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.pf-card-overlay-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.pf-card-desc {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23.6px;
+  color: #47473F;
+  margin: 0;
+}
+
+/* Кнопка с hover-заливкой (заливка идёт слева направо) */
+.pf-card-btn {
+  position: relative;
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #000000;
+  background: transparent;
+  border: 1px solid #AC9775;
+  border-radius: 0;
+  padding: 14px 24px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.35s ease;
+  isolation: isolate;
+}
+.pf-card-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #AC9775;
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  z-index: -1;
+}
+.pf-card-btn:hover,
+.pf-card-btn:focus-visible {
+  color: #FFFFFF;
+  outline: none;
+}
+.pf-card-btn:hover::before,
+.pf-card-btn:focus-visible::before {
+  transform: translateX(0);
+}
+.pf-card-btn span { position: relative; }
+
 /* ---- Duration ---- */
 .pf-duration {
   margin-top: 8px;
+  position: relative;
 }
 
 .pf-duration-label {
@@ -94,60 +190,169 @@
   letter-spacing: 0;
 }
 
-.pf-pills {
+/* Кнопки длительности — 4 штуки, expand-on-hover сверху вниз */
+.pf-durations {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
+  align-items: flex-start;
 }
 
-.pf-pill {
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 23.6px;
-  color: #47473F;
-  background: #F7F6F2;
-  border: 1px solid transparent;
-  border-radius: 0;
-  padding: 18px 22px;
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+.pf-dur {
+  position: relative;
+  /* закрытая высота = кнопка (54px по Figma) */
 }
 
-.pf-pill:hover {
-  background: var(--line);
-  color: #000000;
-}
-
-.pf-pill.is-active {
+.pf-dur-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: #AC9775;
-  border-color: #AC9775;
   color: #FFFFFF;
+  border: 1px solid #AC9775;
+  border-radius: 0;
+  padding: 10px 22px;
+  min-height: 54px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.pf-dur-label {
+  font-family: 'Lora', var(--serif), serif;
+  font-size: 26px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* Раскрывающаяся подложка — F7F6F2 с обводкой AC9775 */
+.pf-dur-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: 360px;
+  background: #F7F6F2;
+  border: 1px solid #AC9775;
+  padding: 0 22px;
+  box-sizing: border-box;
+  max-height: 54px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+              opacity 0.25s ease,
+              transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pf-dur-panel-inner {
+  padding: 66px 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pf-dur-title {
+  font-family: 'Lora', var(--serif), serif;
+  font-size: 26px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.15;
+  color: #000000;
+  margin: 0;
+}
+
+.pf-dur-desc {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #47473F;
+  margin: 0;
+}
+
+.pf-dur:hover .pf-dur-panel,
+.pf-dur:focus-within .pf-dur-panel {
+  max-height: 360px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.pf-dur:hover .pf-dur-btn,
+.pf-dur:focus-within .pf-dur-btn {
+  background: transparent;
+  color: #000000;
+  border-color: #AC9775;
+}
+
+/* Разделительная линия под кнопками длительности */
+.pf-divider {
+  width: 1203px;
+  max-width: 100%;
+  height: 0.5px;
+  background: #AC9775;
+  margin: 178px 0 0;
+}
+
+/* Отступ 239px от линии до заголовка «Сопровождение после программы».
+   .pf-divider уже в конце .pf-duration → добавляем padding-top у секции Continuum. */
+.pf-section > #continuum {
+  padding-top: 239px;
 }
 
 /* Continuum block spacing below the programs */
 .pf-section .continuum { margin-top: clamp(64px, 8vw, 110px); }
 
 /* ---- Responsive ---- */
+@media (max-width: 1240px) {
+  .pf-slider-wrap {
+    padding-left: max(24px, calc((100vw - 1202px) / 2));
+  }
+  .pf-divider { width: 100%; }
+}
+
 @media (max-width: 980px) {
-  .pf-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+  .pf-slider-wrap {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .pf-card {
+    width: 300px;
+    flex: 0 0 300px;
   }
   .pf-card-name {
     min-height: 0;
+    font-size: 26px;
+    line-height: 1.15;
   }
+  .pf-durations { gap: 12px; }
+  .pf-dur-label { font-size: 20px; }
+  .pf-section > #continuum { padding-top: 120px; }
 }
 
 @media (max-width: 560px) {
   .pf-section {
     padding: 64px 0;
   }
-  .pf-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .pf-slider-wrap { margin-bottom: 72px; }
+  .pf-card {
+    width: 260px;
+    flex: 0 0 260px;
   }
   .pf-card-media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
   }
+  .pf-duration-label { margin-bottom: 40px; font-size: 24px; line-height: 1.2; }
+  .pf-dur-btn { min-height: 46px; padding: 8px 16px; }
+  .pf-dur-label { font-size: 18px; }
+  .pf-divider { margin-top: 96px; }
+  .pf-section > #continuum { padding-top: 96px; }
 }

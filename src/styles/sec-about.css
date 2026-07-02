@@ -1,10 +1,11 @@
-/* Section: О нас — повторяет макет Figma (figR_about).
-   Заголовок слева, короткий лид, ряд из 3 квадратных фото
-   с короткими подписями по центру под каждым. Значения из Figma spec. */
+/* Section: О нас — горизонтальный слайдер из 4 карточек.
+   Карточка: фото 386×485 + подпись-плашка 386×71 (#F9F6EF).
+   Клик по фото — плашка с описанием выезжает снизу и накрывает низ фото. */
 
 .sec-about {
   background: #FFFFFF;
   padding: 98px 0 69px;
+  overflow: hidden;
 }
 
 .sec-about__head {
@@ -37,24 +38,55 @@
   max-width: 502px;
 }
 
-.sec-about__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+/* Горизонтальный скроллер. Слева выравниваем по контейнеру (119px в макете 1440). */
+.sec-about__scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 6px;
 }
 
-.sec-about__col {
+.sec-about__scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.sec-about__track {
+  list-style: none;
+  margin: 0;
+  padding: 0 max(24px, calc((100vw - var(--container-max, 1202px)) / 2));
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.sec-about__item {
+  flex: 0 0 auto;
+  width: 386px;
+}
+
+.sec-about__card {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin: 0;
+  width: 386px;
 }
 
 .sec-about__photo {
+  position: relative;
+  width: 386px;
+  height: 485px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
   background: var(--line-soft, #e8e2d5);
   display: block;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
 }
 
 .sec-about__photo img {
@@ -62,6 +94,40 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 480ms ease;
+}
+
+.sec-about__card.is-open .sec-about__photo img {
+  transform: scale(1.04);
+}
+
+/* Плашка с описанием — выезжает снизу вверх по клику. */
+.sec-about__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  background: rgba(249, 246, 239, 0.96);
+  color: #47473F;
+  padding: 22px 26px 26px;
+  max-height: 100%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.sec-about__card.is-open .sec-about__panel {
+  transform: translateY(0);
+}
+
+.sec-about__body {
+  font-family: var(--sans, Manrope, sans-serif);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23.6px;
+  color: #47473F;
+  margin: 0;
 }
 
 .sec-about__cap {
@@ -76,25 +142,27 @@
   margin: 0;
   background: #F9F6EF;
   border: 0;
-  padding: 22px 0;
-  display: block;
+  height: 71px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 /* Tablet */
 @media (max-width: 980px) {
+  .sec-about {
+    padding: 84px 0 60px;
+  }
   .sec-about__head {
     margin: 0 0 56px;
   }
-  .sec-about__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 22px;
-  }
 }
 
-/* Mobile — складываем в колонку */
+/* Mobile */
 @media (max-width: 560px) {
   .sec-about {
-    padding: 64px 0 72px;
+    padding: 64px 0 56px;
   }
   .sec-about__head {
     margin: 0 0 40px;
@@ -104,16 +172,28 @@
     font-size: clamp(40px, 11vw, 55px);
     line-height: 1.08;
   }
-  .sec-about__grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
+  .sec-about__track {
+    padding: 0 20px;
+    gap: 16px;
+  }
+  .sec-about__item,
+  .sec-about__card,
+  .sec-about__photo {
+    width: 280px;
   }
   .sec-about__photo {
-    aspect-ratio: 1 / 1;
+    height: 360px;
   }
   .sec-about__cap {
     font-size: 18px;
     line-height: 1.28;
-    padding: 18px 0;
+    height: 60px;
+  }
+  .sec-about__panel {
+    padding: 18px 20px 22px;
+  }
+  .sec-about__body {
+    font-size: 15px;
+    line-height: 22px;
   }
 }

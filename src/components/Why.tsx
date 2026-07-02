@@ -32,10 +32,6 @@ export default function Why() {
       <div className="container">
         <header className="secwhy-head" data-reveal>
           <h2 className="secwhy-title">Почему это работает</h2>
-          <p className="secwhy-lead">
-            Это не отдых, не разовая помощь и не временное решение. Это система.
-            Восстановление становится управляемым процессом, а не надеждой на лучшее.
-          </p>
         </header>
 
         <div className="secwhy-grid">

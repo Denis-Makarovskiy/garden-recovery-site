@@ -1,7 +1,12 @@
 /* ===== Continuum (Figma Desktop-16) — точные значения =====
    Источник: figma_spec.json -> continuum
-   Контейнер: 1202px (1440 - 119*2), gap head→card=63, gap card→dots=79.
-   Серая плашка #CCCBCB 1202×367. Точки 9×9 #D1D1C7 r=15px, активная 29×9 #70715C. */
+   Контейнер: 1202px (1440 - 119*2).
+   Frame 2147239962 gap 60 (photo→viewport).
+   Frame 2147239960 gap 63 (head→photo).
+   Frame 2147239961 gap 79 (viewport→dots).
+   Photo band 1202×367 (Frame 2147239894).
+   Viewport 1202×455 (Frame 2147239958); track 2426×455, gap 22, 6 карточек.
+   Точки 9×9 #D1D1C7 radius 15px; активная 29×9. */
 
 .cnt-section {
   background: #FFFFFF;
@@ -38,54 +43,101 @@
   margin: 0;
 }
 
-/* Серая плашка — точно по spec: 1202×367 #CCCBCB, без скруглений (radius null) */
-.cnt-card {
-  background: #CCCBCB;
+/* Широкое фото — Frame 2147239894: 1202×367, без скруглений */
+.cnt-photo {
   width: 1202px;
   max-width: 100%;
   height: 367px;
-  padding: 60px 60px;
+  margin: 0 auto 60px;
+  background: #CCCBCB;
+  overflow: hidden;
+}
+.cnt-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Горизонтальный слайдер: viewport 1202×455, track из 6 карточек с gap 22 */
+.cnt-viewport {
+  width: 1202px;
+  max-width: 100%;
+  height: 455px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.cnt-track {
+  display: flex;
+  gap: 22px;
+  height: 100%;
+  transition: transform 0.45s ease;
+  /* каждая карточка занимает (100% - 2*22px) / 3 = ширина 3-х видимых карточек */
+  --gap: 22px;
+}
+.cnt-card {
+  flex: 0 0 calc((100% - var(--gap) * 2) / 3);
+  height: 455px;
+  background: #FFFFFF;
+  border: 0.5px solid #47473F;
+  padding: 40px 40px 32px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 22px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
-
-.cnt-tier-eyebrow {
-  font-family: Manrope, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #47473F;
-  margin: 0;
-}
-
-.cnt-tier-title {
+.cnt-card-title {
   font-family: Lora, serif;
+  font-style: italic;
   font-weight: 500;
   font-size: 29px;
   line-height: 37.12px;
   letter-spacing: 0;
   color: #000000;
-  margin: 0;
+  margin: 0 0 22px;
 }
-
-.cnt-tier-body {
+.cnt-card-duration {
+  font-family: Lora, serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28.16px;
+  color: #000000;
+  margin: 0 0 14px;
+}
+.cnt-card-body {
   font-family: Manrope, sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 23.6px;
-  letter-spacing: 0;
+  font-size: 14px;
+  line-height: 20.6px;
   color: #47473F;
-  margin: 0;
-  max-width: 640px;
+  margin: 0 0 16px;
+}
+.cnt-card-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 0 0 auto;
+  font-family: Manrope, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20.6px;
+  color: #47473F;
+}
+.cnt-card-list li { margin-bottom: 4px; }
+.cnt-card-cta {
+  align-self: stretch;
+  margin-top: 20px;
+  background: #70715C;
+  color: #FFFFFF;
+  border: 0;
+  padding: 12px 0;
+  font-family: Manrope, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
 }
 
 /* Точки пагинации — spec: 9×9 #D1D1C7 radius 15px, активная 29×9 #70715C,
-   gap=6, расстояние от плашки до точек=79 (Frame 2147239961 gap). */
+   gap=6, расстояние от viewport до точек=79 (Frame 2147239961 gap). */
 .cnt-dots {
   display: flex;
   justify-content: center;
@@ -110,14 +162,25 @@
 
 @media (max-width: 1240px) {
   .cnt-section { padding: 60px 16px 59px; }
-  .cnt-card { height: auto; min-height: 367px; }
+  .cnt-photo { height: auto; aspect-ratio: 1202 / 367; }
+  .cnt-viewport { height: auto; }
+  .cnt-card { height: auto; min-height: 455px; }
 }
 
 @media (max-width: 900px) {
   .cnt-section { padding: 56px 16px 72px; }
   .cnt-head { margin-bottom: 40px; gap: 24px; }
   .cnt-title { font-size: 36px; line-height: 1.1; }
-  .cnt-card { padding: 32px 24px; height: auto; min-height: 0; }
-  .cnt-tier-title { font-size: 22px; line-height: 1.2; }
-  .cnt-dots { margin-top: 40px; }
+  .cnt-photo { margin-bottom: 32px; aspect-ratio: 16 / 9; }
+  .cnt-viewport { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .cnt-track { transition: none; transform: none !important; }
+  .cnt-card {
+    flex: 0 0 82%;
+    min-height: 0;
+    padding: 24px 20px;
+    scroll-snap-align: start;
+  }
+  .cnt-card-title { font-size: 22px; line-height: 1.2; margin-bottom: 14px; }
+  .cnt-card-duration { font-size: 18px; }
+  .cnt-dots { margin-top: 32px; }
 }
