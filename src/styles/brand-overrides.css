@@ -59,8 +59,6 @@ button,
 a.btn,
 a.topbar-cta,
 a.secHero__cta,
-.team-card .team-avatar,
-.team-card .team-avatar img,
 .sec-about__photo,
 .sec-about__photo img,
 .pf-card-media,
@@ -81,7 +79,14 @@ a.secHero__cta,
 }
 
 /* Пагинация (точки) — оставляем скруглённой (правило: dots круглые) */
-.team-dot {
+.team-dot,
+.cnt-dot {
+  border-radius: 50% !important;
+}
+
+/* Аватар «Команды» — круглое фото врача (правка от дизайнера) */
+.team-card .team-avatar,
+.team-card .team-avatar img {
   border-radius: 50% !important;
 }
 
